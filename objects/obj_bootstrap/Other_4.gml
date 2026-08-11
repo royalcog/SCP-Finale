@@ -18,9 +18,9 @@ if (!instance_exists(obj_cutscenefade))
     instance_create_depth(0, 0, 0, obj_cutscenefade);
 }
 
-if (!instance_exists(obj_musiccontroller))
+if (!instance_exists(obj_music_controller))
 {
-    instance_create_depth(0, 0, 0, obj_musiccontroller);
+    instance_create_depth(0, 0, 0, obj_music_controller);
 }
 
 if (!instance_exists(obj_kris))
@@ -49,9 +49,12 @@ if (!instance_exists(obj_lighting))
 }
 
 // Variables
- variable_global_set("dialogue_self", 12);
- global.song = sng_flashback;
- audio_play_sound(global.song, 1, true);
+if (!variable_global_exists("dialogue_self"))
+{
+    variable_global_set("dialogue_self", 12);
+    global.song = sng_flashback;
+    audio_play_sound(global.song, 1, true);
+}
 
 if (!variable_global_exists("fight_attack_active"))
 {

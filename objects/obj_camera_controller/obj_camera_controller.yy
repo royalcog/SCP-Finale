@@ -9,8 +9,8 @@
   "name":"obj_camera_controller",
   "overriddenProperties":[],
   "parent":{
-    "name":"Invisible",
-    "path":"folders/Objects/Invisible.yy",
+    "name":"Controllers",
+    "path":"folders/Objects/Controllers.yy",
   },
   "parentObjectId":null,
   "persistent":false,

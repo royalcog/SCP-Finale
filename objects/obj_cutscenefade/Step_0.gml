@@ -48,6 +48,19 @@ if (fade_target == 1)
 }
 else if (fade_target == 0)
 {
+	if (!has_spawned)
+     {
+         for (var i = 0; i < array_length(spawn_list); i++)
+         {
+            var _s = spawn_list[i];
+            var _inst = instance_create_layer(_s.x, _s.y, _s.layer, _s.obj);
+            if (variable_struct_exists(_s, "setup") && _s.setup != noone && is_method(_s.setup))
+            {
+                _s.setup(_inst);
+             }
+         }
+         has_spawned = true;
+    }
     // (Keep your existing fade-out-to-transparent code here)
     if (!music_started && new_music_sound != noone)
     {

@@ -468,44 +468,47 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_15":
-		    scr_music_quiet(2);
-			scr_set_dim_left(.9);
-			scr_set_dim_right(.9);
-		    scr_fade_out_character(obj_mewmew, 60);
-		    scr_fade_out_character(obj_othermewmew, 60);
-		    scr_fade_warp_with_music(rm_three, 400, sng_empty, 1, 1500, 2000, 180);
-		break;
-		
-		case "self_16":    
-		    if (audio_is_playing(global.song))
-		    {
-		        audio_sound_gain(global.song, 0, 0); // Start at 0
-		        audio_sound_gain(global.song, 1, 2000); // Fade in over 2 seconds
-		    }
-				// Spawn and capture instances cleanly
-			    var _gerson = instance_create_layer(600, 230, "Instances", obj_gerson);
-			    var _mewmew = instance_create_layer(120, 255, "Instances", obj_mewmew);
-    
-			    with (_mewmew) {
-			        ghosted = false;
-			        sprite_index = spr_mewmew_walkright_corrupted;
-			        image_speed = 0;
-			        image_index = 0;
-			        visible = true;
-			        light_on = true;
-			    }
-    
-			    with (_gerson) {
-			        sprite_index = spr_gerson_hammer_idle_lantern_left;
-			        image_speed = 0;
-			        image_index = 0;
-			        visible = true;
-			        lantern_on = true;
-			    }
-
-		    // Then trigger the text
-		    scr_text("* We're here.", "gerson");
-		break;
+		      scr_music_quiet(2);
+		      scr_set_dim_left(.9);
+		      scr_set_dim_right(.9);
+		      scr_fade_out_character(obj_mewmew, 60);
+		      scr_fade_out_character(obj_othermewmew, 60);
+		      scr_fade_warp_with_music(rm_three, 400, sng_empty, 1, 1500, 2000, 180, [
+		          scr_make_warp_spawn(obj_mewmew, 120, 255, "Instances", method(undefined, function(_inst) {
+		              with (_inst) {
+		                  ghosted = false;
+		                  sprite_index = spr_mewmew_walkright_corrupted;
+		                  image_speed = 0;
+		                  image_index = 0;
+		                  visible = true;
+		                  light_on = true;
+		              }
+		          })),
+		          scr_make_warp_spawn(obj_gerson, 600, 230, "Instances", method(undefined, function(_inst) {
+		              with (_inst) {
+		                  sprite_index = spr_gerson_hammer_idle_lantern_left;
+		                  image_speed = 0;
+		                  image_index = 0;
+		                  visible = true;
+		                  lantern_on = true;
+		              }
+		          }))
+		      ]);
+		  break;
+  
+		  case "self_16":    
+		      if (audio_is_playing(global.song))
+		      {
+		          audio_sound_gain(global.song, 0, 0);
+		          audio_sound_gain(global.song, 1, 2000);
+		      }
+		      scr_text("* We're here.", "gerson");
+				scr_obj_spawn_on_page(obj_gerson, 600, 230, "Instances");
+		        obj_gerson.image_speed = 0;
+		        obj_gerson.image_index = 0;
+		        obj_gerson.visible = true;
+		        obj_gerson.lantern_on = true;
+		  break;
 		
 		case "self_17":
 			scr_text("* G-G-Gerson?", "mewmewghost");

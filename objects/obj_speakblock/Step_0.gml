@@ -22,7 +22,7 @@ if dialogue_flag != ""
     var _count = variable_global_get("dialogue_" + dialogue_flag);
 
     if keyboard_check_pressed(ord("Z")) && distance_to_object(obj_kris) < interact_range
-	&& !instance_exists(obj_textbox) && (ignore_facing || _correct_dir)
+	&& !instance_exists(obj_textbox) && !instance_exists(obj_cutscenefade) && (ignore_facing || _correct_dir)
 	{
 	    // build a text id based on count, falling back to the last defined one
 	    var _ids = [

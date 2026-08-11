@@ -662,7 +662,7 @@ function scr_set_var_after_textbox(_obj, _var_name, _value)
     });
 }
 
-function scr_fade_warp_with_music(_target_room, _wait_frames, _new_sound, _new_gain = 1, _fade_in_time = 1000, _fade_out_time = 500, _music_lead_frames = 0)
+function scr_fade_warp_with_music(_target_room, _wait_frames, _new_sound, _new_gain = 1, _fade_in_time = 1000, _fade_out_time = 500, _music_lead_frames = 0, _spawn_list = [])
 {
     if !instance_exists(obj_cutscenehandler_midfightattacks) exit;
     array_push(obj_cutscenehandler_midfightattacks.after_textbox_queue, {
@@ -673,8 +673,16 @@ function scr_fade_warp_with_music(_target_room, _wait_frames, _new_sound, _new_g
         new_gain: _new_gain,
         fade_in_time: _fade_in_time,
         fade_out_time: _fade_out_time,
-        music_lead_frames: _music_lead_frames
+        music_lead_frames: _music_lead_frames,
+        spawn_list: _spawn_list
     });
+}
+
+// Helper for building one spawn_list entry for scr_fade_warp_with_music.
+// _setup (optional) is a method taking the new instance and applying sprite/flags/etc to it.
+function scr_make_warp_spawn(_obj, _x, _y, _layer = "Instances", _setup = noone)
+{
+    return { obj: _obj, x: _x, y: _y, layer: _layer, setup: _setup };
 }
 
 function scr_orb_transform()

@@ -21,3 +21,6 @@ old_music_faded = false;
 
 music_lead_frames = 0;   
 music_lead_timer = 0;
+
+spawn_list = [];
+has_spawned = false;

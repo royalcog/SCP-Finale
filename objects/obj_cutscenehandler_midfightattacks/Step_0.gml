@@ -394,7 +394,7 @@ if (processing_queue)
 		    _fader.new_music_fade_time = _entry.fade_in_time;
 		    _fader.old_music_fade_time = _entry.fade_out_time;
 		    _fader.music_lead_frames = _entry.music_lead_frames;
-
+			_fader.spawn_list = variable_struct_exists(_entry, "spawn_list") ? _entry.spawn_list : [];
 		    break;
 		}
 		
