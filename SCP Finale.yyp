@@ -363,6 +363,7 @@
     {"id":{"name":"spr_gerson_hammer_idle_lantern_closed_eyes_left","path":"sprites/spr_gerson_hammer_idle_lantern_closed_eyes_left/spr_gerson_hammer_idle_lantern_closed_eyes_left.yy",},},
     {"id":{"name":"spr_gerson_hammer_idle_lantern_closed_eyes_right","path":"sprites/spr_gerson_hammer_idle_lantern_closed_eyes_right/spr_gerson_hammer_idle_lantern_closed_eyes_right.yy",},},
     {"id":{"name":"spr_gerson_hammer_idle_lantern_down_left","path":"sprites/spr_gerson_hammer_idle_lantern_down_left/spr_gerson_hammer_idle_lantern_down_left.yy",},},
+    {"id":{"name":"spr_gerson_hammer_idle_lantern_down_right","path":"sprites/spr_gerson_hammer_idle_lantern_down_right/spr_gerson_hammer_idle_lantern_down_right.yy",},},
     {"id":{"name":"spr_gerson_hammer_idle_lantern_left","path":"sprites/spr_gerson_hammer_idle_lantern_left/spr_gerson_hammer_idle_lantern_left.yy",},},
     {"id":{"name":"spr_gerson_hammer_idle_lantern_lookback_left","path":"sprites/spr_gerson_hammer_idle_lantern_lookback_left/spr_gerson_hammer_idle_lantern_lookback_left.yy",},},
     {"id":{"name":"spr_gerson_hammer_idle_lantern_lookback_right","path":"sprites/spr_gerson_hammer_idle_lantern_lookback_right/spr_gerson_hammer_idle_lantern_lookback_right.yy",},},

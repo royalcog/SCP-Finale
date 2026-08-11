@@ -19,5 +19,6 @@ light_radius = 80;      // smaller, subtle radius around her
 light_strength = 0.35;  // just enough to see her, not a full light pool
 needtoflip = true;
 turn_light_change = false;
+vert_light_change = false;
 light_offset_x = 3;
 light_offset_y = -16;

@@ -35,8 +35,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_gerson_hammer_idle_lantern_left",
-    "path":"sprites/spr_gerson_hammer_idle_lantern_left/spr_gerson_hammer_idle_lantern_left.yy",
+    "name":"spr_gerson_hammer_idle_lantern_down_right",
+    "path":"sprites/spr_gerson_hammer_idle_lantern_down_right/spr_gerson_hammer_idle_lantern_down_right.yy",
   },
   "spriteMaskId":null,
   "visible":true,

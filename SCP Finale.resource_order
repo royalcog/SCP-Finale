@@ -300,6 +300,7 @@
     {"name":"spr_gerson_hammer_idle_lantern_closed_eyes_left","order":4,"path":"sprites/spr_gerson_hammer_idle_lantern_closed_eyes_left/spr_gerson_hammer_idle_lantern_closed_eyes_left.yy",},
     {"name":"spr_gerson_hammer_idle_lantern_closed_eyes_right","order":9,"path":"sprites/spr_gerson_hammer_idle_lantern_closed_eyes_right/spr_gerson_hammer_idle_lantern_closed_eyes_right.yy",},
     {"name":"spr_gerson_hammer_idle_lantern_down_left","order":13,"path":"sprites/spr_gerson_hammer_idle_lantern_down_left/spr_gerson_hammer_idle_lantern_down_left.yy",},
+    {"name":"spr_gerson_hammer_idle_lantern_down_right","order":15,"path":"sprites/spr_gerson_hammer_idle_lantern_down_right/spr_gerson_hammer_idle_lantern_down_right.yy",},
     {"name":"spr_gerson_hammer_idle_lantern_left","order":6,"path":"sprites/spr_gerson_hammer_idle_lantern_left/spr_gerson_hammer_idle_lantern_left.yy",},
     {"name":"spr_gerson_hammer_idle_lantern_lookback_left","order":7,"path":"sprites/spr_gerson_hammer_idle_lantern_lookback_left/spr_gerson_hammer_idle_lantern_lookback_left.yy",},
     {"name":"spr_gerson_hammer_idle_lantern_lookback_right","order":8,"path":"sprites/spr_gerson_hammer_idle_lantern_lookback_right/spr_gerson_hammer_idle_lantern_lookback_right.yy",},

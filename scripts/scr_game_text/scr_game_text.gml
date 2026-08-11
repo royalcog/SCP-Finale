@@ -474,19 +474,19 @@ function scr_game_text(_text_id)
 		      scr_fade_out_character(obj_mewmew, 60);
 		      scr_fade_out_character(obj_othermewmew, 60);
 		      scr_fade_warp_with_music(rm_three, 400, sng_empty, 1, 1500, 2000, 180, [
-		          scr_make_warp_spawn(obj_mewmew, 120, 255, "Instances", method(undefined, function(_inst) {
+		          scr_make_warp_spawn(obj_mewmew, 426.5, 450, "Instances", method(undefined, function(_inst) {
 		              with (_inst) {
 		                  ghosted = false;
-		                  sprite_index = spr_mewmew_walkright_corrupted;
+		                  sprite_index = spr_mewmew_walkup_corrupted;
 		                  image_speed = 0;
 		                  image_index = 0;
 		                  visible = true;
 		                  light_on = true;
 		              }
 		          })),
-		          scr_make_warp_spawn(obj_gerson, 600, 230, "Instances", method(undefined, function(_inst) {
+		          scr_make_warp_spawn(obj_gerson, 280, 260, "Instances", method(undefined, function(_inst) {
 		              with (_inst) {
-		                  sprite_index = spr_gerson_hammer_idle_lantern_left;
+		                  sprite_index = spr_gerson_hammer_idle_lantern_down_right;
 		                  image_speed = 0;
 		                  image_index = 0;
 		                  visible = true;
@@ -498,13 +498,8 @@ function scr_game_text(_text_id)
 		  break;
   
 		  case "self_16":    
-		      if (audio_is_playing(global.song))
-		      {
-		          audio_sound_gain(global.song, 0, 0);
-		          audio_sound_gain(global.song, 1, 2000);
-		      }
 		      scr_text("* We're here.", "gerson");
-				scr_obj_spawn_on_page(obj_gerson, 600, 230, "Instances");
+				scr_obj_spawn_on_page(obj_gerson, 280, 260, "Instances");
 		        obj_gerson.image_speed = 0;
 		        obj_gerson.image_index = 0;
 		        obj_gerson.visible = true;
