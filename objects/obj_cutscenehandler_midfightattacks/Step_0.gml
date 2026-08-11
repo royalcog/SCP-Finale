@@ -222,52 +222,60 @@ if (processing_queue)
             audio_sound_gain(global.music, 0, 100);
             scr_knight_to_ball();
         }
-        else if _entry.type == "villains_ascend"
-        {
-            villains_ascending = true;
-            if instance_exists(obj_jevil)
-            {
-                audio_play_sound(snd_sparklegem, 1, false);
-                obj_jevil.sprite_index = spr_devilsknife;
-                obj_jevil.image_index = 0;
-                obj_jevil.image_speed = 1;
-                obj_jevil.anim_loop = true;
-            }
-            if instance_exists(obj_spamton)
-            {
-                obj_spamton.sprite_index = spr_dealmaker;
-                obj_spamton.image_index = 0;
-                obj_spamton.image_speed = 1;
-                obj_spamton.anim_loop = true;
-            }
-        }
-		else if _entry.type == "villains_descend"
-        {
-            villains_descending = true;
-            if !instance_exists(obj_jevil)
-            {
-				if (!instance_exists(obj_jevil)) 
-				{
-				    var _inst = instance_create_layer(450, 140, "Instances", obj_jevil);
-				    _inst.in_cutscene = true; // Use the returned instance ID instead of the object name
-				}
-                audio_play_sound(snd_sparklegem, 1, false);
-				obj_jevil.image_alpha = 0;
-                obj_jevil.sprite_index = spr_devilsknife;
-                obj_jevil.image_index = 0;
-                obj_jevil.image_speed = 1;
-                obj_jevil.anim_loop = true;
-            }
-            if !instance_exists(obj_spamton)
-            {
-				instance_create_layer(300, 167, "Instances", obj_spamton);
-				obj_spamton.image_alpha = 0;
-                obj_spamton.sprite_index = spr_dealmaker;
-                obj_spamton.image_index = 0;
-                obj_spamton.image_speed = 1;
-                obj_spamton.anim_loop = true;
-            }
-        }
+        else if (_entry.type == "villains_ascend" && villains_ascending == false)
+		{
+		    villains_ascending = true; // This instantly locks the door behind it
+    
+		    if instance_exists(obj_jevil)
+		    {
+		        audio_play_sound(snd_sparklegem, 1, false);
+		        obj_jevil.sprite_index = spr_devilsknife;
+		        obj_jevil.image_index = 0;
+		        obj_jevil.image_speed = 1;
+		        obj_jevil.anim_loop = true;
+		    }
+		    if instance_exists(obj_spamton)
+		    {
+		        obj_spamton.sprite_index = spr_dealmaker;
+		        obj_spamton.image_index = 0;
+		        obj_spamton.image_speed = 1;
+		        obj_spamton.anim_loop = true;
+		    }
+		}
+		else if (_entry.type == "villains_descend" && villains_descending == false)
+		{
+		    villains_descending = true; // Lock the block so it only fires once
+
+		    if (!instance_exists(obj_jevil))
+		    {
+		        audio_play_sound(snd_sparklegem, 1, false);
+		        var _jevil = instance_create_layer(450, 140, "Instances", obj_jevil);
+        
+		        // Apply everything directly to the newly spawned Jevil
+		        with (_jevil) {
+		            in_cutscene = true; 
+		            image_alpha = 0;
+		            sprite_index = spr_devilsknife;
+		            image_index = 0;
+		            image_speed = 1;
+		            anim_loop = true;
+		        }
+		    }
+    
+		    if (!instance_exists(obj_spamton))
+		    {
+		        var _spamton = instance_create_layer(300, 167, "Instances", obj_spamton);
+        
+		        // Apply everything directly to the newly spawned Spamton
+		        with (_spamton) {
+		            image_alpha = 0;
+		            sprite_index = spr_dealmaker;
+		            image_index = 0;
+		            image_speed = 1;
+		            anim_loop = true;
+		        }
+		    }
+}
         else if _entry.type == "fade_out_to_black"
 		{
 		    if (!instance_exists(obj_cutscenefade))

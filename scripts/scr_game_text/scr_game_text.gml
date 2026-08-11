@@ -491,6 +491,7 @@ function scr_game_text(_text_id)
 		                  image_index = 0;
 		                  visible = true;
 		                  lantern_on = true;
+						  light_on = true;
 		              }
 		          }))
 		      ]);
@@ -507,7 +508,10 @@ function scr_game_text(_text_id)
 		        obj_gerson.image_speed = 0;
 		        obj_gerson.image_index = 0;
 		        obj_gerson.visible = true;
-		        obj_gerson.lantern_on = true;
+		        with (obj_gerson) {
+				    lantern_on = true; 
+				    light_on = true;
+				}
 		  break;
 		
 		case "self_17":

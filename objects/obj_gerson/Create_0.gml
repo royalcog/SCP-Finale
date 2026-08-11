@@ -10,7 +10,7 @@ sprite_offset_x = 0;
 sprite_offset_y = 0;
 
 fading_in = false;
-
+light_on = false;
 lantern_on = false;
 light_radius = 150;
 laugh_light_change = false;
