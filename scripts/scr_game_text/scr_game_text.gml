@@ -495,10 +495,10 @@ function scr_game_text(_text_id)
 		              }
 		          }))
 		      ]);
-		  break;
+		break;
   
-		  case "self_16":    
-		      scr_text("* We're here.", "gerson");
+		case "self_16":    
+			scr_text("* Is this the place, Pink??", "gerson");
 				scr_obj_spawn_on_page(obj_gerson, 280, 260, "Instances");
 		        obj_gerson.image_speed = 0;
 		        obj_gerson.image_index = 0;
@@ -507,8 +507,40 @@ function scr_game_text(_text_id)
 				    lantern_on = true; 
 				    light_on = true;
 				}
-		  break;
-		
+			scr_text("* It must be, mew...", "mewmew");
+				scr_portrait_on_page(spr_mewmewspeaker_concerned_corrupted);
+				scr_portrait_tail_off();
+			scr_text("* They went in here... when they were...", "mewmew");
+				scr_portrait_on_page(spr_mewmewspeaker_sad_corrupted);
+				scr_portrait_tail_off();
+		break;
+/*
+MM: They went in here… when they were…
+MM: … (sad)
+MMG: Body, it’s okay. We’re here for you now. I’M here for you now.
+MM: I know, I just… The corruption, it…
+Gerson: Stand strong, Pink.
+Gerson: We’ll free you from whatever’s going on once we clear our collective problems.
+Jevil: TIME TO DELIVER THE PAIN, PAIN!
+Spamton: 1’M GONNA [Beat The Living Crap] 0UT OF TH4T [You’re Not My Friend Anymore].
+Gerson: All of you need to be very careful.
+Gerson: Aside from waiting for the two of you to come last time, I stalled by trying to think of a way we can actually defeat this thing.
+MMG: But they said that you would beat them easily?
+Gerson: It was to tempt me to strike first. It wasn’t remotely true.
+Gerson: Plus, without our magic, this will be especially difficult.
+Spamton: WHY N0T JU5T GO [Dragon Blazers] ON TH3M?
+Gerson: Melee? Have you SEEN who’s on our team?
+Gerson: I’m an old man for crying out loud. I can’t beat someone up with my hands.
+MMG: Isn’t a hammer considered melee too?
+Gerson: Not how I use it. (Gerson laughs)
+Jevil: WE MUST TRY OUR BEST, BEST! IF WE DO NOT SUCCEED, IT IS BETTER THAN IF WE HAD NEVER TRIED AT ALL!
+Gerson: That’s some motivational logic you got there, Jevil.
+Jevil: SO MUCH FREE TIME TO THINK WHEN YOU’RE FREE, FREE!
+Gerson: So.
+Gerson: Are we ready to dominate this sucker?
+MMG: HELL YEAH!!!
+Gerson: Let’s do it.
+*/
 		case "self_17":
 			scr_text("* G-G-Gerson?", "mewmewghost");
 				scr_portrait_on_page(spr_pinkghost_scared);
