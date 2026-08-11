@@ -1,0 +1,96 @@
+if !anim_loop && image_speed != 0
+{
+    if image_index >= image_number - 1
+    {
+        image_speed = 0;
+        image_index = image_number - 1;
+    }
+}
+// shadow trail phase 1
+if ball_phase == 1
+{
+    var _s = instance_create_layer(x, y, "Instances", obj_shadow);
+    _s.spr = sprite_index;
+    _s.frame = image_index;
+    _s.xscale = image_xscale;
+    _s.yscale = image_yscale;
+    _s.angle = image_angle;
+    _s.alpha = 0.5;
+    _s.depth = depth + 1;
+}
+// shadow trail phase 3 throttled
+if ball_phase == 3
+{
+    shadow_timer++;
+    if shadow_timer >= 6
+    {
+        shadow_timer = 0;
+        var _s = instance_create_layer(x, y, "Instances", obj_shadow);
+        _s.spr = sprite_index;
+        _s.frame = image_index;
+        _s.xscale = image_xscale;
+        _s.yscale = image_yscale;
+        _s.angle = image_angle;
+        _s.alpha = .75;
+        _s.depth = depth + 1;
+        _s.drift_x = -2;
+		_s.drift_y = 0;
+    }
+}
+if ball_phase == 1
+{
+    x += 5;
+    ball_target_x = 80;
+    if x >= ball_target_x
+    {
+        x = ball_target_x;
+        sprite_index = spr_roark_ball_to_knight;
+        image_index = 0;
+        image_speed = 1;
+        anim_loop = false;
+        ball_phase = 2;
+        return;
+    }
+}
+if ball_phase == 2
+{
+    if image_speed == 0
+    {
+        image_index = image_number - 1;
+        ball_phase = 3;
+        start_y = y;
+        bob_angle = 0;
+    }
+}
+if ball_phase == 3
+{
+    bob_angle += 0.03;
+    y = start_y + sin(bob_angle) * 4;
+}
+
+if reverse_phase == 1
+{
+    reverse_frame -= 0.15; // reverse speed, match your forward speed
+    image_index = max(0, floor(reverse_frame));
+    if reverse_frame <= 0
+    {
+        sprite_index = spr_roark_ball;
+        image_speed = 1;
+        anim_loop = true;
+        ball_phase = 0;
+        reverse_phase = 2;
+    }
+}
+
+if reverse_phase == 2
+{
+	image_xscale = -2;
+	x -= 5;
+    ball_target_x = -120;
+    if x <= ball_target_x
+    {
+        x = ball_target_x;
+		reverse_phase = 0;
+        return;
+    }
+}

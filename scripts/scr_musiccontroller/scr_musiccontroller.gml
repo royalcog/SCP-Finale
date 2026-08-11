@@ -1,0 +1,70 @@
+function start_walking_music()
+{
+    if (variable_global_exists("song") && global.song != noone && global.song != undefined)
+    {
+        if (global.song.sound == sng_empty) exit;
+    }
+    global.song = {
+        sound: sng_empty,
+        beats: 224
+    };
+    global.music = audio_play_sound(global.song.sound, 1, false, 0);
+    audio_sound_gain(global.music, 1.2, 3000);
+    global.song_start = current_time;
+}
+
+function start_battle_music()
+{
+    if (variable_global_exists("song") && global.song != noone && global.song != undefined)
+    {
+        if (global.song.sound == sng_cmmm) exit;
+    }
+    global.song = {
+        sound: sng_cmmm,
+        beats: 9999
+    };
+    
+    global.music = audio_play_sound(global.song.sound, 2, false, 1.3);
+    audio_sound_gain(global.music, 0, 0);
+    audio_sound_gain(global.music, 1, 3000);
+    global.song_start = current_time;
+}
+
+function scr_ui_reverse(_resume_sound, _resume_pitch = 1, _sprite_obj = noone, _sprite = noone, _sprite_loop = false, _sprite_image = 0)
+{
+    if (instance_exists(obj_UI))
+    {
+        obj_UI.target_x = obj_UI.offscreen_x;
+    }
+    audio_stop_all();
+    global.song = { sound: _resume_sound, beats: 9999 };
+    global.music = audio_play_sound(_resume_sound, 1, true);
+    audio_sound_pitch(global.music, _resume_pitch);
+    global.song_start = current_time;
+
+    if (_sprite_obj != noone && instance_exists(_sprite_obj))
+    {
+        _sprite_obj.sprite_index = _sprite;
+        _sprite_obj.image_index = 0;
+        _sprite_obj.image_speed = _sprite_loop ? 1 : 0;
+        _sprite_obj.anim_loop = _sprite_loop;
+    }
+}
+
+function scr_audio_fade_out(_sound_inst, _duration_ms, _stop_after = true, _stop_delay_frames = noone)
+{
+    audio_sound_gain(_sound_inst, 0, _duration_ms);
+
+    if (_stop_after)
+    {
+        var _delay = (_stop_delay_frames != noone) ? _stop_delay_frames : (_duration_ms / 1000 * game_get_speed(gamespeed_fps));
+        if (instance_exists(obj_cutscenehandler_midfightattacks))
+        {
+            array_push(obj_cutscenehandler_midfightattacks.after_textbox_delayed_queue, {
+                is_sound_stop: true,
+                sound_inst: _sound_inst,
+                delay: _delay
+            });
+        }
+    }
+}
