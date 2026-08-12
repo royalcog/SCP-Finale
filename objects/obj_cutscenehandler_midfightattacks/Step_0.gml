@@ -97,6 +97,11 @@ if instance_exists(obj_textbox)
 			    _entry.obj.ghosted = true;
 			    array_delete(sprite_queue, i, 1);
 			}
+			else if _entry.type == "sound"
+			{
+			    audio_play_sound(_entry.snd, 1, false, _entry.snd_gain);
+			    array_delete(sprite_queue, i, 1);
+			}
         }
     }
 }
