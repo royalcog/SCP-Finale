@@ -134,7 +134,7 @@ function scr_game_text(_text_id)
 			scr_text("* Good question.", "gerson");
 				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_left, false);
 			scr_text("* Spamton, you got anything?", "gerson");
-				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_back, false);
+				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_back, false);
 			scr_text("* I H4VE N0 [Pipis].", "spamton");
 				scr_obj_sprite_on_page(obj_spamton, spr_spamtonhands_left, false);
 			scr_text("* Not helpful.", "gerson");
@@ -161,7 +161,7 @@ function scr_game_text(_text_id)
 			scr_text("* 1S THER3 ANY [Nitrophilic Moss]?", "spamton");
 				scr_obj_sprite_on_page(obj_spamton, spr_spamton_armsout_left, false);
 			scr_text("* What good would moss do us?", "gerson");
-				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_back, false);
+				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_back, false);
 			scr_text("* [Tasty].", "spamton");
 				scr_obj_sprite_on_page(obj_spamton, spr_spamtonhands_left, false);
 			scr_text("* ...", "gerson");
@@ -615,7 +615,7 @@ function scr_game_text(_text_id)
 		          })),
 		          scr_make_warp_spawn(obj_gerson, 486, 325, "Instances", method(undefined, function(_inst) {
 		              with (_inst) {
-		                  sprite_index = spr_gerson_hammer_idle_lantern_down_right;
+		                  sprite_index = spr_gerson_hammer_idle_lantern_back;
 		                  image_speed = 0;
 		                  image_index = 0;
 		                  visible = true;
@@ -625,7 +625,7 @@ function scr_game_text(_text_id)
 		          })),
 				  scr_make_warp_spawn(obj_spamton, 246, 350, "Instances", method(undefined, function(_inst) {
 		              with (_inst) {
-		                  sprite_index = spr_spamtonhands_left;
+		                  sprite_index = spr_spamton_lookup;
 		                  image_speed = 0;
 		                  image_index = 0;
 		                  visible = true;
@@ -634,7 +634,7 @@ function scr_game_text(_text_id)
 		          })),
 				  scr_make_warp_spawn(obj_jevil, 606, 350, "Instances", method(undefined, function(_inst) {
 		              with (_inst) {
-		                  sprite_index = spr_jevil_right;
+		                  sprite_index = spr_jevil_back;
 		                  image_speed = 0;
 		                  image_index = 0;
 		                  visible = true;
