@@ -187,7 +187,7 @@ function scr_game_text(_text_id)
 				scr_portrait_tail_off();
 				scr_obj_sprite_on_page(obj_mewmew, spr_ghost_yelling_up_right, true);
 			scr_text("* No clue! I told you it was far-fetched.", "gerson");
-				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_laugh_lantern, true);
+				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_laugh_lantern_left, true);
 			scr_text("* ...", "mewmewghost", noone, noone, true);
 				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_down_left, false);
 				scr_portrait_on_page(spr_pinkghost_concerned_lookaway);
@@ -493,6 +493,24 @@ function scr_game_text(_text_id)
 		                  lantern_on = true;
 						  light_on = true;
 		              }
+		          })),
+				  scr_make_warp_spawn(obj_spamton, 560, 260, "Instances", method(undefined, function(_inst) {
+		              with (_inst) {
+		                  sprite_index = spr_spamtonhands_left;
+		                  image_speed = 0;
+		                  image_index = 0;
+		                  visible = true;
+		                  light_on = true;
+		              }
+		          })),
+				  scr_make_warp_spawn(obj_jevil, 300, 350, "Instances", method(undefined, function(_inst) {
+		              with (_inst) {
+		                  sprite_index = spr_jevil_right;
+		                  image_speed = 0;
+		                  image_index = 0;
+		                  visible = true;
+		                  light_on = true;
+		              }
 		          }))
 		      ]);
 		break;
@@ -516,44 +534,59 @@ function scr_game_text(_text_id)
 			scr_text("* ...", "mewmew");
 				scr_portrait_on_page(spr_mewmewspeaker_sad_corrupted);
 				scr_portrait_tail_off();
+			scr_text("* Body, it's okay.|* We're here for you now.|* I'M here for you now.", "mewmewghost");
+				scr_portrait_on_page(spr_pinkghost_concerned);
+			scr_text("* I know, I just...|* The corruption, it...", "mewmew");
+				scr_portrait_on_page(spr_mewmewspeaker_sad_corrupted);
+				scr_portrait_tail_off();
+			scr_text("* Stand strong, Pink.", "gerson");
+			scr_text("* We'll free you from whatever's going on once we clear our foremost issue.", "gerson");
+			scr_text("* TIME TO DELIVER THE PAIN, PAIN!", "jevil");
+				scr_obj_sprite_on_page(obj_jevil, spr_jevil_right, true);
+				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_down, false);
+			scr_text("* 1'M GONNA [Beat The Living Crap] 0UT OF TH4T [You're Not My Friend Anymore].", "spamton");
+				scr_obj_sprite_on_page(obj_jevil, spr_jevil_right, false);
+				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_right, false);
+			scr_text("* All of us need to be very careful.", "gerson");
+			scr_text("* Aside from waiting for the two of you to come last time,", "gerson");
+				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_closed_eyes_right, false);
+			scr_text("* I stalled by trying to think of a way we can actually defeat this thing.", "gerson");
+				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_right, false);
+			scr_text("* But they said that you would beat them easily???", "mewmewghost");
+				scr_portrait_on_page(spr_pinkghost_concerned);
+			scr_text("* Yeah, well.|* Wasn't remotely true.", "gerson");
+				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_down_right, false);
+			scr_text("* It was just to tempt me to strike first.", "gerson");
+			scr_text("* Plus, without our magic, it'll be especially difficult.", "gerson");
+			scr_text("* WHY N0T JU5T GO [Dragon Blazers] ON [You're An A$$]?", "spamton");
+				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_right, false);
+			scr_text("* Melee? Have you SEEN who's on our team?", "gerson");
+				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_laugh_lantern_right, true);
+			scr_text("* I'm an old man for crying out loud. I can't beat someone up with my hands.", "gerson");
+				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_right, false);
+			scr_text("* Isn't a hammer considered melee too?", "mewmewghost");
+				scr_portrait_on_page(spr_pinkghost_concerned);
+			scr_text("* Not how I use it.", "gerson");
+				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_laugh_lantern_right, true);
+			scr_text("* WE MUST TRY OUR BEST, BEST!", "jevil");
+				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_down, false);
+			scr_text("* IF WE DO NOT SUCCEED, IT IS BETTER THAN IF WE HAD NEVER TRIED AT ALL!", "jevil");
+			scr_text("* That's some motivational logic you got there, Jevil.", "gerson");
+			scr_text("* SO MUCH FREE TIME TO THINK WHEN YOU'RE FREE, FREE!", "jevil");
+				scr_obj_sprite_on_page(obj_jevil, spr_jevil_right, true);
+			scr_text("* So.", "gerson");
+				scr_obj_sprite_on_page(obj_jevil, spr_jevil_right, false);
+				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_closed_eyes_right, false);
+			scr_text("* Are we ready to dominate this sucker?", "gerson");
+				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_down_right, false);
+			scr_text("* HELL YEAH!!!", "mewmewghost");
+				scr_portrait_on_page(spr_pinkghost_angry);
+				scr_portrait_tail_off();
+			scr_text("* Let's do it.", "gerson");
 		break;
-/*
-MM: They went in here… when they were…
-MM: … (sad)
-MMG: Body, it’s okay. We’re here for you now. I’M here for you now.
-MM: I know, I just… The corruption, it…
-Gerson: Stand strong, Pink.
-Gerson: We’ll free you from whatever’s going on once we clear our collective problems.
-Jevil: TIME TO DELIVER THE PAIN, PAIN!
-Spamton: 1’M GONNA [Beat The Living Crap] 0UT OF TH4T [You’re Not My Friend Anymore].
-Gerson: All of you need to be very careful.
-Gerson: Aside from waiting for the two of you to come last time, I stalled by trying to think of a way we can actually defeat this thing.
-MMG: But they said that you would beat them easily?
-Gerson: It was to tempt me to strike first. It wasn’t remotely true.
-Gerson: Plus, without our magic, this will be especially difficult.
-Spamton: WHY N0T JU5T GO [Dragon Blazers] ON TH3M?
-Gerson: Melee? Have you SEEN who’s on our team?
-Gerson: I’m an old man for crying out loud. I can’t beat someone up with my hands.
-MMG: Isn’t a hammer considered melee too?
-Gerson: Not how I use it. (Gerson laughs)
-Jevil: WE MUST TRY OUR BEST, BEST! IF WE DO NOT SUCCEED, IT IS BETTER THAN IF WE HAD NEVER TRIED AT ALL!
-Gerson: That’s some motivational logic you got there, Jevil.
-Jevil: SO MUCH FREE TIME TO THINK WHEN YOU’RE FREE, FREE!
-Gerson: So.
-Gerson: Are we ready to dominate this sucker?
-MMG: HELL YEAH!!!
-Gerson: Let’s do it.
-*/
+		
 		case "self_17":
-			scr_text("* G-G-Gerson?", "mewmewghost");
-				scr_portrait_on_page(spr_pinkghost_scared);
-				scr_portrait_tail_off();
-				scr_obj_sprite_on_page(obj_mewmew, spr_ghost_wistful, false);
-				scr_text_shake(0, 99);
-			scr_text("* This better not be a j-j-joke...", "mewmewghost");
-				scr_portrait_on_page(spr_pinkghost_scared);
-				scr_portrait_tail_off();
-				scr_text_shake(0, 99);
+			scr_fade_warp_with_music(rm_four, 400, sng_empty);
 		break;
 		
 		case "self_18":
@@ -656,7 +689,7 @@ Gerson: Let’s do it.
 				scr_portrait_tail_off();
 			scr_text("* I've seen the heroes battle that thing before.", "gerson");
 			scr_text("* It's what happens when some hooligans try to copy my looks!", "gerson");
-				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_laugh_lantern, true);
+				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_laugh_lantern_left, true);
 			scr_text("* Not sure how it made it here, but I take it as a form of flattery.", "gerson");
 				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_right, false);
 			scr_text("* BUT IT ATTACKED ME!!!", "mewmewghost", , , true);
@@ -678,7 +711,7 @@ Gerson: Let’s do it.
 				scr_obj_sprite_on_page(obj_mewmew, spr_ghost_idleright, false);
 				scr_portrait_on_page(spr_pinkghost_concerned);
 			scr_text("* Don't worry about it.", "gerson");
-				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_laugh_lantern, true);
+				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_laugh_lantern_left, true);
 			scr_text("* ...", "mewmewghost", , , true);
 				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_right, false);
 				scr_portrait_on_page(spr_pinkghost_concerned);

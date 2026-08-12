@@ -15,13 +15,13 @@ else
     sprite_offset_y = 0;
 }
 
-if (sprite_index == spr_gerson_hammer_laugh_lantern) && laugh_light_change == false
+if (sprite_index == spr_gerson_hammer_laugh_lantern_left) && laugh_light_change == false
 {
     light_offset_x -= 6;
     light_offset_y -= 5;
 	laugh_light_change = true;
 }
-else if (sprite_index != spr_gerson_hammer_laugh_lantern) && laugh_light_change == true
+else if (sprite_index != spr_gerson_hammer_laugh_lantern_left) && laugh_light_change == true
 {
 	light_offset_x += 6;
     light_offset_y += 5;	

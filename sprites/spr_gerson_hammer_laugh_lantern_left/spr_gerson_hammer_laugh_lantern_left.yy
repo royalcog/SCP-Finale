@@ -1,6 +1,6 @@
 {
   "$GMSprite":"v2",
-  "%Name":"spr_gerson_hammer_laugh_lantern",
+  "%Name":"spr_gerson_hammer_laugh_lantern_left",
   "bboxMode":0,
   "bbox_bottom":60,
   "bbox_left":14,
@@ -23,7 +23,7 @@
   "layers":[
     {"$GMImageLayer":"","%Name":"5890f61b-5e0f-4f2b-a9d6-29688e5624d2","blendMode":0,"displayName":"default","isLocked":false,"name":"5890f61b-5e0f-4f2b-a9d6-29688e5624d2","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
-  "name":"spr_gerson_hammer_laugh_lantern",
+  "name":"spr_gerson_hammer_laugh_lantern_left",
   "nineSlice":null,
   "origin":9,
   "parent":{
@@ -35,7 +35,7 @@
   "resourceVersion":"2.0",
   "sequence":{
     "$GMSequence":"v1",
-    "%Name":"spr_gerson_hammer_laugh_lantern",
+    "%Name":"spr_gerson_hammer_laugh_lantern_left",
     "autoRecord":true,
     "backdropHeight":768,
     "backdropImageOpacity":0.5,
@@ -59,7 +59,7 @@
       "resourceType":"KeyframeStore<MomentsEventKeyframe>",
       "resourceVersion":"2.0",
     },
-    "name":"spr_gerson_hammer_laugh_lantern",
+    "name":"spr_gerson_hammer_laugh_lantern_left",
     "playback":1,
     "playbackSpeed":7.0,
     "playbackSpeedType":0,
@@ -71,13 +71,13 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"fdd7391f-d638-4d99-a01f-9a480bb5797b","path":"sprites/spr_gerson_hammer_laugh_lantern/spr_gerson_hammer_laugh_lantern.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"fdd7391f-d638-4d99-a01f-9a480bb5797b","path":"sprites/spr_gerson_hammer_laugh_lantern_left/spr_gerson_hammer_laugh_lantern_left.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"9169cd42-166c-429a-ae32-c039caf1e9dd","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"9aa518e3-4854-46b4-b073-d8c055c12a4d","path":"sprites/spr_gerson_hammer_laugh_lantern/spr_gerson_hammer_laugh_lantern.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"9aa518e3-4854-46b4-b073-d8c055c12a4d","path":"sprites/spr_gerson_hammer_laugh_lantern_left/spr_gerson_hammer_laugh_lantern_left.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"c11b5719-ae8b-44be-a64d-dd87793ec2cb","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"eac7fda6-7f91-49c3-a79c-afe37703663f","path":"sprites/spr_gerson_hammer_laugh_lantern/spr_gerson_hammer_laugh_lantern.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"eac7fda6-7f91-49c3-a79c-afe37703663f","path":"sprites/spr_gerson_hammer_laugh_lantern_left/spr_gerson_hammer_laugh_lantern_left.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"a4d2533f-3f8d-4354-adb1-ba16f250d5bb","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
