@@ -260,6 +260,7 @@
     {"name":"sng_empty","order":14,"path":"sounds/sng_empty/sng_empty.yy",},
     {"name":"sng_flashback","order":17,"path":"sounds/sng_flashback/sng_flashback.yy",},
     {"name":"sng_friendship","order":11,"path":"sounds/sng_friendship/sng_friendship.yy",},
+    {"name":"sng_knightappear","order":18,"path":"sounds/sng_knightappear/sng_knightappear.yy",},
     {"name":"sng_pinkripple","order":12,"path":"sounds/sng_pinkripple/sng_pinkripple.yy",},
     {"name":"sng_scp","order":8,"path":"sounds/sng_scp/sng_scp.yy",},
     {"name":"sng_surveillance","order":9,"path":"sounds/sng_surveillance/sng_surveillance.yy",},

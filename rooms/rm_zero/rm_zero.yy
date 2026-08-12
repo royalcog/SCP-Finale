@@ -6,9 +6,9 @@
   "inheritCreationOrder":false,
   "inheritLayers":false,
   "instanceCreationOrder":[
+    {"name":"inst_36E3A528_1","path":"rooms/rm_zero/rm_zero.yy",},
     {"name":"inst_4D0A2C59_1","path":"rooms/rm_zero/rm_zero.yy",},
     {"name":"inst_2687C7DE1","path":"rooms/rm_zero/rm_zero.yy",},
-    {"name":"inst_36E3A528_1","path":"rooms/rm_zero/rm_zero.yy",},
   ],
   "isDnd":false,
   "layers":[

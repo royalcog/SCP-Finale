@@ -313,6 +313,7 @@
     {"id":{"name":"sng_empty","path":"sounds/sng_empty/sng_empty.yy",},},
     {"id":{"name":"sng_flashback","path":"sounds/sng_flashback/sng_flashback.yy",},},
     {"id":{"name":"sng_friendship","path":"sounds/sng_friendship/sng_friendship.yy",},},
+    {"id":{"name":"sng_knightappear","path":"sounds/sng_knightappear/sng_knightappear.yy",},},
     {"id":{"name":"sng_pinkripple","path":"sounds/sng_pinkripple/sng_pinkripple.yy",},},
     {"id":{"name":"sng_scp","path":"sounds/sng_scp/sng_scp.yy",},},
     {"id":{"name":"sng_surveillance","path":"sounds/sng_surveillance/sng_surveillance.yy",},},

@@ -40,7 +40,7 @@ if (!instance_exists(obj_jevil))
     instance_create_layer(640, 100, "Instances", obj_jevil);
 }
 
-if (instance_exists(obj_mewmew))
+if (instance_exists(obj_jevil))
 {
     obj_jevil.sprite_index = spr_jevil_tired;
     obj_jevil.image_speed = 0;

@@ -586,7 +586,49 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_17":
-			scr_fade_warp_with_music(rm_four, 400, sng_empty);
+			scr_set_dim_left(.75);
+		    scr_set_dim_right(.75);
+			scr_fade_warp_with_music(rm_four, 400, sng_knightappear, .5, , , , [
+					scr_make_warp_spawn(obj_mewmew, 366, 350, "Instances", method(undefined, function(_inst) {
+		              with (_inst) {
+		                  ghosted = false;
+		                  sprite_index = spr_mewmew_walkup_corrupted;
+		                  image_speed = 0;
+		                  image_index = 0;
+		                  visible = true;
+		                  light_on = true;
+		              }
+		          })),
+		          scr_make_warp_spawn(obj_gerson, 486, 325, "Instances", method(undefined, function(_inst) {
+		              with (_inst) {
+		                  sprite_index = spr_gerson_hammer_idle_lantern_down_right;
+		                  image_speed = 0;
+		                  image_index = 0;
+		                  visible = true;
+		                  lantern_on = true;
+						  light_on = true;
+		              }
+		          })),
+				  scr_make_warp_spawn(obj_spamton, 246, 350, "Instances", method(undefined, function(_inst) {
+		              with (_inst) {
+		                  sprite_index = spr_spamtonhands_left;
+		                  image_speed = 0;
+		                  image_index = 0;
+		                  visible = true;
+		                  light_on = true;
+		              }
+		          })),
+				  scr_make_warp_spawn(obj_jevil, 606, 350, "Instances", method(undefined, function(_inst) {
+		              with (_inst) {
+		                  sprite_index = spr_jevil_right;
+		                  image_speed = 0;
+		                  image_index = 0;
+		                  visible = true;
+		                  light_on = true;
+		              }
+		          }))
+		      ]);
+			  global.song = sng_knightappear;
 		break;
 		
 		case "self_18":

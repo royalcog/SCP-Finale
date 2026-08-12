@@ -28,3 +28,21 @@ if scaledown == true
         scaledown = false; // Stop the shrinking process
     }
 }
+
+if (!is_colored) {
+    // Gradually fade out of white by increasing saturation
+    current_sat += sat_speed;
+    if (current_sat >= 255) {
+        current_sat = 255;
+        is_colored = true;
+    }
+} else {
+    // Once it has color, slowly shift through different hues
+    current_hue += hue_speed;
+    if (current_hue > 255) {
+        current_hue = 0;
+    }
+}
+
+// Apply the updated color
+image_blend = make_color_hsv(round(current_hue), round(current_sat), 255);

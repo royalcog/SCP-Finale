@@ -51,8 +51,8 @@ if (!instance_exists(obj_lighting))
 // Variables
 if (!variable_global_exists("dialogue_self"))
 {
-    variable_global_set("dialogue_self", 12);
-    global.song = sng_flashback;
+    variable_global_set("dialogue_self", 14);
+    global.song = sng_empty;
     audio_play_sound(global.song, 1, true);
 }
 
