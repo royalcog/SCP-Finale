@@ -646,153 +646,61 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_18":
+			scr_text("* So THAT'S how you people have been spying on us.", "gerson");
+			scr_text("* I'd ask how a connection was set up between different Dark Worlds, but...", "gerson");
+			scr_text("* I'd prefer you just terminate it in general.", "gerson");
+			scr_text("* TH1S I5 A [Please Read The Terms And Conditions]!!!", "spamton");
+			scr_text("* AND TO THINK, I WAS ALONE IN MY FREEDOM, FREEDOM!", "jevil");
+			scr_text("* Were you watching us when...", "mewmew");
+				scr_portrait_on_page(spr_mewmewspeaker_concerned_corrupted);
+			scr_text("* ...", "mewmew");
+				scr_portrait_on_page(spr_mewmewspeaker_sad_corrupted);
+				scr_portrait_tail_off();
+			scr_text("* Why didn't you help us, Knight?", "mewmewghost");
+				scr_portrait_on_page(spr_pinkghost_concerned);
+			scr_text("* That's a darn good question, Pink.", "gerson");
+			scr_text("* Got an answer, coward?", "gerson");
+			scr_text("* Or you wanna keep breaching privacy laws with your orbs", "gerson");
+				scr_text_cutoff(57);
+				scr_obj_sprite_after_textbox_delayed(obj_mewmew, spr_mewmew_shocked_backwards_corrupted, false, 90);
+		break;
+		
+		case "self_19":
 			instance_create_depth(0, 0, -5000, obj_UI);
 			with (obj_knight)
-		    {
-		        visible = true;
-		        sprite_index = spr_roark_faceaway_turning;
-		        image_index = 0;
-		        image_speed = 1;
-		    }
+			    {
+			        visible = true;
+			        sprite_index = spr_roark_faceaway_turning;
+			        image_index = 0;
+			        image_speed = 1;
+			    }
+		    
 		break;
 		
-		case "self_19":
-		    with (obj_knight)
-		    {
-		        sprite_index = spr_roark_droop_up;
-		        image_index = 0;
-		        image_speed = 1;
-		    }
-		break;
-		/* case "self_18":
-			if (instance_exists(obj_UI))
-			{
-			    instance_destroy(obj_UI);
-			}
-			instance_create_depth(0, 0, -5000, obj_UI);
-		    obj_UI.sprite_index = spr_UI_Pink;
-			obj_mewmew.sprite_index = spr_ghost_shocked_left;
-		    var pink = obj_mewmew;
-		    var _seq = instance_create_depth(0, 0, 0, obj_fight_sequencer);
-		    _seq.sequence = [
-				{
-			        type: "ui_sequence",
-			        steps: [
-			            { sprite: spr_UI_Pink, delay: 30 },
-			            { sprite: spr_UI_Pink_Defend, snd: snd_select_reverb, delay: 30 },
-			        ]
-			    },
-		        { type: "talk", batch: [ { speaker: pink, text: "Hey! Hey!!! HEY!!!"} ] },
-				{ type: "talk", batch: [ { speaker: pink, text: "GERSON!!! I'M ON YOUR SIDE!!!" } ] },
-				{ type: "talk", batch: [ { speaker: pink, text: "WHAT'S GOING ON???" } ] },
-		        { type: "attack", attacker: obj_sound_of_justice, data: global.atk_sound_of_justice_hammers },
-				{
-			        type: "ui_sequence",
-			        steps: [
-			            { sprite: spr_UI_Pink, delay: 30 },
-			            { sprite: spr_UI_Pink_Defend, snd: snd_select_reverb, delay: 30 },
-			        ]
-			    },
-		        { type: "talk", batch: [ { speaker: pink, text: "DIDN'T WE PLAN TO DO THIS???" } ] },
-				{ type: "talk", batch: [ { speaker: pink, text: "WHY ARE YOU ATTACKING ME???" } ] },
-		        { type: "attack", kind: "custom", start_func: scr_start_giant_hammer_attack },
-				{
-			        type: "ui_sequence",
-			        steps: [
-			            { sprite: spr_UI_Pink, delay: 30 },
-			            { sprite: spr_UI_Pink_Defend, snd: snd_select_reverb, delay: 30 },
-			        ]
-			    },
-				{ type: "talk", batch: [ { speaker: pink, text: "You know I can't take damage... right???" } ] },
-				{ type: "talk", batch: [ { speaker: pink, text: "So... quit it!!!" } ] },
-				{ type: "attack", kind: "custom", start_func: scr_start_falling_hammer_attack },
-				{
-			        type: "ui_sequence",
-			        steps: [
-			            { sprite: spr_UI_Pink, delay: 30 },
-			            { sprite: spr_UI_Pink_Defend, snd: snd_select_reverb, delay: 30 },
-			        ]
-			    },
-				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_wistful },
-				{ type: "talk", batch: [ { speaker: pink, text: "We need to... find my body..." } ] },
-				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_yelling_right },
-				{ type: "talk", batch: [ { speaker: pink, text: "Damn it, Gerson, don't you double-cross me too!!!" } ] },
-				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_shocked_left },
-				{ type: "attack", kind: "custom", start_func: scr_start_gavel_slam_attack },
-				{
-			        type: "ui_sequence",
-			        steps: [
-			            { sprite: spr_UI_Pink, delay: 30 },
-			            { sprite: spr_UI_Pink_Defend, snd: snd_select_reverb, delay: 30 },
-			        ]
-			    },
-				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_wistful },
-				{ type: "talk", batch: [ { speaker: pink, text: "Come on, Gerson. I don't want to fight you." } ] },
-				{ type: "talk", batch: [ { speaker: pink, text: "So stop fighting me..." } ] },
-		        // add more talk/attack pairs as you write more dialogue/attacks
-		    ];		
-		break;
-		
-		case "self_19":
-			scr_ui_reverse(sng_empty);
-			audio_stop_all();
-			scr_text("* Please...", "mewmewghost");
-				scr_portrait_on_page(spr_pinkghost_scared);
-	        scr_portrait_tail_off();
-	        scr_snd_after_textbox(snd_sojlaugh, 1);
-	        scr_obj_sprite_after_textbox(obj_sound_of_justice, spr_sound_of_justice_laugh, true);
-	        scr_custom_call_after_textbox_delayed(scr_spawn_soj_hit_hammer, 113); // mid-laugh hammer hit
-			scr_obj_sprite_after_textbox_delayed(obj_mewmew, spr_ghost_shocked_left, false, 120);
-	        scr_custom_call_after_textbox_delayed(scr_start_pan_and_reveal_left, 150); // shortly after the hit
-		break;
-	*/
 		case "self_20":
-			scr_text("* ?????????", "mewmewghost");
-				scr_portrait_on_page(spr_pinkghost_shocked);
-				scr_portrait_tail_off();
-			scr_text("* Well then.", "gerson");
-			scr_text("* Let me just...", "gerson");
-				scr_snd_after_textbox(snd_mercyadd, 1.1);
-				scr_custom_call_after_textbox_delayed(scr_gerson_lantern_on, 30);
+			scr_text("* We're not looking for a fight, Knight.|* You don't want to do this.", "gerson");
+			scr_text("* I told you to be wary, old man.", "knight");
+				scr_snd_on_page(snd_knight_phone_call, 1);
+				scr_text_slow(0.175);
+				scr_text_shake(0, 9999);
 		break;
 		
 		case "self_21":
-			scr_text("* There we go.", "gerson");
-			scr_text("* WHAT THE HECK IS GOING ON???", "mewmewghost", , , true);
-				scr_obj_sprite_on_page(obj_mewmew, spr_ghost_yelling_right, true);
-				scr_portrait_on_page(spr_pinkghost_angry);
-				scr_portrait_tail_off();
-			scr_text("* I've seen the heroes battle that thing before.", "gerson");
-			scr_text("* It's what happens when some hooligans try to copy my looks!", "gerson");
-				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_laugh_lantern_left, true);
-			scr_text("* Not sure how it made it here, but I take it as a form of flattery.", "gerson");
-				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_right, false);
-			scr_text("* BUT IT ATTACKED ME!!!", "mewmewghost", , , true);
-				scr_obj_sprite_on_page(obj_mewmew, spr_ghost_yelling_right, true);
-				scr_portrait_on_page(spr_pinkghost_yelling);
-				scr_portrait_tail_off();
-			scr_text("* It's just some more evildoer's nonsense.", "gerson");
-				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_lookback_right, false);
-				scr_char_move_on_page(obj_sound_of_justice, spr_sound_of_justice_crumble_idle, false, 200, 0, .1, 240);
-			scr_text("* How about we just leave it be and go look for your body?", "gerson");
-				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_right, false);
-			scr_text("* ...", "mewmewghost", , , true);
-				scr_obj_sprite_on_page(obj_mewmew, spr_ghost_yelling_right_idle, false);
-				scr_portrait_on_page(spr_pinkghost_concerned);
-			scr_text("* Okay.", "mewmewghost", , , true);
-				scr_obj_sprite_on_page(obj_mewmew, spr_ghost_wistful, false);
-				scr_portrait_on_page(spr_pinkghost_concerned_lookaway);
-			scr_text("* By the way, how did you end up getting here?", "mewmewghost", , , true);
-				scr_obj_sprite_on_page(obj_mewmew, spr_ghost_idleright, false);
-				scr_portrait_on_page(spr_pinkghost_concerned);
-			scr_text("* Don't worry about it.", "gerson");
-				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_laugh_lantern_left, true);
-			scr_text("* ...", "mewmewghost", , , true);
-				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_right, false);
-				scr_portrait_on_page(spr_pinkghost_concerned);
-			scr_text("* Let's just go find her.", "mewmewghost", , , true);
-				scr_portrait_on_page(spr_pinkghost_concerned_lookaway);
+			with (obj_knight)
+			   {
+			       sprite_index = spr_roark_droop_up;
+			       image_index = 0;
+			       image_speed = 1;
+			   }
 		break;
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		case "self_22":
 			scr_text("* Um...", "gerson");
@@ -1246,9 +1154,10 @@ function scr_game_text(_text_id)
 		case "self_41":
 			scr_snd_after_textbox(snd_hurt1, 1);
 		break;
+	}
 		/*array_push(obj_cutscenehandler_midfightattacks.after_textbox_queue, {
-				    type: "tenna_battle_intro"
-				});*/
+			type: "tenna_battle_intro"
+			});*/
 				
 	
 		/* Warp Code:
@@ -1264,8 +1173,6 @@ function scr_game_text(_text_id)
 			audio_sound_pitch(global.music, 0.7);
 			global.song_start = current_time;
 		*/
-	}
-		
 		/* Summoning UI (Not in battle):
 			if (instance_exists(obj_UI))
 			{
@@ -1285,4 +1192,88 @@ function scr_game_text(_text_id)
 				   { obj: obj_mewmew, sprite: spr_ghost_shocked_left, loop: false, dx: 0, dy: -10, speed: .2, duration: 75 }
 			]);
 		*/
+		
+		// Battle Example:
+		/* case "self_18":
+			if (instance_exists(obj_UI))
+			{
+			    instance_destroy(obj_UI);
+			}
+			instance_create_depth(0, 0, -5000, obj_UI);
+		    obj_UI.sprite_index = spr_UI_Pink;
+			obj_mewmew.sprite_index = spr_ghost_shocked_left;
+		    var pink = obj_mewmew;
+		    var _seq = instance_create_depth(0, 0, 0, obj_fight_sequencer);
+		    _seq.sequence = [
+				{
+			        type: "ui_sequence",
+			        steps: [
+			            { sprite: spr_UI_Pink, delay: 30 },
+			            { sprite: spr_UI_Pink_Defend, snd: snd_select_reverb, delay: 30 },
+			        ]
+			    },
+		        { type: "talk", batch: [ { speaker: pink, text: "Hey! Hey!!! HEY!!!"} ] },
+				{ type: "talk", batch: [ { speaker: pink, text: "GERSON!!! I'M ON YOUR SIDE!!!" } ] },
+				{ type: "talk", batch: [ { speaker: pink, text: "WHAT'S GOING ON???" } ] },
+		        { type: "attack", attacker: obj_sound_of_justice, data: global.atk_sound_of_justice_hammers },
+				{
+			        type: "ui_sequence",
+			        steps: [
+			            { sprite: spr_UI_Pink, delay: 30 },
+			            { sprite: spr_UI_Pink_Defend, snd: snd_select_reverb, delay: 30 },
+			        ]
+			    },
+		        { type: "talk", batch: [ { speaker: pink, text: "DIDN'T WE PLAN TO DO THIS???" } ] },
+				{ type: "talk", batch: [ { speaker: pink, text: "WHY ARE YOU ATTACKING ME???" } ] },
+		        { type: "attack", kind: "custom", start_func: scr_start_giant_hammer_attack },
+				{
+			        type: "ui_sequence",
+			        steps: [
+			            { sprite: spr_UI_Pink, delay: 30 },
+			            { sprite: spr_UI_Pink_Defend, snd: snd_select_reverb, delay: 30 },
+			        ]
+			    },
+				{ type: "talk", batch: [ { speaker: pink, text: "You know I can't take damage... right???" } ] },
+				{ type: "talk", batch: [ { speaker: pink, text: "So... quit it!!!" } ] },
+				{ type: "attack", kind: "custom", start_func: scr_start_falling_hammer_attack },
+				{
+			        type: "ui_sequence",
+			        steps: [
+			            { sprite: spr_UI_Pink, delay: 30 },
+			            { sprite: spr_UI_Pink_Defend, snd: snd_select_reverb, delay: 30 },
+			        ]
+			    },
+				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_wistful },
+				{ type: "talk", batch: [ { speaker: pink, text: "We need to... find my body..." } ] },
+				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_yelling_right },
+				{ type: "talk", batch: [ { speaker: pink, text: "Damn it, Gerson, don't you double-cross me too!!!" } ] },
+				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_shocked_left },
+				{ type: "attack", kind: "custom", start_func: scr_start_gavel_slam_attack },
+				{
+			        type: "ui_sequence",
+			        steps: [
+			            { sprite: spr_UI_Pink, delay: 30 },
+			            { sprite: spr_UI_Pink_Defend, snd: snd_select_reverb, delay: 30 },
+			        ]
+			    },
+				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_wistful },
+				{ type: "talk", batch: [ { speaker: pink, text: "Come on, Gerson. I don't want to fight you." } ] },
+				{ type: "talk", batch: [ { speaker: pink, text: "So stop fighting me..." } ] },
+		        // add more talk/attack pairs as you write more dialogue/attacks
+		    ];		
+		break;
+		
+		case "self_19":
+			scr_ui_reverse(sng_empty);
+			audio_stop_all();
+			scr_text("* Please...", "mewmewghost");
+				scr_portrait_on_page(spr_pinkghost_scared);
+	        scr_portrait_tail_off();
+	        scr_snd_after_textbox(snd_sojlaugh, 1);
+	        scr_obj_sprite_after_textbox(obj_sound_of_justice, spr_sound_of_justice_laugh, true);
+	        scr_custom_call_after_textbox_delayed(scr_spawn_soj_hit_hammer, 113); // mid-laugh hammer hit
+			scr_obj_sprite_after_textbox_delayed(obj_mewmew, spr_ghost_shocked_left, false, 120);
+	        scr_custom_call_after_textbox_delayed(scr_start_pan_and_reveal_left, 150); // shortly after the hit
+		break;
+	*/
 }
