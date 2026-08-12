@@ -935,10 +935,15 @@ function scr_text(_text, _character = noone, _index = noone, _mode = noone, _fre
 			break;
 			
 			case "mewmew":
-				scr_text_color_gradient(c_white, make_colour_rgb(255, 138, 144));
-				snd[global.page_number] = snd_empty;
-				speaker_portrait_spr[global.page_number] = spr_mewmewspeaker_talkhappy;
-				speaker_portrait_tail_spr[global.page_number] = spr_mewmewspeaker_tail;
+			    scr_text_color_gradient(c_white, make_colour_rgb(255, 138, 144));
+			    snd[global.page_number] = snd_empty;
+			    speaker_portrait_spr[global.page_number] = spr_mewmewspeaker_talkhappy;
+
+			    if (instance_exists(obj_mewmew) && obj_mewmew.corrupted == true) {
+			        speaker_portrait_tail_spr[global.page_number] = spr_mewmewspeaker_tail_corrupted;
+			    } else {
+			        speaker_portrait_tail_spr[global.page_number] = spr_mewmewspeaker_tail;
+			    }
 			break;
 			
 			case "mewmewghost":

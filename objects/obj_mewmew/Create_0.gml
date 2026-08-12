@@ -22,3 +22,4 @@ turn_light_change = false;
 vert_light_change = false;
 light_offset_x = 3;
 light_offset_y = -16;
+corrupted = false;

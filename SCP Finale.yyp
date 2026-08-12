@@ -491,6 +491,7 @@
     {"id":{"name":"spr_mewmewspeaker_sad","path":"sprites/spr_mewmewspeaker_sad/spr_mewmewspeaker_sad.yy",},},
     {"id":{"name":"spr_mewmewspeaker_shocked","path":"sprites/spr_mewmewspeaker_shocked/spr_mewmewspeaker_shocked.yy",},},
     {"id":{"name":"spr_mewmewspeaker_sweatdrop","path":"sprites/spr_mewmewspeaker_sweatdrop/spr_mewmewspeaker_sweatdrop.yy",},},
+    {"id":{"name":"spr_mewmewspeaker_tail_corrupted","path":"sprites/spr_mewmewspeaker_tail_corrupted/spr_mewmewspeaker_tail_corrupted.yy",},},
     {"id":{"name":"spr_mewmewspeaker_tail","path":"sprites/spr_mewmewspeaker_tail/spr_mewmewspeaker_tail.yy",},},
     {"id":{"name":"spr_mewmewspeaker_talk","path":"sprites/spr_mewmewspeaker_talk/spr_mewmewspeaker_talk.yy",},},
     {"id":{"name":"spr_mewmewspeaker_talkhappy_corrupted","path":"sprites/spr_mewmewspeaker_talkhappy_corrupted/spr_mewmewspeaker_talkhappy_corrupted.yy",},},

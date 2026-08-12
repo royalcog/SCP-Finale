@@ -29,6 +29,7 @@ function scr_game_text(_text_id)
 		break;
 			
 		case "self_3":
+			obj_mewmew.corrupted = true;
 			scr_text("* What happened???", "mewmewghost", noone, noone, true);
 				scr_obj_sprite_on_page(obj_mewmew, spr_ghost_yelling_right, true);
 				scr_portrait_on_page(spr_pinkghost_yelling);
@@ -73,7 +74,6 @@ function scr_game_text(_text_id)
 			scr_text("* It's me... mew...", "mewmew");
 				scr_obj_sprite_on_page(obj_mewmew, spr_ghost_yelling_left_idle, false);
 				scr_portrait_on_page(spr_mewmewspeaker_talkhappy_corrupted);
-				scr_portrait_tail_off();
 		break;
 		
 		case "self_4":
@@ -498,7 +498,8 @@ function scr_game_text(_text_id)
 		break;
   
 		case "self_16":    
-			scr_text("* Is this the place, Pink??", "gerson");
+			obj_mewmew.corrupted = true;
+			scr_text("* Is this the place, Pink?", "gerson");
 				scr_obj_spawn_on_page(obj_gerson, 280, 260, "Instances");
 		        obj_gerson.image_speed = 0;
 		        obj_gerson.image_index = 0;
@@ -509,8 +510,10 @@ function scr_game_text(_text_id)
 				}
 			scr_text("* It must be, mew...", "mewmew");
 				scr_portrait_on_page(spr_mewmewspeaker_concerned_corrupted);
-				scr_portrait_tail_off();
 			scr_text("* They went in here... when they were...", "mewmew");
+				scr_portrait_on_page(spr_mewmewspeaker_sad_corrupted);
+				scr_portrait_tail_off();
+			scr_text("* ...", "mewmew");
 				scr_portrait_on_page(spr_mewmewspeaker_sad_corrupted);
 				scr_portrait_tail_off();
 		break;

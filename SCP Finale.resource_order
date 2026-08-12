@@ -415,6 +415,7 @@
     {"name":"spr_mewmewspeaker_sad","order":4,"path":"sprites/spr_mewmewspeaker_sad/spr_mewmewspeaker_sad.yy",},
     {"name":"spr_mewmewspeaker_shocked","order":5,"path":"sprites/spr_mewmewspeaker_shocked/spr_mewmewspeaker_shocked.yy",},
     {"name":"spr_mewmewspeaker_sweatdrop","order":6,"path":"sprites/spr_mewmewspeaker_sweatdrop/spr_mewmewspeaker_sweatdrop.yy",},
+    {"name":"spr_mewmewspeaker_tail_corrupted","order":4,"path":"sprites/spr_mewmewspeaker_tail_corrupted/spr_mewmewspeaker_tail_corrupted.yy",},
     {"name":"spr_mewmewspeaker_tail","order":7,"path":"sprites/spr_mewmewspeaker_tail/spr_mewmewspeaker_tail.yy",},
     {"name":"spr_mewmewspeaker_talk","order":8,"path":"sprites/spr_mewmewspeaker_talk/spr_mewmewspeaker_talk.yy",},
     {"name":"spr_mewmewspeaker_talkhappy_corrupted","order":1,"path":"sprites/spr_mewmewspeaker_talkhappy_corrupted/spr_mewmewspeaker_talkhappy_corrupted.yy",},
