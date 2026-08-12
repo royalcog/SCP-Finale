@@ -9,3 +9,4 @@ anim_loop = true;
 shadow_timer = 0;
 reverse_phase = 0;
 reverse_frame = 0;
+turn_sword_sound_played = false;

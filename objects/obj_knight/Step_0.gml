@@ -110,6 +110,7 @@ if (sprite_index == spr_roark_faceaway_turning)
 // 2. When playing droop_up, cut it off after 6 frames (index 0 to 5) and switch to sword appear
 if (sprite_index == spr_roark_droop_up)
 {
+	audio_stop_all();
     if (image_index >= 5) // 5 is the 6th frame (0-indexed)
     {
         sprite_index = spr_roark_sword_appear_new;
@@ -121,6 +122,12 @@ if (sprite_index == spr_roark_droop_up)
 // 3. Freeze sword appear animation on the last frame
 if (sprite_index == spr_roark_sword_appear_new)
 {
+    if (!turn_sword_sound_played && floor(image_index) >= 8)
+    {  
+        audio_play_sound(snd_taking_out_sword, 1, false);
+        turn_sword_sound_played = true;
+    }
+
     if (image_index >= image_number - 1)
     {
         image_speed = 0;

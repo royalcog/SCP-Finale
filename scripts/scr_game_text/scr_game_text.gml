@@ -588,7 +588,7 @@ function scr_game_text(_text_id)
 		case "self_17":
 			scr_set_dim_left(.75);
 		    scr_set_dim_right(.75);
-			scr_fade_warp_with_music(rm_four, 800, sng_knightappear, .45, , , , [
+			scr_fade_warp_with_music(rm_four, 600, sng_knightappear, .45, , , , [
 					scr_make_warp_spawn(obj_knight, 340.5, 96, "Instances", method(undefined, function(_inst) {
 					    with (_inst) {
 					        visible = true;
