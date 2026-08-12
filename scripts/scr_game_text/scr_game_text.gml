@@ -473,7 +473,7 @@ function scr_game_text(_text_id)
 		      scr_set_dim_right(.9);
 		      scr_fade_out_character(obj_mewmew, 60);
 		      scr_fade_out_character(obj_othermewmew, 60);
-		      scr_fade_warp_with_music(rm_three, 400, sng_empty, 1, 1500, 2000, 180, [
+		      scr_fade_warp_with_music(rm_three, 600, sng_empty, , , , , [
 		          scr_make_warp_spawn(obj_mewmew, 426.5, 450, "Instances", method(undefined, function(_inst) {
 		              with (_inst) {
 		                  ghosted = false;
@@ -582,13 +582,27 @@ function scr_game_text(_text_id)
 			scr_text("* HELL YEAH!!!", "mewmewghost");
 				scr_portrait_on_page(spr_pinkghost_angry);
 				scr_portrait_tail_off();
-			scr_text("* Let's do it.", "gerson");
+			scr_text("* Let's get 'em.", "gerson");
 		break;
 		
 		case "self_17":
 			scr_set_dim_left(.75);
 		    scr_set_dim_right(.75);
-			scr_fade_warp_with_music(rm_four, 400, sng_knightappear, .5, , , , [
+			scr_fade_warp_with_music(rm_four, 800, sng_knightappear, .45, , , , [
+					scr_make_warp_spawn(obj_knight, 340.5, 96, "Instances", method(undefined, function(_inst) {
+					    with (_inst) {
+					        visible = true;
+					        sprite_index = spr_roark_faceaway; 
+					        image_index = 8;
+					        image_speed = 0;
+        
+					        // Skip straight to Phase 3 (bobbing + throttled shadows)
+					        ball_phase = 3;
+					        start_y = y;
+					        bob_angle = 0;
+					        shadow_timer = 0;
+					    }
+					})),
 					scr_make_warp_spawn(obj_mewmew, 366, 350, "Instances", method(undefined, function(_inst) {
 		              with (_inst) {
 		                  ghosted = false;
@@ -632,6 +646,25 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_18":
+			instance_create_depth(0, 0, -5000, obj_UI);
+			with (obj_knight)
+		    {
+		        visible = true;
+		        sprite_index = spr_roark_faceaway_turning;
+		        image_index = 0;
+		        image_speed = 1;
+		    }
+		break;
+		
+		case "self_19":
+		    with (obj_knight)
+		    {
+		        sprite_index = spr_roark_droop_up;
+		        image_index = 0;
+		        image_speed = 1;
+		    }
+		break;
+		/* case "self_18":
 			if (instance_exists(obj_UI))
 			{
 			    instance_destroy(obj_UI);
@@ -712,7 +745,7 @@ function scr_game_text(_text_id)
 			scr_obj_sprite_after_textbox_delayed(obj_mewmew, spr_ghost_shocked_left, false, 120);
 	        scr_custom_call_after_textbox_delayed(scr_start_pan_and_reveal_left, 150); // shortly after the hit
 		break;
-		
+	*/
 		case "self_20":
 			scr_text("* ?????????", "mewmewghost");
 				scr_portrait_on_page(spr_pinkghost_shocked);

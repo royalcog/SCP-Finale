@@ -1,6 +1,6 @@
 image_xscale = 2;
 image_yscale = 2;
-depth = -103;
+depth = -1003;
 bob_angle = 0;
 start_y = y;
 ball_phase = 0; // 0 = inactive, 1 = rolling, 2 = transforming, 3 = done

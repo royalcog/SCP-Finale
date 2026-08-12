@@ -31,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_roark_ball",
-    "path":"sprites/spr_roark_ball/spr_roark_ball.yy",
+    "name":"spr_roark_faceaway",
+    "path":"sprites/spr_roark_faceaway/spr_roark_faceaway.yy",
   },
   "spriteMaskId":null,
   "visible":true,

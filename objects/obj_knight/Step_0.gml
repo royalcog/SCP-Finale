@@ -94,3 +94,36 @@ if reverse_phase == 2
         return;
     }
 }
+
+
+// 1. When finishing the turn animation, switch immediately to droop
+if (sprite_index == spr_roark_faceaway_turning)
+{
+    if (image_index >= image_number - 1)
+    {
+        sprite_index = spr_roark_droop;
+        image_index = 0;
+        image_speed = 1; // Or 0 if it's a static idle frame
+    }
+}
+
+// 2. When playing droop_up, cut it off after 6 frames (index 0 to 5) and switch to sword appear
+if (sprite_index == spr_roark_droop_up)
+{
+    if (image_index >= 5) // 5 is the 6th frame (0-indexed)
+    {
+        sprite_index = spr_roark_sword_appear_new;
+        image_index = 0;
+        image_speed = 1;
+    }
+}
+
+// 3. Freeze sword appear animation on the last frame
+if (sprite_index == spr_roark_sword_appear_new)
+{
+    if (image_index >= image_number - 1)
+    {
+        image_speed = 0;
+        image_index = image_number - 1;
+    }
+}
