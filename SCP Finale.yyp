@@ -308,6 +308,7 @@
     {"id":{"name":"snd_tenna7","path":"sounds/snd_tenna7/snd_tenna7.yy",},},
     {"id":{"name":"snd_tenna8","path":"sounds/snd_tenna8/snd_tenna8.yy",},},
     {"id":{"name":"snd_tenna9","path":"sounds/snd_tenna9/snd_tenna9.yy",},},
+    {"id":{"name":"sng_blackknife","path":"sounds/sng_blackknife/sng_blackknife.yy",},},
     {"id":{"name":"sng_cmmm","path":"sounds/sng_cmmm/sng_cmmm.yy",},},
     {"id":{"name":"sng_cmmmbutdestroyed","path":"sounds/sng_cmmmbutdestroyed/sng_cmmmbutdestroyed.yy",},},
     {"id":{"name":"sng_darkpink","path":"sounds/sng_darkpink/sng_darkpink.yy",},},

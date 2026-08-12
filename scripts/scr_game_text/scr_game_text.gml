@@ -134,7 +134,7 @@ function scr_game_text(_text_id)
 			scr_text("* Good question.", "gerson");
 				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_left, false);
 			scr_text("* Spamton, you got anything?", "gerson");
-				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_back, false);
+				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_back_up, false);
 			scr_text("* I H4VE N0 [Pipis].", "spamton");
 				scr_obj_sprite_on_page(obj_spamton, spr_spamtonhands_left, false);
 			scr_text("* Not helpful.", "gerson");
@@ -161,7 +161,7 @@ function scr_game_text(_text_id)
 			scr_text("* 1S THER3 ANY [Nitrophilic Moss]?", "spamton");
 				scr_obj_sprite_on_page(obj_spamton, spr_spamton_armsout_left, false);
 			scr_text("* What good would moss do us?", "gerson");
-				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_back, false);
+				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_back_up, false);
 			scr_text("* [Tasty].", "spamton");
 				scr_obj_sprite_on_page(obj_spamton, spr_spamtonhands_left, false);
 			scr_text("* ...", "gerson");
@@ -473,7 +473,7 @@ function scr_game_text(_text_id)
 		      scr_set_dim_right(.9);
 		      scr_fade_out_character(obj_mewmew, 60);
 		      scr_fade_out_character(obj_othermewmew, 60);
-		      scr_fade_warp_with_music(rm_three, 600, sng_empty, , , , , [
+		      scr_fade_warp_with_music(rm_three, 400, sng_empty, , , , , [
 		          scr_make_warp_spawn(obj_mewmew, 426.5, 450, "Instances", method(undefined, function(_inst) {
 		              with (_inst) {
 		                  ghosted = false;
@@ -646,7 +646,7 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_18":
-			scr_text("* So THAT'S how you people have been spying on us.", "gerson");
+			scr_text("* So THAT'S how you hellbringers have been spying on us.", "gerson");
 			scr_text("* I'd ask how a connection was set up between different Dark Worlds, but...", "gerson");
 			scr_text("* I'd prefer you just terminate it in general.", "gerson");
 			scr_text("* TH1S I5 A [Please Read The Terms And Conditions]!!!", "spamton");
@@ -683,6 +683,16 @@ function scr_game_text(_text_id)
 				scr_snd_on_page(snd_knight_phone_call, 1);
 				scr_text_slow(0.175);
 				scr_text_shake(0, 9999);
+			scr_text("* You did nothing of the sort.", "gerson");
+			scr_text("* You come late to the meeting, and then what?", "gerson");
+			scr_text("* You go back here to spy on us?|* What's wrong with you?", "gerson");
+			scr_text("* Your judgement is skewed.", "knight");
+				scr_snd_on_page(snd_knight_phone_call, 1);
+				scr_text_slow(0.175);
+				scr_text_shake(0, 9999);
+			scr_text("* I may be going senile, but my judgement is as sharp as ever, thank you very much.", "gerson");
+			scr_text("* We don't have time for this.", "gerson");
+			scr_text("* Be on your guards, people.", "gerson");
 		break;
 		
 		case "self_21":
@@ -694,33 +704,10 @@ function scr_game_text(_text_id)
 			   }
 		break;
 		
-		
-		
-		
-		
-		
-		
-		
-		
 		case "self_22":
-			scr_text("* Um...", "gerson");
-				instance_destroy(obj_sound_of_justice);
-			scr_text("* ???", "mewmewghost", , , true);
-				scr_obj_sprite_on_page(obj_mewmew, spr_ghost_idleright, false);
-				scr_portrait_on_page(spr_pinkghost_concerned);
-			scr_text("* The statue's gone.", "gerson");
-				scr_set_var_after_textbox(obj_mewmew, "image_xscale", 2);
-				scr_obj_sprite_after_textbox(obj_mewmew, spr_ghost_shocked_left, false);
-				scr_custom_call_after_textbox_delayed(scr_start_pan_and_reveal_right, 0);
-				scr_queue_movement_group_after_textbox([
-				    { obj: obj_gerson, sprite: spr_gerson_hammer_walkright_lantern, loop: true, dx: 15, dy: 3, speed: .2, duration: 75 },
-				    { obj: obj_mewmew, sprite: spr_ghost_shocked_left, loop: false, dx: 0, dy: -10, speed: .2, duration: 75 }
-				]);
-				scr_queue_movement_group_after_textbox([
-				    { obj: obj_gerson, sprite: spr_gerson_hammer_idle_lantern_right, loop: false, dx: 0, dy: 0, speed: 0, duration: 0 },
-					{ obj: obj_mewmew, sprite: spr_ghost_shocked_left, loop: false, dx: 0, dy: 0, speed: 0, duration: 0 }
-					
-				]);
+			global.song = { sound: sng_blackknife, beats: 9999 };
+		    global.music = audio_play_sound(sng_blackknife, 1, true, .9);
+		    global.song_start = current_time;
 		break;
 		
 		case "self_23":

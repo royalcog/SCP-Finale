@@ -255,6 +255,7 @@
     {"name":"snd_tenna7","order":6,"path":"sounds/snd_tenna7/snd_tenna7.yy",},
     {"name":"snd_tenna8","order":7,"path":"sounds/snd_tenna8/snd_tenna8.yy",},
     {"name":"snd_tenna9","order":8,"path":"sounds/snd_tenna9/snd_tenna9.yy",},
+    {"name":"sng_blackknife","order":19,"path":"sounds/sng_blackknife/sng_blackknife.yy",},
     {"name":"sng_cmmm","order":10,"path":"sounds/sng_cmmm/sng_cmmm.yy",},
     {"name":"sng_cmmmbutdestroyed","order":16,"path":"sounds/sng_cmmmbutdestroyed/sng_cmmmbutdestroyed.yy",},
     {"name":"sng_darkpink","order":15,"path":"sounds/sng_darkpink/sng_darkpink.yy",},
