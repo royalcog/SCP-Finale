@@ -22,6 +22,11 @@ if (!variable_global_exists("fight_attack_active"))
     global.fight_attack_active = false;
 }
 
+if (!variable_global_exists("warp_pending"))
+{
+    global.warp_pending = false;
+}
+
 if (!variable_global_exists("fight_seq_ui_done"))
 {
     global.fight_seq_ui_done = false;

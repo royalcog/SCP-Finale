@@ -676,6 +676,8 @@ function scr_fade_warp_with_music(_target_room, _wait_frames, _new_sound, _new_g
         music_lead_frames: _music_lead_frames,
         spawn_list: _spawn_list
     });
+	obj_cutscenehandler_midfightattacks.processing_queue = true;
+	global.warp_pending = true;
 }
 
 // Helper for building one spawn_list entry for scr_fade_warp_with_music.
