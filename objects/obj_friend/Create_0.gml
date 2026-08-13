@@ -12,4 +12,7 @@ image_speed = 0;
 spawnedin = false;
 spawnedout = false;
 
+image_xscale = 3;
+image_yscale = 3;
+
 char_id = CharID.Friend;

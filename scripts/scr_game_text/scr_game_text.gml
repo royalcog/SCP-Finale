@@ -708,7 +708,7 @@ function scr_game_text(_text_id)
 		
 		case "self_21":
 			global.song = { sound: sng_blackknife, beats: 9999 };
-		    global.music = audio_play_sound(sng_blackknife, 1, true, .9);
+		    global.music = audio_play_sound(sng_blackknife, 1, true, .9, 0, .8);
 		    global.song_start = current_time;
 			if (instance_exists(obj_UI))
 			{
@@ -721,8 +721,50 @@ function scr_game_text(_text_id)
 			var gerson = obj_gerson;
 			var spamton = obj_spamton;
 			var jevil = obj_jevil;
+			var friend = obj_friend;
 		    var _seq = instance_create_depth(0, 0, 0, obj_fight_sequencer);
 		    _seq.sequence = [
+			{
+			        type: "ui_sequence",
+			        steps: [
+			            { sprite: spr_UI_SCP_full_1, delay: 30 }
+			        ]
+			    },
+		        { type: "talk", batch: [ { speaker: gerson, text: "Let's give it all we got.", no_animate: true} ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "Oh no you don't, my friend.", no_animate: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "This is MY encounter.", no_animate: true } ] },	   
+		    ];		
+		break;
+		
+		case "self_22":
+			scr_ui_reverse(sng_empty);
+			audio_stop_all();
+			scr_text("* WHAT THE...", "mewmewghost");
+				scr_call_trigger_object_fade_on_page(obj_friend, spr_friend_lookforward, 1, 416.5, 79, 0.02);
+		break;
+		
+		case "self_23":
+			/*global.song = { sound: sng_blackknife, beats: 9999 };
+		    global.music = audio_play_sound(sng_blackknife, 1, true, .9, 0, .8);
+		    global.song_start = current_time;
+			if (instance_exists(obj_UI))
+			{
+			    instance_destroy(obj_UI);
+			}
+			instance_create_depth(0, 0, -5000, obj_UI);
+		    obj_UI.sprite_index = spr_UI_SCP_full_1;
+			obj_mewmew.sprite_index = spr_mewmew_walkup_corrupted;
+		    var pink = obj_mewmew;
+			var gerson = obj_gerson;
+			var spamton = obj_spamton;
+			var jevil = obj_jevil;
+			var friend = obj_friend;
+		    var _seq = instance_create_depth(0, 0, 0, obj_fight_sequencer);
+		    _seq.sequence = [
+		        { type: "talk", batch: [ { speaker: gerson, text: "Let's give it all we got.", no_animate: true} ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "Oh no you don't, my friend.", no_animate: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "This is MY encounter.", no_animate: true } ] },
+		       
 				{
 			        type: "ui_sequence",
 			        steps: [
@@ -733,79 +775,8 @@ function scr_game_text(_text_id)
 						{ sprite: spr_UI_SCP_full_5, snd: snd_select_reverb, delay: 30 },
 			        ]
 			    },
-		        { type: "talk", batch: [ { speaker: pink, text: "Hey! Hey!!! HEY!!!", no_animate: true} ] },
-				{ type: "talk", batch: [ { speaker: pink, text: "GERSON!!! I'M ON YOUR SIDE!!!", no_animate: true } ] },
-				{ type: "talk", batch: [ { speaker: pink, text: "WHAT'S GOING ON???", no_animate: true } ] },
-		        // { type: "attack", attacker: obj_sound_of_justice, data: global.atk_sound_of_justice_hammers },
-				{
-			        type: "ui_sequence",
-			        steps: [
-			            { sprite: spr_UI_Pink, delay: 30 },
-			            { sprite: spr_UI_Pink_Defend, snd: snd_select_reverb, delay: 30 },
-			        ]
-			    },
-		        { type: "talk", batch: [ { speaker: pink, text: "DIDN'T WE PLAN TO DO THIS???" } ] },
-				{ type: "talk", batch: [ { speaker: pink, text: "WHY ARE YOU ATTACKING ME???" } ] },
-		        // { type: "attack", kind: "custom", start_func: scr_start_giant_hammer_attack },
-				{
-			        type: "ui_sequence",
-			        steps: [
-			            { sprite: spr_UI_Pink, delay: 30 },
-			            { sprite: spr_UI_Pink_Defend, snd: snd_select_reverb, delay: 30 },
-			        ]
-			    },
-				{ type: "talk", batch: [ { speaker: pink, text: "You know I can't take damage... right???" } ] },
-				{ type: "talk", batch: [ { speaker: pink, text: "So... quit it!!!" } ] },
-				// { type: "attack", kind: "custom", start_func: scr_start_falling_hammer_attack },
-				{
-			        type: "ui_sequence",
-			        steps: [
-			            { sprite: spr_UI_Pink, delay: 30 },
-			            { sprite: spr_UI_Pink_Defend, snd: snd_select_reverb, delay: 30 },
-			        ]
-			    },
-				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_wistful },
-				{ type: "talk", batch: [ { speaker: pink, text: "We need to... find my body..." } ] },
-				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_yelling_right },
-				{ type: "talk", batch: [ { speaker: pink, text: "Damn it, Gerson, don't you double-cross me too!!!" } ] },
-				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_shocked_left },
-				// { type: "attack", kind: "custom", start_func: scr_start_gavel_slam_attack },
-				{
-			        type: "ui_sequence",
-			        steps: [
-			            { sprite: spr_UI_Pink, delay: 30 },
-			            { sprite: spr_UI_Pink_Defend, snd: snd_select_reverb, delay: 30 },
-			        ]
-			    },
-				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_wistful },
-				{ type: "talk", batch: [ { speaker: pink, text: "Come on, Gerson. I don't want to fight you." } ] },
-				{ type: "talk", batch: [ { speaker: pink, text: "So stop fighting me..." } ] },
-		        // add more talk/attack pairs as you write more dialogue/attacks
-		    ];		
-		break;
-		
-		case "self_22":
-			
-		break;
-		
-		case "self_23":
-			scr_text("* ???????", "mewmewghost", , , true);
-				scr_portrait_on_page(spr_pinkghost_shocked);
-				scr_portrait_tail_off();
-			scr_text("* Whatever we're looking for has clearly found us first.", "gerson");
-			scr_text("* Let me tell you the plan", "gerson");
-				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_left, false);
-				scr_text_cutoff_skip(26);
-			scr_text("* So, who ratted me out?", "friend");
-				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_lookback_left, false);
-				scr_obj_sprite_after_textbox(obj_gerson, spr_gerson_hammer_idle_lantern_right, false);
-				scr_obj_spawn_after_textbox(obj_friend, 865, 255, "Instances");
-				scr_set_var_after_textbox(obj_friend, "image_xscale", 2);
-				scr_set_var_after_textbox(obj_friend, "image_yscale", 2);
-				scr_queue_movement_group_after_textbox([
-				    { obj: obj_friend, sprite: spr_friendmew_norm_walkleft, loop: true, dx: -10, dy: 0, speed: .2, duration: 75 },
-				    { obj: obj_friend, sprite: spr_friendmew_norm_walkleft, loop: false, dx: 0, dy: 0, speed: 0, duration: 0 }
-				]);
+			];
+			*/
 		break;
 		
 		case "self_24":
