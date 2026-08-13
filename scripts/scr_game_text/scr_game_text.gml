@@ -738,13 +738,105 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_22":
+			obj_mewmew.sprite_index = spr_mewmew_shocked_backwards_corrupted;
 			scr_ui_reverse(sng_empty);
 			audio_stop_all();
 			scr_text("* WHAT THE...", "mewmewghost");
+				scr_portrait_on_page(spr_pinkghost_shocked);
+				scr_portrait_tail_off();
+			scr_text("* What, you think I didn't PLAN for this?", "friend");
 				scr_call_trigger_object_fade_on_page(obj_friend, spr_friend_lookforward, 1, 416.5, 79, 0.02);
+				scr_snd_after_textbox(snd_friendlaugh, 1);
+				scr_obj_sprite_after_textbox(obj_friend, spr_friend_laugh, true);
 		break;
 		
 		case "self_23":
+			scr_text("* You are all highly intelligent beings.", "friend");
+				scr_obj_sprite_on_page(obj_friend, spr_friend_lookdown, false);
+				scr_obj_sprite_on_page(obj_mewmew, spr_mewmew_walkup_corrupted, false);
+			scr_text("* I figured you would find your way out of those cells one way or another.", "friend");
+			scr_text("* How did you do it without magic, I wonder?", "friend");
+				scr_obj_sprite_on_page(obj_friend, spr_friend_lookdown_right, false);
+			scr_text("* Clipping, perchance?", "friend");
+				scr_obj_sprite_on_page(obj_friend, spr_friend_lookdown_left, false);
+			scr_text("* So, you've been watching us too, huh?", "gerson");
+				scr_obj_sprite_on_page(obj_friend, spr_friend_lookdown_right, false);
+			scr_text("* Oh, come on, Hammer.", "friend");
+			scr_text("* You know I wouldn't just LET you wander around here on your own free will.", "friend");
+			scr_text("* Who knows what secrets you might uncover!", "friend");
+			scr_text("* To your own detriment, of course.", "friend");
+				scr_obj_sprite_on_page(obj_friend, spr_friend_smiley, false);
+			scr_text("* All I know is that you need the walloping of your life, Friend.", "gerson");
+				scr_obj_sprite_on_page(obj_friend, spr_friend_lookdown_right, false);
+			scr_text("* ...", "mewmewghost");
+				scr_portrait_on_page(spr_pinkghost_concerned_lookaway);
+			scr_text("* Oh, it's their name", "mewmewghost");
+				scr_obj_sprite_on_page(obj_friend, spr_friend_lookdown_left, false);
+				scr_portrait_on_page(spr_pinkghost_concerned);
+				scr_text_cutoff_skip(21);
+			scr_text("* Me? Fight with you?", "friend");
+				scr_obj_sprite_on_page(obj_friend, spr_friend_lookdown_right, false);
+			scr_text("* Didn't we try this already, Gerson?", "friend");
+			scr_text("* You had an unfair advantage.", "gerson");
+			scr_text("* It didn't seem worth my time to attack something knowing it'd be a", "gerson");
+				scr_text_cutoff_skip(68);
+			scr_text("* I'm sorry, did you just say UNFAIR?", "friend");
+			scr_text("* Aren't you, by your own definition, the Hammer of JUSTICE?", "friend");
+			scr_text("* Unfairness is something you should be verily used to by now.", "friend");
+			scr_text("* How self-deprecating can you be that your own purpose can so easily be tossed to the side at whim?", "friend");
+			scr_text("* Who are you to tell me about my purpose?", "gerson");
+			scr_text("* My GOAL is to act as the Ink, allowing others to write their stories how THEY want them to be.", "gerson");
+			scr_text("* YOU, on the other hand, are the opposite.", "gerson");
+			scr_text("* You are an eraser, a smudge, the correction tape used to destroy innocent peoples' tales.", "gerson");
+			scr_text("* And for what gain?", "gerson");
+			scr_text("* Do you enjoy harming others?", "gerson");
+			scr_text("* Is it all just a game to you?", "gerson");
+			scr_text("* Hammer, we both know that this is truly just a", "friend");
+				scr_text_cutoff_skip(48);
+			scr_text("* I'm not done, you bastard.", "gerson");
+				scr_obj_sprite_on_page_delayed(obj_mewmew, spr_mewmew_shocked_backwards_corrupted, false, 0, 60);
+			scr_text("* ...", "mewmew");
+				scr_portrait_on_page(spr_mewmewspeaker_shocked_corrupted);
+				scr_portrait_tail_off();
+			scr_text("* Ouch.", "mewmewghost");
+				scr_portrait_on_page(spr_pinkghost_concerned_smirk);
+			scr_text("* I don't know what they paid you with to take this job, but clearly you fit in perfectly here.", "gerson");
+				scr_obj_sprite_on_page(obj_mewmew, spr_mewmew_walkup_corrupted, false);
+			scr_text("* You and all these other... bringers of hell.", "gerson");
+			scr_text("* ...", "gerson");
+			scr_text("* I remember the Knight when they lived in the Light World, normally.", "gerson");
+			scr_text("* I didn't really see them around, especially because I kicked the bucket prior, but...", "gerson");
+			scr_text("* They would plant flowers by the graves sometimes.|* Mine and others.", "gerson");
+			scr_text("* At least, that's what my son wrote to me in his letters that I read when the Dark World was created.", "gerson");
+			scr_text("* They were... normal.|* A good person.", "gerson");
+			scr_text("* But YOU.", "gerson");
+			scr_text("* You and your side of 'good' turned them into THAT.", "gerson");
+			scr_text("* [Hey, Old Man], AR3 WE GONNA FIGHT thIS [Catastrophe] OR N0T???", "spamton");
+				scr_obj_sprite_on_page(obj_spamton, spr_spamton_right, false);
+				scr_obj_sprite_on_page(obj_friend, spr_friend_lookdown_far_left, false);
+			scr_text("* What is your point in all of this, Hammer?", "friend");
+				scr_obj_sprite_on_page(obj_spamton, spr_spamton_lookup, false);
+				scr_obj_sprite_on_page(obj_friend, spr_friend_lookdown_right, false);
+			scr_text("* I give up trying to prove that you don't know what 'good' really is.", "gerson");
+			scr_text("* But to define MY purpose?|* That is not how the Prophecy treats our situation at hand.", "gerson");
+			scr_text("* Fate is fickle, Hammer, but it can be easily rewritten.", "friend");
+			scr_text("* Or at least edited.", "friend");
+				scr_obj_sprite_on_page(obj_friend, spr_friend_smiley, false);
+			scr_text("* Editing is one thing.|* Deleting is another.", "gerson");
+				scr_obj_sprite_on_page(obj_friend, spr_friend_lookdown_right, false);
+			scr_text("* You bore me, my friend.", "friend");
+			scr_text("* If you wish to quarrel, let us do so.", "friend");
+			scr_text("* In fact, if you think it is STILL unfair...", "friend");
+			scr_text("* I will gladly bestow all of your magic back.", "friend");
+			scr_text("* Just so the complaints cease.", "friend");
+				scr_obj_sprite_on_page(obj_friend, spr_friend_smiley, false);
+				scr_obj_sprite_after_textbox(obj_friend, spr_friend_lookforward, false);
+		break;
+/*
+	(The magic is returned to them)
+*/
+		
+		case "self_24":
 			/*global.song = { sound: sng_blackknife, beats: 9999 };
 		    global.music = audio_play_sound(sng_blackknife, 1, true, .9, 0, .8);
 		    global.song_start = current_time;
@@ -778,9 +870,6 @@ function scr_game_text(_text_id)
 			    },
 			];
 			*/
-		break;
-		
-		case "self_24":
 			global.song = { sound: sng_darkpink, beats: 9999 };
 		    global.music = audio_play_sound(sng_darkpink, 1, true, .9);
 		    global.song_start = current_time;
