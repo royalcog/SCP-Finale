@@ -103,10 +103,10 @@ if (sprite_index == spr_roark_faceaway_turning)
     {
         sprite_index = spr_roark_droop;
         image_index = 0;
-        image_speed = 1; // Or 0 if it's a static idle frame
+        image_speed = 1;
+        global.knight_turning = false;
     }
 }
-
 // 2. When playing droop_up, cut it off after 6 frames (index 0 to 5) and switch to sword appear
 if (sprite_index == spr_roark_droop_up)
 {

@@ -22,6 +22,11 @@ if (!variable_global_exists("fight_attack_active"))
     global.fight_attack_active = false;
 }
 
+if (!variable_global_exists("knight_turning"))
+{
+    global.knight_turning = false;
+}
+
 if (!variable_global_exists("warp_pending"))
 {
     global.warp_pending = false;

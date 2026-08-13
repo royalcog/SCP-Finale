@@ -666,15 +666,15 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_19":
-			instance_create_depth(0, 0, -5000, obj_UI);
-			with (obj_knight)
-			    {
-			        visible = true;
-			        sprite_index = spr_roark_faceaway_turning;
-			        image_index = 0;
-			        image_speed = 1;
-			    }
-		    
+		    instance_create_depth(0, 0, -5000, obj_UI);
+		    global.knight_turning = true;
+		    with (obj_knight)
+		    {
+		        visible = true;
+		        sprite_index = spr_roark_faceaway_turning;
+		        image_index = 0;
+		        image_speed = 1;
+		    }
 		break;
 		
 		case "self_20":
