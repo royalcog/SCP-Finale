@@ -28,12 +28,12 @@ else if (sprite_index != spr_gerson_hammer_laugh_lantern_left) && laugh_light_ch
 	laugh_light_change = false;
 }
 
-if (sprite_index == spr_gerson_hammer_idle_lantern_left || sprite_index == spr_gerson_hammer_idle_lantern_back) && turn_light_change == false
+if (sprite_index == spr_gerson_hammer_idle_lantern_left || sprite_index == spr_gerson_hammer_idle_lantern_back_left) && turn_light_change == false
 {
 	light_offset_x -= 50;	
 	turn_light_change = true;
 }
-else if (sprite_index != spr_gerson_hammer_idle_lantern_left && sprite_index != spr_gerson_hammer_idle_lantern_back) && turn_light_change == true
+else if (sprite_index != spr_gerson_hammer_idle_lantern_left && sprite_index != spr_gerson_hammer_idle_lantern_back_left) && turn_light_change == true
 {
 	light_offset_x += 50;	
 	turn_light_change = false;

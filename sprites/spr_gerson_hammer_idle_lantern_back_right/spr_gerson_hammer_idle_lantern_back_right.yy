@@ -1,10 +1,10 @@
 {
   "$GMSprite":"v2",
-  "%Name":"spr_gerson_hammer_idle_lantern_back",
+  "%Name":"spr_gerson_hammer_idle_lantern_back_right",
   "bboxMode":0,
   "bbox_bottom":59,
-  "bbox_left":16,
-  "bbox_right":60,
+  "bbox_left":1,
+  "bbox_right":45,
   "bbox_top":22,
   "collisionKind":1,
   "collisionTolerance":0,
@@ -21,7 +21,7 @@
   "layers":[
     {"$GMImageLayer":"","%Name":"6424fa94-5425-4e98-b5ba-3b98f5daec60","blendMode":0,"displayName":"default","isLocked":false,"name":"6424fa94-5425-4e98-b5ba-3b98f5daec60","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
-  "name":"spr_gerson_hammer_idle_lantern_back",
+  "name":"spr_gerson_hammer_idle_lantern_back_right",
   "nineSlice":null,
   "origin":9,
   "parent":{
@@ -33,7 +33,7 @@
   "resourceVersion":"2.0",
   "sequence":{
     "$GMSequence":"v1",
-    "%Name":"spr_gerson_hammer_idle_lantern_back",
+    "%Name":"spr_gerson_hammer_idle_lantern_back_right",
     "autoRecord":true,
     "backdropHeight":768,
     "backdropImageOpacity":0.5,
@@ -57,7 +57,7 @@
       "resourceType":"KeyframeStore<MomentsEventKeyframe>",
       "resourceVersion":"2.0",
     },
-    "name":"spr_gerson_hammer_idle_lantern_back",
+    "name":"spr_gerson_hammer_idle_lantern_back_right",
     "playback":1,
     "playbackSpeed":30.0,
     "playbackSpeedType":0,
@@ -69,13 +69,13 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"af67792e-f7bd-45f0-a0d5-0d7ea75947b2","path":"sprites/spr_gerson_hammer_idle_lantern_back/spr_gerson_hammer_idle_lantern_back.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"af67792e-f7bd-45f0-a0d5-0d7ea75947b2","path":"sprites/spr_gerson_hammer_idle_lantern_back_right/spr_gerson_hammer_idle_lantern_back_right.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"2f138e37-9bea-453a-9bf2-aa3c1e2fb3f1","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,
     "volume":1.0,
-    "xorigin":37,
+    "xorigin":25,
     "yorigin":60,
   },
   "swatchColours":null,

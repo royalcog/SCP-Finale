@@ -615,7 +615,7 @@ function scr_game_text(_text_id)
 		          })),
 		          scr_make_warp_spawn(obj_gerson, 486, 325, "Instances", method(undefined, function(_inst) {
 		              with (_inst) {
-		                  sprite_index = spr_gerson_hammer_idle_lantern_back;
+		                  sprite_index = spr_gerson_hammer_idle_lantern_back_right;
 		                  image_speed = 0;
 		                  image_index = 0;
 		                  visible = true;
@@ -701,16 +701,21 @@ function scr_game_text(_text_id)
 			       image_index = 0;
 			       image_speed = 1;
 			   }
+			scr_text("* So be it.", "knight");
+				scr_snd_on_page(snd_knight_phone_call, 1);
+				scr_text_slow(0.175);
+				scr_text_shake(0, 9999);
 		break;
 		
 		case "self_21":
-			
-		break;
-		
-		case "self_22":
+			instance_create_depth(0, 0, -5000, obj_UI);
 			global.song = { sound: sng_blackknife, beats: 9999 };
 		    global.music = audio_play_sound(sng_blackknife, 1, true, .9);
 		    global.song_start = current_time;
+		break;
+		
+		case "self_22":
+			
 		break;
 		
 		case "self_23":
