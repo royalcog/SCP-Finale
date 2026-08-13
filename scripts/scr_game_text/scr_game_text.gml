@@ -677,9 +677,6 @@ function scr_game_text(_text_id)
 		        image_index = 0;
 		        image_speed = 1;
 		    }
-		break;
-		
-		case "self_20":
 			scr_text("* We're not looking for a fight, Knight.|* You don't want to do this.", "gerson");
 			scr_text("* I told you to be wary, old man.", "knight");
 				scr_snd_on_page(snd_knight_phone_call, 1);
@@ -697,13 +694,17 @@ function scr_game_text(_text_id)
 			scr_text("* Be on your guards, people.", "gerson");
 		break;
 		
-		case "self_21":
+		case "self_20":
 			with (obj_knight)
 			   {
 			       sprite_index = spr_roark_droop_up;
 			       image_index = 0;
 			       image_speed = 1;
 			   }
+		break;
+		
+		case "self_21":
+			
 		break;
 		
 		case "self_22":
