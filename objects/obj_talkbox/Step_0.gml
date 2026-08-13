@@ -131,7 +131,7 @@ if (chars_per_s > 0) {
             char_timer -= adv;
 
 			var _bare_quote = string_replace(quote, "* ", "");
-			if (instance_exists(speaker) && !scr_is_punctuation_only(quote))
+			if (animate_while_talking && instance_exists(speaker) && !scr_is_punctuation_only(quote))
 			{
 			    speaker.image_speed = 1; // a letter was just typed — animate
 			}

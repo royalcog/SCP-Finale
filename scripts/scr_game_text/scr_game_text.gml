@@ -650,7 +650,7 @@ function scr_game_text(_text_id)
 			scr_text("* I'd ask how a connection was set up between different Dark Worlds, but...", "gerson");
 			scr_text("* I'd prefer you just terminate it in general.", "gerson");
 			scr_text("* TH1S I5 A [Please Read The Terms And Conditions]!!!", "spamton");
-			scr_text("* AND TO THINK, I WAS ALONE IN MY FREEDOM, FREEDOM!", "jevil");
+			scr_text("* AND I THOUGHT I WAS ALONE IN MY FREEDOM, FREEDOM!", "jevil");
 			scr_text("* Were you watching us when...", "mewmew");
 				scr_portrait_on_page(spr_mewmewspeaker_concerned_corrupted);
 			scr_text("* ...", "mewmew");
@@ -660,8 +660,7 @@ function scr_game_text(_text_id)
 				scr_portrait_on_page(spr_pinkghost_concerned);
 			scr_text("* That's a darn good question, Pink.", "gerson");
 			scr_text("* Got an answer, coward?", "gerson");
-			scr_text("* Or you wanna keep breaching privacy laws with your orbs", "gerson");
-				scr_text_cutoff(57);
+			scr_text("* Or you wanna keep breaching privacy laws with your orbs?", "gerson");
 		break;
 		
 		case "self_19":
@@ -708,10 +707,81 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_21":
-			instance_create_depth(0, 0, -5000, obj_UI);
 			global.song = { sound: sng_blackknife, beats: 9999 };
 		    global.music = audio_play_sound(sng_blackknife, 1, true, .9);
 		    global.song_start = current_time;
+			if (instance_exists(obj_UI))
+			{
+			    instance_destroy(obj_UI);
+			}
+			instance_create_depth(0, 0, -5000, obj_UI);
+		    obj_UI.sprite_index = spr_UI_SCP_full_1;
+			obj_mewmew.sprite_index = spr_mewmew_walkup_corrupted;
+		    var pink = obj_mewmew;
+			var gerson = obj_gerson;
+			var spamton = obj_spamton;
+			var jevil = obj_jevil;
+		    var _seq = instance_create_depth(0, 0, 0, obj_fight_sequencer);
+		    _seq.sequence = [
+				{
+			        type: "ui_sequence",
+			        steps: [
+			            { sprite: spr_UI_SCP_full_1, delay: 30 },
+			            { sprite: spr_UI_SCP_full_2, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_3, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_4, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_5, snd: snd_select_reverb, delay: 30 },
+			        ]
+			    },
+		        { type: "talk", batch: [ { speaker: pink, text: "Hey! Hey!!! HEY!!!", no_animate: true} ] },
+				{ type: "talk", batch: [ { speaker: pink, text: "GERSON!!! I'M ON YOUR SIDE!!!", no_animate: true } ] },
+				{ type: "talk", batch: [ { speaker: pink, text: "WHAT'S GOING ON???", no_animate: true } ] },
+		        // { type: "attack", attacker: obj_sound_of_justice, data: global.atk_sound_of_justice_hammers },
+				{
+			        type: "ui_sequence",
+			        steps: [
+			            { sprite: spr_UI_Pink, delay: 30 },
+			            { sprite: spr_UI_Pink_Defend, snd: snd_select_reverb, delay: 30 },
+			        ]
+			    },
+		        { type: "talk", batch: [ { speaker: pink, text: "DIDN'T WE PLAN TO DO THIS???" } ] },
+				{ type: "talk", batch: [ { speaker: pink, text: "WHY ARE YOU ATTACKING ME???" } ] },
+		        // { type: "attack", kind: "custom", start_func: scr_start_giant_hammer_attack },
+				{
+			        type: "ui_sequence",
+			        steps: [
+			            { sprite: spr_UI_Pink, delay: 30 },
+			            { sprite: spr_UI_Pink_Defend, snd: snd_select_reverb, delay: 30 },
+			        ]
+			    },
+				{ type: "talk", batch: [ { speaker: pink, text: "You know I can't take damage... right???" } ] },
+				{ type: "talk", batch: [ { speaker: pink, text: "So... quit it!!!" } ] },
+				// { type: "attack", kind: "custom", start_func: scr_start_falling_hammer_attack },
+				{
+			        type: "ui_sequence",
+			        steps: [
+			            { sprite: spr_UI_Pink, delay: 30 },
+			            { sprite: spr_UI_Pink_Defend, snd: snd_select_reverb, delay: 30 },
+			        ]
+			    },
+				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_wistful },
+				{ type: "talk", batch: [ { speaker: pink, text: "We need to... find my body..." } ] },
+				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_yelling_right },
+				{ type: "talk", batch: [ { speaker: pink, text: "Damn it, Gerson, don't you double-cross me too!!!" } ] },
+				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_shocked_left },
+				// { type: "attack", kind: "custom", start_func: scr_start_gavel_slam_attack },
+				{
+			        type: "ui_sequence",
+			        steps: [
+			            { sprite: spr_UI_Pink, delay: 30 },
+			            { sprite: spr_UI_Pink_Defend, snd: snd_select_reverb, delay: 30 },
+			        ]
+			    },
+				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_wistful },
+				{ type: "talk", batch: [ { speaker: pink, text: "Come on, Gerson. I don't want to fight you." } ] },
+				{ type: "talk", batch: [ { speaker: pink, text: "So stop fighting me..." } ] },
+		        // add more talk/attack pairs as you write more dialogue/attacks
+		    ];		
 		break;
 		
 		case "self_22":
