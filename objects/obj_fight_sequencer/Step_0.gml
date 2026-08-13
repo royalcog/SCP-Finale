@@ -117,6 +117,7 @@ switch (state)
 	break;
 
     case "finished":
-        // whole fight sequence is done — hook post-fight logic here later
-    break;
+	    global.fight_seq_starting = false;
+	    instance_destroy();
+	break;
 }

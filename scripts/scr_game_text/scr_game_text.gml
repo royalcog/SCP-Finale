@@ -707,7 +707,8 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_21":
-			global.song = { sound: sng_blackknife, beats: 9999 };
+		    global.fight_seq_starting = true;
+		    global.song = { sound: sng_blackknife, beats: 9999 };
 		    global.music = audio_play_sound(sng_blackknife, 1, true, .9, 0, .8);
 		    global.song_start = current_time;
 			if (instance_exists(obj_UI))
@@ -732,7 +733,7 @@ function scr_game_text(_text_id)
 			    },
 		        { type: "talk", batch: [ { speaker: gerson, text: "Let's give it all we got.", no_animate: true} ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "Oh no you don't, my friend.", no_animate: true } ] },
-				{ type: "talk", batch: [ { speaker: friend, text: "This is MY encounter.", no_animate: true } ] },	   
+				{ type: "talk", batch: [ { speaker: friend, text: "This is MY encounter.", no_animate: true } ] },
 		    ];		
 		break;
 		

@@ -19,7 +19,7 @@ function scr_talkbox_show(_speaker, _text, _wrap_w, _offx, _offy, _fp, _cps, _ke
 			case CharID.Gerson: speak_snd = snd_gerson; snd_delay = 0; break;
             default:          speak_snd = noone;                     break;
         }
-        speak_vol = 0.5;
+        speak_vol = 0.8;
         _recalc_layout();
     }
     return inst;
