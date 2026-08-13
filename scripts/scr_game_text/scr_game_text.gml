@@ -662,11 +662,13 @@ function scr_game_text(_text_id)
 			scr_text("* Got an answer, coward?", "gerson");
 			scr_text("* Or you wanna keep breaching privacy laws with your orbs", "gerson");
 				scr_text_cutoff(57);
-				scr_obj_sprite_after_textbox_delayed(obj_mewmew, spr_mewmew_shocked_backwards_corrupted, false, 90);
 		break;
 		
 		case "self_19":
-		    instance_create_depth(0, 0, -5000, obj_UI);
+		    scr_text("* Why are you here...", "knight");
+				scr_snd_on_page(snd_knight_phone_call, 1);
+				scr_text_slow(0.175);
+				scr_text_shake(0, 9999);
 		    global.knight_turning = true;
 		    with (obj_knight)
 		    {
