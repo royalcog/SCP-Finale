@@ -2,7 +2,7 @@ function scr_trigger_damage_popup(_target, _amount = 0, _color_top = c_white, _c
 {
     if (instance_exists(_target))
     {
-        audio_play_sound(snd_hurt1, 5, false);
+        audio_play_sound(snd_hurt, 5, false);
 
         var _dmg = instance_create_depth(_target.x, _target.y - 20, -300, obj_damage_number);
         _dmg.damage_amount = _amount;

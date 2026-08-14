@@ -1,18 +1,18 @@
 {
   "$GMSound":"v2",
-  "%Name":"snd_hurt1",
+  "%Name":"snd_bomb",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
   },
   "bitDepth":1,
-  "channelFormat":1,
+  "channelFormat":0,
   "compression":1,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":0.5937415,
+  "duration":0.61331064,
   "exportDir":"",
-  "name":"snd_hurt1",
+  "name":"snd_bomb",
   "parent":{
     "name":"SFX",
     "path":"folders/SFX.yy",
@@ -21,6 +21,6 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"snd_hurt1.mp3",
-  "volume":0.6,
+  "soundFile":"snd_bomb.wav",
+  "volume":0.9,
 }

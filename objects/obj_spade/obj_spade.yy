@@ -1,17 +1,13 @@
 {
   "$GMObject":"",
   "%Name":"obj_spade",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "eventList":[],
   "managed":true,
   "name":"obj_spade",
   "overriddenProperties":[],
   "parent":{
-    "name":"Object Objects",
-    "path":"folders/Objects/Object Objects.yy",
+    "name":"Projectiles",
+    "path":"folders/Battle System/Objects/Barrage Projectiles/Projectiles.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -32,8 +28,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_spadechunk",
-    "path":"sprites/spr_spadechunk/spr_spadechunk.yy",
+    "name":"spr_spade",
+    "path":"sprites/spr_spade/spr_spade.yy",
   },
   "spriteMaskId":null,
   "visible":true,

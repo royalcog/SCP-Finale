@@ -44,6 +44,12 @@ switch (state)
 		    scr_ui_sequence(_step.steps, scr_fight_seq_ui_done_flag);
 		    state = "waiting_ui_sequence";
 		}
+		else if (_step.type == "barrage")
+		{
+		    var _s = instance_create_depth(0, 0, 0, obj_barrage_spawner);
+		    _s.data = _step.data;
+		    state = "waiting_barrage";
+		}
     break;
 
 	case "waiting_ui_sequence":
@@ -106,6 +112,13 @@ switch (state)
 	        box_inst.state = "closing";
 	        post_attack_delay = 60;
 	        state = "waiting_box_close";
+	    }
+	break;
+	
+	case "waiting_barrage":
+	    if (!instance_exists(obj_barrage_spawner))
+	    {
+	        state = "advance";
 	    }
 	break;
 

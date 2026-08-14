@@ -725,12 +725,55 @@ function scr_game_text(_text_id)
 			var friend = obj_friend;
 		    var _seq = instance_create_depth(0, 0, 0, obj_fight_sequencer);
 		    _seq.sequence = [
-			{
+				{
 			        type: "ui_sequence",
 			        steps: [
-			            { sprite: spr_UI_SCP_full_1, delay: 30 }
+			            { sprite: spr_UI_SCP_full_1, delay: 30 },
+			            { sprite: spr_UI_SCP_full_2, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_3, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_4, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_5, snd: snd_select_reverb, delay: 30 },
 			        ]
 			    },
+				{ type: "barrage", data: scr_make_barrage_sequence(
+				    obj_knight, 20,
+				    [
+				        scr_make_throw(obj_spamton, spr_pipis, 65, c_yellow, c_fuchsia, true, {
+				            mode: "straight",
+				            scale: 2,
+				            travel_time: 30,
+				            pre_delay: 6,
+				            anticipation_frames: 10,
+				            after_obj: obj_barrage_impact_fx,
+				        }),
+				        scr_make_throw(obj_mewmew, spr_pinkbomb, 84, c_yellow, c_fuchsia, false, {
+				            mode: "straight",
+				            travel_time: 120,
+				            pre_delay: 6,
+				            anticipation_frames: 10,
+				            travel_sound: snd_bombfall,
+				            travel_sound_gap: 30,   // adjust up/down from here if .5s feels off
+				            impact_sound: snd_bomb,
+				            after_obj: obj_barrage_cross_fx,
+				            after_sprite: spr_pinkbomb_explosion
+				        }),
+				        scr_make_throw(obj_gerson, spr_hammer_barrage, 75, c_yellow, c_fuchsia, true, {
+				            mode: "straight",
+				            scale: 2,
+				            travel_time: 30,
+				            pre_delay: 6,
+				            anticipation_frames: 10,
+				            after_obj: obj_barrage_impact_fx,
+				        }),
+				        scr_make_throw(obj_jevil, spr_spade, 40, c_yellow, c_fuchsia, false, {
+				            mode: "straight",
+				            travel_time: 30,
+				            pre_delay: 6,
+				            anticipation_frames: 10,
+				            after_obj: obj_barrage_impact_fx,
+				        }),
+				    ]
+				)},
 		        { type: "talk", batch: [ { speaker: gerson, text: "Let's give it all we got.", no_animate: true} ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "Oh no you don't, my friend.", no_animate: true } ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "This is MY encounter.", no_animate: true } ] },
@@ -1266,19 +1309,19 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_38":
-			scr_snd_after_textbox(snd_hurt1, 1);
+			scr_snd_after_textbox(snd_hurt, 1);
 		break;
 		
 		case "self_39":
-			scr_snd_after_textbox(snd_hurt1, 1);
+			scr_snd_after_textbox(snd_hurt, 1);
 		break;
 		
 		case "self_40":
-			scr_snd_after_textbox(snd_hurt1, 1);
+			scr_snd_after_textbox(snd_hurt, 1);
 		break;
 		
 		case "self_41":
-			scr_snd_after_textbox(snd_hurt1, 1);
+			scr_snd_after_textbox(snd_hurt, 1);
 		break;
 	}
 		/*array_push(obj_cutscenehandler_midfightattacks.after_textbox_queue, {

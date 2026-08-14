@@ -4,7 +4,7 @@ if (spawn_index < array_length(spawn_y))
         680,
         spawn_y[spawn_index],
         "Instances",
-        obj_spade
+        obj_spades
     );
 
     audio_play_sound(snd_spear_appear, 1, false);

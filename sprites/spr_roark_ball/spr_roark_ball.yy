@@ -48,8 +48,8 @@
   },
   "origin":0,
   "parent":{
-    "name":"Roaring Knight",
-    "path":"folders/Sprites/Characters/Roaring Knight.yy",
+    "name":"Knight",
+    "path":"folders/Sprites/Characters/Knight.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

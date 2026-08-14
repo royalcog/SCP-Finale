@@ -14,6 +14,12 @@ if (!variable_global_exists("song"))
     audio_play_sound(global.song, 1, true);
 }
 
+if (!variable_global_exists("DEBUG_BARRAGE"))
+{
+    global.DEBUG_BARRAGE = true;
+}
+
+
 
 
 // General Globals
