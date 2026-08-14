@@ -17,3 +17,11 @@ if (sprite_index = spr_friend_lookforward && fade_active = false && spawnedin = 
 {
 	image_index = 1;
 }
+
+if (global.DEBUG_BARRAGE)
+{
+    if (keyboard_check(vk_left))  global.dbg_friend_offx -= 1;
+    if (keyboard_check(vk_right)) global.dbg_friend_offx += 1;
+    if (keyboard_check(vk_up))    global.dbg_friend_offy -= 1;
+    if (keyboard_check(vk_down))  global.dbg_friend_offy += 1;
+}
