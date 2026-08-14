@@ -19,6 +19,15 @@ if (!variable_global_exists("DEBUG_BARRAGE"))
     global.DEBUG_BARRAGE = true;
 }
 
+if (!variable_global_exists("dbg_friend_offx"))
+{
+    global.dbg_friend_offx = -114;
+}
+if (!variable_global_exists("dbg_friend_offy"))
+{
+    global.dbg_friend_offy = -72;
+}
+
 
 
 

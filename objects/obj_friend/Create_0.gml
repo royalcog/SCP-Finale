@@ -15,7 +15,4 @@ spawnedout = false;
 image_xscale = 3;
 image_yscale = 3;
 
-global.dbg_friend_offx = 0;
-global.dbg_friend_offy = 0;
-
 char_id = CharID.Friend;
