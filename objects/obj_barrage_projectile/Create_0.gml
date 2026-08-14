@@ -30,3 +30,13 @@ after_at = "target";
 travel_sound = noone;
 travel_sound_gap = 30;
 travel_sound_timer = 0;
+
+beep_flash_sprite = noone;   // sprite to show while "beeping" — noone = no flash
+beep_flash_duration = 10;    // how many frames the flash sprite stays up
+beep_flash_timer = 0;
+normal_sprite = -1;          // set automatically at spawn — the sprite to revert to
+
+behind_depth = 0;
+front_depth = 0;
+depth_switch_frac = 0.75; // fraction of the flight (0–1) at which it switches
+depth_switched = false;

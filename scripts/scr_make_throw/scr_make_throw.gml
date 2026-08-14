@@ -34,7 +34,12 @@ function scr_make_throw(_source_obj, _proj_sprite, _damage, _col_top, _col_botto
 
         pre_delay: 0,
         anticipation_frames: 12,
-        throw_poof: noone
+        throw_poof: noone,
+		
+		beep_flash_sprite: noone,
+		beep_flash_duration: 10,
+		
+		depth_switch_frac: 0.75,
     };
 
     if (!is_undefined(_extra))

@@ -468,6 +468,7 @@
     {"name":"spr_orb","order":9,"path":"sprites/spr_orb/spr_orb.yy",},
     {"name":"spr_pedestal","order":11,"path":"sprites/spr_pedestal/spr_pedestal.yy",},
     {"name":"spr_pinkbomb_explosion","order":4,"path":"sprites/spr_pinkbomb_explosion/spr_pinkbomb_explosion.yy",},
+    {"name":"spr_pinkbomb_white","order":6,"path":"sprites/spr_pinkbomb_white/spr_pinkbomb_white.yy",},
     {"name":"spr_pinkbomb","order":1,"path":"sprites/spr_pinkbomb/spr_pinkbomb.yy",},
     {"name":"spr_pinkbox","order":1,"path":"sprites/spr_pinkbox/spr_pinkbox.yy",},
     {"name":"spr_pinkghost_angry","order":2,"path":"sprites/spr_pinkghost_angry/spr_pinkghost_angry.yy",},

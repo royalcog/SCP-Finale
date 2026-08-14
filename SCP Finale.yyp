@@ -549,6 +549,7 @@
     {"id":{"name":"spr_orb","path":"sprites/spr_orb/spr_orb.yy",},},
     {"id":{"name":"spr_pedestal","path":"sprites/spr_pedestal/spr_pedestal.yy",},},
     {"id":{"name":"spr_pinkbomb_explosion","path":"sprites/spr_pinkbomb_explosion/spr_pinkbomb_explosion.yy",},},
+    {"id":{"name":"spr_pinkbomb_white","path":"sprites/spr_pinkbomb_white/spr_pinkbomb_white.yy",},},
     {"id":{"name":"spr_pinkbomb","path":"sprites/spr_pinkbomb/spr_pinkbomb.yy",},},
     {"id":{"name":"spr_pinkbox","path":"sprites/spr_pinkbox/spr_pinkbox.yy",},},
     {"id":{"name":"spr_pinkghost_angry","path":"sprites/spr_pinkghost_angry/spr_pinkghost_angry.yy",},},

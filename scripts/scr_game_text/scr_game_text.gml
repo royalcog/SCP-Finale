@@ -747,16 +747,18 @@ function scr_game_text(_text_id)
 				            after_obj: obj_barrage_impact_fx,
 				        }),
 				        scr_make_throw(obj_mewmew, spr_pinkbomb, 84, c_yellow, c_fuchsia, false, {
-				            mode: "straight",
-				            travel_time: 120,
-				            pre_delay: 6,
-				            anticipation_frames: 10,
-				            travel_sound: snd_bombfall,
-				            travel_sound_gap: 30,   // adjust up/down from here if .5s feels off
-				            impact_sound: snd_bomb,
-				            after_obj: obj_barrage_cross_fx,
-				            after_sprite: spr_pinkbomb_explosion
-				        }),
+						    mode: "straight",
+						    travel_time: 120,
+						    pre_delay: 6,
+						    anticipation_frames: 10,
+						    travel_sound: snd_bombfall,
+						    travel_sound_gap: 30,
+						    impact_sound: snd_bomb,
+						    beep_flash_sprite: spr_pinkbomb_white,
+						    beep_flash_duration: 10,
+						    after_obj: obj_barrage_cross_fx,
+						    after_sprite: spr_pinkbomb_explosion
+						}),
 				        scr_make_throw(obj_gerson, spr_hammer_barrage, 75, c_yellow, c_fuchsia, true, {
 				            mode: "straight",
 				            scale: 2,
@@ -774,7 +776,7 @@ function scr_game_text(_text_id)
 				        }),
 				    ]
 				)},
-		        // { type: "talk", batch: [ { speaker: gerson, text: "Let's give it all we got.", no_animate: true} ] },
+		        { type: "talk", batch: [ { speaker: gerson, text: "Let's give it all we got.", no_animate: true} ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "Oh no you don't, my friend.", no_animate: true } ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "This is MY encounter.", no_animate: true } ] },
 		    ];		

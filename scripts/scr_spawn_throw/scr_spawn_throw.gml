@@ -27,8 +27,18 @@ function scr_spawn_throw(_target_inst, _throw)
         }
     }
 
-    var _p = instance_create_depth(_start_x, _start_y, -1100, obj_barrage_projectile);
+    var _behind_depth = -1100;
+	var _front_depth  = -1100;
+
+	if ((_throw.mode == "arc" || _throw.mode == "straight") && instance_exists(_throw.source_obj))
+	{
+	    _behind_depth = _throw.source_obj.depth + 1; // just behind the thrower
+	    _front_depth  = _target_inst.depth - 1;      // in front of the target
+	}
+
+	var _p = instance_create_depth(_start_x, _start_y, _behind_depth, obj_barrage_projectile);
     _p.sprite_index  = _throw.proj_sprite;
+	_p.normal_sprite = _throw.proj_sprite;
     _p.image_xscale  = _throw.scale;
     _p.image_yscale  = _throw.scale;
     _p.mode          = _throw.mode;
@@ -50,7 +60,12 @@ function scr_spawn_throw(_target_inst, _throw)
     _p.after_at      = _throw.after_at;
     _p.travel_sound     = _throw.travel_sound;
     _p.travel_sound_gap = _throw.travel_sound_gap;
-
+	_p.beep_flash_sprite   = _throw.beep_flash_sprite;
+	_p.beep_flash_duration = _throw.beep_flash_duration;
+	_p.behind_depth      = _behind_depth;
+	_p.front_depth       = _front_depth;
+	_p.depth_switch_frac = _throw.depth_switch_frac;
+	_p.depth_switched    = false;
     if (_throw.mode == "straight" && !_throw.animate)
     {
         _p.image_angle = point_direction(_start_x, _start_y, _p.target_x, _p.target_y);

@@ -4,10 +4,25 @@ if (travel_sound != noone)
     {
         audio_play_sound(travel_sound, 5, false);
         travel_sound_timer = travel_sound_gap;
+
+        if (beep_flash_sprite != noone)
+        {
+            sprite_index = beep_flash_sprite;
+            beep_flash_timer = beep_flash_duration;
+        }
     }
     else
     {
         travel_sound_timer--;
+    }
+}
+
+if (beep_flash_timer > 0)
+{
+    beep_flash_timer--;
+    if (beep_flash_timer <= 0 && normal_sprite != -1)
+    {
+        sprite_index = normal_sprite;
     }
 }
 
@@ -35,6 +50,11 @@ else if (mode == "straight")
     {
         image_angle += spin_speed;
     }
+}
+if ((mode == "arc" || mode == "straight") && !depth_switched && _t >= depth_switch_frac)
+{
+    depth = front_depth;
+    depth_switched = true;
 }
 
 if (instance_exists(target_inst))
