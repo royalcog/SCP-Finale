@@ -25,10 +25,17 @@ offx[CharID.Pink] = 60;
 offy[CharID.Pink] = -10;
 offx[CharID.Gerson] = 70;
 offy[CharID.Gerson] = -10;
-if (!variable_global_exists("dbg_friend_offx")) { global.dbg_friend_offx = -114; }
-if (!variable_global_exists("dbg_friend_offy")) { global.dbg_friend_offy = -72; }
-offx[CharID.Friend] = global.dbg_friend_offx;
-offy[CharID.Friend] = global.dbg_friend_offy;
+offx[CharID.Friend] = -114;
+offy[CharID.Friend] = -72;
+
+if (!variable_global_exists("dbg_friend_offx")) { global.dbg_friend_offx = offx[CharID.Friend]; }
+if (!variable_global_exists("dbg_friend_offy")) { global.dbg_friend_offy = offy[CharID.Friend]; }
+
+if (global.DEBUG_BARRAGE)
+{
+    offx[CharID.Friend] = global.dbg_friend_offx;
+    offy[CharID.Friend] = global.dbg_friend_offy;
+}
 flip = [];
 flip[CharID.Capn] = false;
 flip[CharID.Susie] = true;

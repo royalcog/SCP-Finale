@@ -16,7 +16,7 @@ if (!variable_global_exists("song"))
 
 if (!variable_global_exists("DEBUG_BARRAGE"))
 {
-    global.DEBUG_BARRAGE = true;
+    global.DEBUG_BARRAGE = false;
 }
 
 if (!variable_global_exists("dbg_friend_offx"))
