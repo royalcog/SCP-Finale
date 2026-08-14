@@ -25,8 +25,8 @@ offx[CharID.Pink] = 60;
 offy[CharID.Pink] = -10;
 offx[CharID.Gerson] = 70;
 offy[CharID.Gerson] = -10;
-offx[CharID.Friend] = -114;
-offy[CharID.Friend] = -72;
+offx[CharID.Friend] = -49;
+offy[CharID.Friend] = 35;
 
 if (!variable_global_exists("dbg_friend_offx")) { global.dbg_friend_offx = offx[CharID.Friend]; }
 if (!variable_global_exists("dbg_friend_offy")) { global.dbg_friend_offy = offy[CharID.Friend]; }
