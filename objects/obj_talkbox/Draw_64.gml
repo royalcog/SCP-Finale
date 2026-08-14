@@ -7,8 +7,14 @@ var _scale_y = _gui_h / camera_get_view_height(view_camera[0]);
 
 var tipx, tipy;
 if (instance_exists(speaker)) {
-    tipx = (speaker.x - _vx) * _scale_x + mouth_off_x;
-    tipy = (speaker.y - _vy) * _scale_y + mouth_off_y;
+	if (global.DEBUG_BARRAGE && instance_exists(speaker) && speaker == obj_friend)
+	{
+	    mouth_off_x = global.dbg_friend_offx;
+	    mouth_off_y = global.dbg_friend_offy;
+	}
+
+	tipx = (speaker.x - _vx) * _scale_x + mouth_off_x;
+	tipy = (speaker.y - _vy) * _scale_y + mouth_off_y;
     if instance_exists(obj_tenna) && speaker == obj_tenna && !obj_tenna.use_battle_ext
     {
         tipy -= 40;

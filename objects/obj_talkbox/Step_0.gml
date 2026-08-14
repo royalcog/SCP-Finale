@@ -144,7 +144,14 @@ if (chars_per_s > 0) {
         pause_ptr = array_length(pause_events);
     }
 }
-end_hold_seconds = clamp(1.5 + 0.015 * total_len, 1.5, 4.0);
+if (global.DEBUG_BARRAGE)
+{
+    end_hold_seconds = 9999;
+}
+else
+{
+    end_hold_seconds = clamp(1.5 + 0.015 * total_len, 1.5, 4.0);
+}
 if char_index >= total_len {
     if (instance_exists(speaker) && speaker.image_index >= speaker.image_number - 1 && !keep_speaker_animating)
     {
