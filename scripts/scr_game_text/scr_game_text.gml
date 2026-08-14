@@ -779,6 +779,7 @@ function scr_game_text(_text_id)
 		        { type: "talk", batch: [ { speaker: gerson, text: "Let's give it all we got.", no_animate: true} ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "Oh no you don't, my friend.", no_animate: true } ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "This is MY encounter.", no_animate: true } ] },
+				{ type: "fist_slam", target: obj_knight },
 		    ];		
 		break;
 		

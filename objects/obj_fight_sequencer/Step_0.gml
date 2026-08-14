@@ -50,6 +50,12 @@ switch (state)
 		    _s.data = _step.data;
 		    state = "waiting_barrage";
 		}
+		else if (_step.type == "fist_slam")
+		{
+		    var _f = instance_create_depth(0, 0, 0, obj_fist_slam_cutscene);
+		    _f.target_inst = _step.target;
+		    state = "waiting_fist_slam";
+		}
     break;
 
 	case "waiting_ui_sequence":
@@ -117,6 +123,13 @@ switch (state)
 	
 	case "waiting_barrage":
 	    if (!instance_exists(obj_barrage_spawner))
+	    {
+	        state = "advance";
+	    }
+	break;
+	
+	case "waiting_fist_slam":
+	    if (!instance_exists(obj_fist_slam_cutscene))
 	    {
 	        state = "advance";
 	    }
