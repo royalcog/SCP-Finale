@@ -30,4 +30,10 @@ offscreen_timer = 0;
 offscreen_wait = 60; // ~1 second at 60fps
 explosion_played = false;
 
+bob_enabled = true; // toggle this off externally when you want the hand still (e.g. mid-attack)
+bob_amount = 4;      // pixels of vertical travel — keep small per your "not too much"
+bob_speed = 0.05;    // how fast it oscillates
+bob_timer = 0;
+fist_base_y = 0;     // the resting y it bobs around — set once, when it settles into "hold"
+
 punch_complete = false; // the fight sequencer watches this to know when it can move on

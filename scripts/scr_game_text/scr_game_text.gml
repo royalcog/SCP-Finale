@@ -849,13 +849,30 @@ function scr_game_text(_text_id)
 			scr_text("* I don't know what they paid you with to take this job, but clearly you fit in perfectly here.", "gerson");
 				scr_obj_sprite_on_page(obj_mewmew, spr_mewmew_walkup_corrupted, false);
 			scr_text("* You and all these other... bringers of hell.", "gerson");
+				
+		break;
+		
+		case "self_24":
+			
+		break;
+		
+		case "self_25":
 			scr_text("* ...", "gerson");
 			scr_text("* I remember the Knight when they lived in the Light World, normally.", "gerson");
+				scr_set_var_on_page(obj_textbox, "hide_box_sprite", true);
 			scr_text("* I didn't really see them around, especially because I kicked the bucket prior, but...", "gerson");
 			scr_text("* They would plant flowers by the graves sometimes.|* Mine and others.", "gerson");
 			scr_text("* At least, that's what my son wrote to me in his letters that I read when the Dark World was created.", "gerson");
 			scr_text("* They were... normal.|* A good person.", "gerson");
+		break;
+		
+		case "self_26":
+
+		break;
+		
+		case "self_27":
 			scr_text("* But YOU.", "gerson");
+				scr_set_var_on_page(obj_textbox, "hide_box_sprite", false);
 			scr_text("* You and your side of 'good' turned them into THAT.", "gerson");
 			scr_text("* [Hey, Old Man], AR3 WE GONNA FIGHT thIS [Catastrophe] OR N0T???", "spamton");
 				scr_obj_sprite_on_page(obj_spamton, spr_spamton_right, false);
@@ -882,8 +899,8 @@ function scr_game_text(_text_id)
 	(The magic is returned to them)
 */
 		
-		case "self_24":
-			/*global.song = { sound: sng_blackknife, beats: 9999 };
+		/*case "self_25":
+			global.song = { sound: sng_blackknife, beats: 9999 };
 		    global.music = audio_play_sound(sng_blackknife, 1, true, .9, 0, .8);
 		    global.song_start = current_time;
 			if (instance_exists(obj_UI))
@@ -915,77 +932,9 @@ function scr_game_text(_text_id)
 			        ]
 			    },
 			];
-			*/
-			global.song = { sound: sng_darkpink, beats: 9999 };
-		    global.music = audio_play_sound(sng_darkpink, 1, true, .9);
-		    global.song_start = current_time;
-			scr_text("* And why would I tell you that?", "gerson");
-			scr_text("* Only a select few know where this bunker is, and less know the code.", "friend");
-				scr_portrait_on_page(spr_friendmew_talk);
-			scr_text("* I take it neither of you NEEDED the code, however, but alas.", "friend");
-				scr_portrait_on_page(spr_friendmew_smiley);
-			scr_text("* What I am truly interested in is, well...", "friend");
-				scr_portrait_on_page(spr_friendmew_talk_look_left);
-			scr_text("* Why?", "friend");
-				scr_portrait_on_page(spr_friendmew_questioning);
-			scr_text("* Both of you... or... at least ONE of you knows the dangers of arriving here.", "friend");
-				scr_portrait_on_page(spr_friendmew_talk_look_left);
-			scr_text("* You even claimed to know my superiors, Gerson.", "friend");
-				scr_portrait_on_page(spr_friendmew_talk);
-			scr_text("* So why venture here?", "friend");
-				scr_portrait_on_page(spr_friendmew_questioning);
-			scr_text("* FOR MY BODY, YOU JERK!!!", "mewmewghost", , , true);
-				scr_portrait_on_page(spr_pinkghost_angry);
-				scr_obj_sprite_on_page(obj_mewmew, spr_ghost_yelling_right, true);
-				scr_portrait_tail_off();
-			scr_text("* Ah, Pink.", "friend");
-				scr_portrait_on_page(spr_friendmew_talk);
-			scr_text("* You would not want it back even if I handed it to you on a silver platter.", "friend");
-				scr_portrait_on_page(spr_friendmew_smiley);
-			scr_text("* WHAT DID YOU DO TO HER???", "mewmewghost", , , true);
-				scr_portrait_on_page(spr_pinkghost_angry);
-				scr_obj_sprite_on_page(obj_mewmew, spr_ghost_yelling_right, true);
-				scr_portrait_tail_off();
-			scr_text("* Nothing that wasn't already in process before|  I got here.", "friend");
-				scr_portrait_on_page(spr_friendmew_talk);
-			scr_text("* The 'corruption', as you call it, is already spreading through it.", "friend");
-				scr_portrait_on_page(spr_friendmew_talk_look_left);
-			scr_text("* I wish you the best in trying to relieve it of its curse.", "friend");
-				scr_portrait_on_page(spr_friendmew_talk);
-			scr_text("* You're a monster, you know that?", "gerson");
-			scr_text("* Aren't we all, Hammer?", "friend");
-				scr_portrait_on_page(spr_friendmew_smiley);
-			scr_text("* ...", "gerson");
-			scr_text("* Pink, are you ready to fight this thing?", "gerson");
-				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_lookback_right, false);
-			scr_text("* I'M SO", "mewmewghost");
-				scr_portrait_on_page(spr_pinkghost_angry);
-				scr_obj_sprite_on_page(obj_mewmew, spr_ghost_yelling_right, true);
-				scr_portrait_tail_off();
-				scr_text_cutoff_skip(8);
-			scr_text("* Listen, if you TRULY wish to squabble with me...", "friend");
-				scr_obj_sprite_on_page(obj_mewmew, spr_ghost_shocked_left, false);
-				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_right, false);
-				scr_portrait_on_page(spr_friendmew_questioning);
-			scr_text("* I will not strike you until your first attack.", "friend");
-				scr_obj_sprite_on_page(obj_mewmew, spr_ghost_yelling_right_idle, true);
-				scr_portrait_on_page(spr_friendmew_talk_look_left);
-			scr_text("* I may be 'corrupt', but I know where your true desire in this lies, Gerson.", "friend");
-				scr_portrait_on_page(spr_friendmew_talk);
-			scr_text("* Let's see your 'pure' justice shine through YOUR wanted outcome!", "friend");
-				scr_portrait_on_page(spr_friendmew_smiley);
-			scr_text("* ...", "gerson");
-				scr_obj_sprite_after_textbox(obj_friend, spr_friendmew_laugh, true);
-				scr_call_after_textbox(function() { audio_stop_sound(global.music); }, 0);
-				scr_snd_after_textbox(snd_friendlaugh, 1);
-		break;
+		break;*/
 		
-		case "self_25":
-			scr_snd_after_textbox(snd_taking_out_sword, 1);
-			scr_obj_sprite_after_textbox(obj_mewmew, spr_ghost_battle_right, true);
-		break;
-		
-		case "self_26":
+		case "self_28":
 			global.song = { sound: sng_cmmmbutdestroyed, beats: 9999 };
 		    global.music = audio_play_sound(sng_cmmmbutdestroyed, 1, true);
 		    global.song_start = current_time;
@@ -1110,7 +1059,7 @@ function scr_game_text(_text_id)
 		    ];		
 		break;
 		
-		case "self_27":
+		case "self_29":
 			scr_ui_reverse(sng_empty);
 			audio_stop_all();
 			scr_text("* WE'RE NOT LETTING YOU GET AWAY!!!", "mewmewghost", , , true);
@@ -1121,52 +1070,6 @@ function scr_game_text(_text_id)
 			scr_text("* So be it! I'll be further down the hall when you need me.", "friend");
 				scr_portrait_on_page(spr_friendmew_smiley);
 				scr_char_move_after_textbox(obj_friend, spr_friendmew_norm_walkright, true, 7, 0, .15, 60);
-		break;
-		
-		case "self_28":
-			scr_text("* H3Y! YOU [Cutie_Mew_Mew_Magic.mp3]!", "spamton");
-				scr_obj_sprite_on_page(obj_mewmew, spr_ghost_shocked_left, false);
-				scr_char_move_on_page(obj_friend, spr_friendmew_norm_walkright, false, 0, 0, 0, 0);
-			scr_text("* Hmm?", "friend");
-				scr_obj_sprite_after_textbox(obj_friend, spr_friendmew_norm_walkleft, false);
-				scr_obj_spawn_after_textbox(obj_spamton, -110, 210, "Instances");
-				scr_char_move_after_textbox(obj_spamton, spr_spamton_right, false, 13, 0, .3, 120);
-		break;
-		
-		case "self_29":
-			scr_text("* Spamton? I thought you were hiding from me?", "friend");
-				scr_obj_sprite_on_page(obj_mewmew, spr_ghost_idleright, false);
-			scr_text("* I'M N0T SCARED OF YOUR [cat and mouse] ROUTINE ANY[Neverland].", "spamton");
-				scr_obj_sprite_on_page(obj_spamton, spr_spamton_armsout_right, false);
-			scr_text("* ALS0, [these here hooligans] BLACKMA1LED ME TO H3LP.", "spamton");
-				scr_obj_sprite_on_page(obj_spamton, spr_spamtonlaughright, true);
-				scr_obj_sprite_on_page(obj_mewmew, spr_ghost_shocked_left, false);
-			scr_text("* We WHAT???", "mewmewghost", , , true);
-				scr_obj_sprite_on_page(obj_spamton, spr_spamtonhands_left, true);
-				scr_obj_sprite_on_page(obj_mewmew, spr_ghost_yelling_right, true);
-				scr_portrait_on_page(spr_pinkghost_angry);
-				scr_portrait_tail_off();
-			scr_text("* Don't worry about it, Pink.", "gerson");
-				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_lookback_right, false);
-			scr_text("* ANYWAYS.", "spamton");
-				scr_obj_sprite_on_page(obj_mewmew, spr_ghost_idleright, false);
-				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_right, false);
-			scr_text("* 1 HAVE A F3W cHOICE WORDS FOR YOU, Y0U [Scallywag].", "spamton");
-				scr_obj_sprite_on_page(obj_spamton, spr_spamton_armsout_right, true);
-			scr_text("* YOU'RE A [Hyperlink Blocked].", "spamton");
-				scr_obj_sprite_on_page(obj_spamton, spr_spamton_armsout_right, true);
-			scr_text("* YOUR A [Hyperlink Blocked].", "spamton");
-				scr_obj_sprite_on_page(obj_spamton, spr_spamton_armsout_right, true);
-				scr_text_speaker_shake(.6, 1.5);
-			scr_text("* YOU. L1TTLE. [Hyperlink Blocked].", "spamton");
-				scr_obj_sprite_on_page(obj_spamton, spr_spamton_armsout_right_dark, true);
-				scr_text_speaker_shake(.8, 1.5);
-			scr_text("* Shame on you, Spamton.", "friend");
-				scr_portrait_on_page(spr_friendmew_talk);
-			scr_text("* Didn't your mother ever tell you not to use hyperlinks in public?", "friend");
-				scr_portrait_on_page(spr_friendmew_smiley);
-				scr_obj_sprite_after_textbox(obj_friend, spr_friendmew_laugh, true);
-				scr_snd_after_textbox(snd_friendlaugh, 1);
 		break;
 			
 		case "self_30":

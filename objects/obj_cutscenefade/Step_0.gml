@@ -20,16 +20,22 @@ if (fade_target == 1)
         {
             // NEW: Check if we are staying in the same room or changing rooms
             if (fade_back_same_room)
-            {
-                if (flash_wait_timer < flash_wait_duration)
-                {
-                    flash_wait_timer++;
-                }
-                else
-                {
-                    fade_target = 0; // Triggers the fade back to transparent in this same room!
-                }
-            }
+			{
+			    if (hold_black)
+			    {
+			        // Stay completely black until another piece of code
+			        // explicitly sets fade_target = 0.
+			        fade_alpha = 1;
+			    }
+			    else if (flash_wait_timer < flash_wait_duration)
+			    {
+			        flash_wait_timer++;
+			    }
+			    else
+			    {
+			        fade_target = 0;
+			    }
+			}
             else
             {
                 // Original behavior: change rooms

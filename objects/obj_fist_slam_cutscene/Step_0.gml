@@ -63,16 +63,21 @@ switch (phase)
         if (knockback_speed < 0) knockback_speed = 0;
 
         if (knockback_speed <= 0)
-        {
-            phase = "hold";
-            punch_complete = true;
-        }
+		{
+		    phase = "hold";
+		    punch_complete = true;
+		    fist_base_y = fist_room_y;
+		    bob_timer = 0;
+		}
     break;
 
     case "hold":
-        // fist stays right where it landed, normal colors, waiting for a later
-        // step to move it into place as Friend's hand and duplicate it
-    break;
+	    if (bob_enabled)
+	    {
+	        bob_timer += bob_speed;
+	        fist_room_y = fist_base_y + sin(bob_timer) * bob_amount;
+	    }
+	break;
 }
 
 // tracks the knight leaving the screen, regardless of impact/hold phase, to time the explosion

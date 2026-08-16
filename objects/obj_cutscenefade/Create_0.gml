@@ -5,6 +5,7 @@ has_cleaned_up = false;
 
 fade_color = c_black;         // Can be c_black, c_white, etc.
 fade_back_same_room = false;  // Set to true if you want it to fade back in without changing rooms
+hold_black = false;
 flash_wait_duration = 60;     // How many frames to hold at full color before fading back in (if fade_back_same_room is true)
 flash_wait_timer = 0;
 

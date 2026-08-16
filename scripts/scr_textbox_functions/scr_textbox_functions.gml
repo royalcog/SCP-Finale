@@ -541,6 +541,7 @@ function scr_fade_out_to_black(_color = c_black, _same_room = false, _wait = 0) 
         _fader.fade_color = _color;
         _fader.fade_back_same_room = _same_room;
         _fader.flash_wait_duration = _wait;
+        _fader.hold_black = true;
     }
 }
 
