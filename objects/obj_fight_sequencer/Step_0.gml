@@ -129,7 +129,7 @@ switch (state)
 	break;
 	
 	case "waiting_fist_slam":
-	    if (!instance_exists(obj_fist_slam_cutscene))
+	    if (!instance_exists(obj_fist_slam_cutscene) || obj_fist_slam_cutscene.punch_complete)
 	    {
 	        state = "advance";
 	    }

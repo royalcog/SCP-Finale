@@ -5,7 +5,7 @@ display_set_gui_size(camera_get_view_width(view_camera[0]), camera_get_view_heig
 // Testing Globals
 if (!variable_global_exists("dialogue_self"))
 {
-    variable_global_set("dialogue_self", 14);
+    variable_global_set("dialogue_self", 16);
 }
 
 if (!variable_global_exists("song"))

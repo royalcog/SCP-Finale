@@ -22,6 +22,7 @@
     {"name":"Sound Effects","order":16,"path":"folders/Dialogue/Sound Effects.yy",},
     {"name":"Tenna","order":4,"path":"folders/Dialogue/Sound Effects/Tenna.yy",},
     {"name":"Fonts","order":8,"path":"folders/Fonts.yy",},
+    {"name":"Shaders","order":14,"path":"folders/Shaders.yy",},
     {"name":"Menu System","order":6,"path":"folders/Menu System.yy",},
     {"name":"Objects","order":1,"path":"folders/Objects.yy",},
     {"name":"BGs","order":3,"path":"folders/Objects/BGs.yy",},
