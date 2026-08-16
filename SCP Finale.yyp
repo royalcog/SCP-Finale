@@ -375,6 +375,7 @@
     {"id":{"name":"spr_friend_hand_rotate","path":"sprites/spr_friend_hand_rotate/spr_friend_hand_rotate.yy",},},
     {"id":{"name":"spr_friend_hand_scissors","path":"sprites/spr_friend_hand_scissors/spr_friend_hand_scissors.yy",},},
     {"id":{"name":"spr_friend_laugh","path":"sprites/spr_friend_laugh/spr_friend_laugh.yy",},},
+    {"id":{"name":"spr_friend_lookdown_animated","path":"sprites/spr_friend_lookdown_animated/spr_friend_lookdown_animated.yy",},},
     {"id":{"name":"spr_friend_lookdown_far_left","path":"sprites/spr_friend_lookdown_far_left/spr_friend_lookdown_far_left.yy",},},
     {"id":{"name":"spr_friend_lookdown_left","path":"sprites/spr_friend_lookdown_left/spr_friend_lookdown_left.yy",},},
     {"id":{"name":"spr_friend_lookdown_right","path":"sprites/spr_friend_lookdown_right/spr_friend_lookdown_right.yy",},},

@@ -311,6 +311,7 @@
     {"name":"spr_friend_hand_rotate","order":3,"path":"sprites/spr_friend_hand_rotate/spr_friend_hand_rotate.yy",},
     {"name":"spr_friend_hand_scissors","order":1,"path":"sprites/spr_friend_hand_scissors/spr_friend_hand_scissors.yy",},
     {"name":"spr_friend_laugh","order":3,"path":"sprites/spr_friend_laugh/spr_friend_laugh.yy",},
+    {"name":"spr_friend_lookdown_animated","order":10,"path":"sprites/spr_friend_lookdown_animated/spr_friend_lookdown_animated.yy",},
     {"name":"spr_friend_lookdown_far_left","order":9,"path":"sprites/spr_friend_lookdown_far_left/spr_friend_lookdown_far_left.yy",},
     {"name":"spr_friend_lookdown_left","order":7,"path":"sprites/spr_friend_lookdown_left/spr_friend_lookdown_left.yy",},
     {"name":"spr_friend_lookdown_right","order":8,"path":"sprites/spr_friend_lookdown_right/spr_friend_lookdown_right.yy",},
