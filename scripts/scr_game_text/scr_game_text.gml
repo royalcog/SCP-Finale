@@ -777,6 +777,7 @@ function scr_game_text(_text_id)
 				    ]
 				)},
 		        { type: "talk", batch: [ { speaker: gerson, text: "Let's give it all we got.", no_animate: true} ] },
+				// { type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_yelling_right_idle }
 				{ type: "talk", batch: [ { speaker: friend, text: "Oh no you don't, my friend.", no_animate: true } ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "This is MY encounter.", no_animate: true } ] },
 				{ type: "fist_slam", target: obj_knight },
@@ -899,44 +900,6 @@ function scr_game_text(_text_id)
 				scr_sparkle_heroes_after_textbox([obj_gerson, obj_mewmew, obj_spamton, obj_jevil]);
 				scr_fist_split_after_textbox(120, , );
 		break;
-/*
-	(The magic is returned to them)
-*/
-		
-		/*case "self_25":
-			global.song = { sound: sng_blackknife, beats: 9999 };
-		    global.music = audio_play_sound(sng_blackknife, 1, true, .9, 0, .8);
-		    global.song_start = current_time;
-			if (instance_exists(obj_UI))
-			{
-			    instance_destroy(obj_UI);
-			}
-			instance_create_depth(0, 0, -5000, obj_UI);
-		    obj_UI.sprite_index = spr_UI_SCP_full_1;
-			obj_mewmew.sprite_index = spr_mewmew_walkup_corrupted;
-		    var pink = obj_mewmew;
-			var gerson = obj_gerson;
-			var spamton = obj_spamton;
-			var jevil = obj_jevil;
-			var friend = obj_friend;
-		    var _seq = instance_create_depth(0, 0, 0, obj_fight_sequencer);
-		    _seq.sequence = [
-		        { type: "talk", batch: [ { speaker: gerson, text: "Let's give it all we got.", no_animate: true} ] },
-				{ type: "talk", batch: [ { speaker: friend, text: "Oh no you don't, my friend.", no_animate: true } ] },
-				{ type: "talk", batch: [ { speaker: friend, text: "This is MY encounter.", no_animate: true } ] },
-		       
-				{
-			        type: "ui_sequence",
-			        steps: [
-			            { sprite: spr_UI_SCP_full_1, delay: 30 },
-			            { sprite: spr_UI_SCP_full_2, snd: snd_select_reverb, delay: 30 },
-						{ sprite: spr_UI_SCP_full_3, snd: snd_select_reverb, delay: 30 },
-						{ sprite: spr_UI_SCP_full_4, snd: snd_select_reverb, delay: 30 },
-						{ sprite: spr_UI_SCP_full_5, snd: snd_select_reverb, delay: 30 },
-			        ]
-			    },
-			];
-		break;*/
 		
 		case "self_28":
 			global.song = { sound: sng_cmmmbutdestroyed, beats: 9999 };

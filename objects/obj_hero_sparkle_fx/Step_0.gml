@@ -19,7 +19,7 @@ if (spawn_timer >= spawn_interval && timer < life)
     }
 }
 
-if (timer >= life)
+if (timer >= life + 40) // grace period so the last burst finishes fading before cleanup
 {
     part_system_destroy(psystem);
     instance_destroy();
