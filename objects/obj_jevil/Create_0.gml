@@ -14,3 +14,5 @@ light_offset_x = 6;
 light_offset_y = -16;
 
 damage_color = make_colour_rgb(109, 109, 192);
+
+char_id = CharID.Jevil;

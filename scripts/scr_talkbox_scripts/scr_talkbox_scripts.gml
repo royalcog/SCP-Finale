@@ -17,6 +17,8 @@ function scr_talkbox_show(_speaker, _text, _wrap_w, _offx, _offy, _fp, _cps, _ke
             case CharID.Pink: speak_snd = snd_empty; snd_delay = 0; break;
 			case CharID.Friend: speak_snd = snd_empty; snd_delay = 0; break;
 			case CharID.Gerson: speak_snd = snd_gerson; snd_delay = 0; break;
+			case CharID.Spamton: speak_snd = snd_spamton; snd_delay = 0; break;
+			case CharID.Jevil: speak_snd = snd_jevil; snd_delay = 0; break;
             default:          speak_snd = noone;                     break;
         }
         speak_vol = 0.8;

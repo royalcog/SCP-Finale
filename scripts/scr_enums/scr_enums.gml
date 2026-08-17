@@ -9,6 +9,8 @@
 		Pluey,
 		Pink,
 		Friend,
-		Gerson
+		Gerson,
+		Jevil,
+		Spamton
 		//ADD ENTRIES HERE
 	}

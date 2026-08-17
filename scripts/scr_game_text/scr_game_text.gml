@@ -736,7 +736,6 @@ function scr_game_text(_text_id)
 			        ]
 			    },
 		        { type: "talk", batch: [ { speaker: gerson, text: "Let's give it all we got.", no_animate: true} ] },
-				// { type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_yelling_right_idle }
 				{ type: "talk", batch: [ { speaker: friend, text: "Oh no you don't, my friend.", no_animate: true } ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "This is MY encounter.", no_animate: true } ] },
 				{ type: "fist_slam", target: obj_knight },
@@ -900,12 +899,16 @@ function scr_game_text(_text_id)
 			var spamton = obj_spamton;
 			var _seq = instance_create_depth(0, 0, 0, obj_fight_sequencer);
 		    _seq.sequence = [
+			
+			// ATTACK 1
 			    {
 			        type: "ui_sequence",
 			        steps: [
-			            { sprite: spr_UI_SCP_3, delay: 30 },
-			            { sprite: spr_UI_SCP_1, snd: snd_select_reverb, delay: 30 },
-			            { sprite: spr_UI_SCP_2, snd: snd_select_reverb, delay: 30 }
+			            { sprite: spr_UI_SCP_full_1, delay: 30 },
+			            { sprite: spr_UI_SCP_full_2, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_3, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_4, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_5, snd: snd_select_reverb, delay: 30 },
 			        ]
 			    },
 				{ type: "barrage", data: scr_make_barrage_sequence(
@@ -949,108 +952,225 @@ function scr_game_text(_text_id)
 				        }),
 				    ]
 				)},
-		        { type: "talk", batch: [ { speaker: friend, text: "Come on Gerson, where's your moxy at?", keep_animating: true } ] },
-				{ type: "talk", batch: [ { speaker: friend, text: "You know you can beat me easily.", keep_animating: true } ] },
-				{ type: "talk", batch: [ { speaker: friend, text: "So strike me down!", keep_animating: true } ] },
-				{ type: "talk", batch: [ { speaker: gerson, text: "I..." } ] },
-				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_yelling_right },
-				{ type: "talk", batch: [ { speaker: pink, text: "WHAT ARE WE WAITING FOR???" } ] },
-				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_yelling_right_idle },
-				{ type: "sprite", target: obj_gerson, new_sprite: spr_gerson_hammer_idle_lantern_lookback_right },
-				{ type: "talk", batch: [ { speaker: gerson, text: "Not yet, Pink." } ] },
-				{ type: "talk", batch: [ { speaker: pink, text: "..." } ] },
-				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_battle_right },
-				{ type: "sprite", target: obj_gerson, new_sprite: spr_gerson_hammer_idle_lantern_right },
-		        { type: "attack", kind: "custom", start_func: scr_start_friend_laugh_attack },
+		        { type: "talk", batch: [ { speaker: friend, text: "So you finally choose to meet your demise.", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "Officially, that is.", keep_animating: true } ] },
+				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_smiley },
+				{ type: "talk", batch: [ { speaker: friend, text: "I'm proud of all of you for standing up for what you all truly believe in.", keep_animating: true } ] },
+				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
+				{ type: "talk", batch: [ { speaker: friend, text: "But I can't help but wonder why you're so against battling the Prophecy.", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "None of you are the Prince. None of you need to follow your strict paths.", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "These crystals were meant to enlighten you, not turn you away from carving a new direction.", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "If this is how you wish to repay me, however, so be it.", keep_animating: true } ] },
+				// { type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_yelling_right_idle }
+		        // { type: "attack", kind: "custom", start_func: scr_start_friend_laugh_attack },
+							
+				// ATTACK 2
 				{
 			        type: "ui_sequence",
 			        steps: [
-			            { sprite: spr_UI_SCP_3, delay: 30 },
-			            { sprite: spr_UI_SCP_1, snd: snd_select_reverb, delay: 30 },
-			            { sprite: spr_UI_SCP_2, snd: snd_select_reverb, delay: 30 }
+			            { sprite: spr_UI_SCP_full_1, delay: 30 },
+			            { sprite: spr_UI_SCP_full_2, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_3, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_4, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_5, snd: snd_select_reverb, delay: 30 },
 			        ]
 			    },
-				{ type: "sprite", target: obj_friend, new_sprite: spr_friendmew_battleidle },
-				{ type: "talk", batch: [ { speaker: friend, text: "I sense some hesitation.", keep_animating: true } ] },
-				{ type: "talk", batch: [ { speaker: friend, text: "Is it fear of harming my vessel?", keep_animating: true } ] },
-				{ type: "talk", batch: [ { speaker: friend, text: "There is nothing to worry about, my friend. This body is invulnerable to physical damage.", keep_animating: true } ] },
-				{ type: "talk", batch: [ { speaker: friend, text: "But I have a feeling you knew that already.", keep_animating: true } ] },
-				{ type: "attack", kind: "custom", start_func: scr_start_friend_laugh_attack },
+				{ type: "barrage", data: scr_make_barrage_sequence(
+				    obj_friend, 20,
+				    [
+				        scr_make_throw(obj_spamton, spr_pipis, 65, c_yellow, c_fuchsia, true, {
+				            mode: "straight",
+				            scale: 2,
+				            travel_time: 30,
+				            pre_delay: 6,
+				            anticipation_frames: 10,
+				            after_obj: obj_barrage_impact_fx,
+				        }),
+				        scr_make_throw(obj_mewmew, spr_pinkbomb, 84, c_yellow, c_fuchsia, false, {
+						    mode: "straight",
+						    travel_time: 120,
+						    pre_delay: 6,
+						    anticipation_frames: 10,
+						    travel_sound: snd_bombfall,
+						    travel_sound_gap: 30,
+						    impact_sound: snd_bomb,
+						    beep_flash_sprite: spr_pinkbomb_white,
+						    beep_flash_duration: 10,
+						    after_obj: obj_barrage_cross_fx,
+						    after_sprite: spr_pinkbomb_explosion
+						}),
+				        scr_make_throw(obj_gerson, spr_hammer_barrage, 75, c_yellow, c_fuchsia, true, {
+				            mode: "straight",
+				            scale: 2,
+				            travel_time: 30,
+				            pre_delay: 6,
+				            anticipation_frames: 10,
+				            after_obj: obj_barrage_impact_fx,
+				        }),
+				        scr_make_throw(obj_jevil, spr_spade, 40, c_yellow, c_fuchsia, false, {
+				            mode: "straight",
+				            travel_time: 30,
+				            pre_delay: 6,
+				            anticipation_frames: 10,
+				            after_obj: obj_barrage_impact_fx,
+				        }),
+				    ]
+				)},
+				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_right },
+				{ type: "talk", batch: [ { speaker: gerson, text: "Repayment is not the correct word to describe this.", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: gerson, text: "Probably something more like...", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "Revenge?", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: gerson, text: "I was going more for justice, but if that's what you wanna call it.", keep_animating: true } ] },
+				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
+				// { type: "attack", kind: "custom", start_func: scr_start_friend_laugh_attack },
+				
+				// ATTACK 3
 				{
 			        type: "ui_sequence",
 			        steps: [
-			            { sprite: spr_UI_SCP_3, delay: 30 },
-			            { sprite: spr_UI_SCP_1, snd: snd_select_reverb, delay: 30 },
-			            { sprite: spr_UI_SCP_2, snd: snd_select_reverb, delay: 30 }
+			            { sprite: spr_UI_SCP_full_1, delay: 30 },
+			            { sprite: spr_UI_SCP_full_2, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_3, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_4, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_5, snd: snd_select_reverb, delay: 30 },
 			        ]
 			    },
-				{ type: "sprite", target: obj_friend, new_sprite: spr_friendmew_battleidle },
-				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_yelling_right },
-				{ type: "talk", batch: [ { speaker: pink, text: "Seriously, Gerson, why are we just standing here???" } ] },
-				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_yelling_right },
-				{ type: "talk", batch: [ { speaker: pink, text: "My body is corrupting further while we're doing zilch about it!!!" } ] },
-				{ type: "sprite", target: obj_gerson, new_sprite: spr_gerson_hammer_idle_lantern_closed_eyes_left },
-				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_yelling_right_idle },
-				{ type: "talk", batch: [ { speaker: gerson, text: "Quiet, Pink." } ] },
-				{ type: "sprite", target: obj_gerson, new_sprite: spr_gerson_hammer_idle_lantern_lookback_right },
-				{ type: "talk", batch: [ { speaker: gerson, text: "I'm concentrating." } ] },
-				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_yelling_right },
-				{ type: "talk", batch: [ { speaker: pink, text: "ON??????????" } ] },
-				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_yelling_right_idle },
-				{ type: "talk", batch: [ { speaker: gerson, text: "Just wait a little bit longer." } ] },
-				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_battle_right },
-				{ type: "sprite", target: obj_gerson, new_sprite: spr_gerson_hammer_idle_lantern_right },
-				{ type: "attack", kind: "custom", start_func: scr_start_friend_laugh_attack },
+				{ type: "barrage", data: scr_make_barrage_sequence(
+				    obj_friend, 20,
+				    [
+				        scr_make_throw(obj_spamton, spr_pipis, 65, c_yellow, c_fuchsia, true, {
+				            mode: "straight",
+				            scale: 2,
+				            travel_time: 30,
+				            pre_delay: 6,
+				            anticipation_frames: 10,
+				            after_obj: obj_barrage_impact_fx,
+				        }),
+				        scr_make_throw(obj_mewmew, spr_pinkbomb, 84, c_yellow, c_fuchsia, false, {
+						    mode: "straight",
+						    travel_time: 120,
+						    pre_delay: 6,
+						    anticipation_frames: 10,
+						    travel_sound: snd_bombfall,
+						    travel_sound_gap: 30,
+						    impact_sound: snd_bomb,
+						    beep_flash_sprite: spr_pinkbomb_white,
+						    beep_flash_duration: 10,
+						    after_obj: obj_barrage_cross_fx,
+						    after_sprite: spr_pinkbomb_explosion
+						}),
+				        scr_make_throw(obj_gerson, spr_hammer_barrage, 75, c_yellow, c_fuchsia, true, {
+				            mode: "straight",
+				            scale: 2,
+				            travel_time: 30,
+				            pre_delay: 6,
+				            anticipation_frames: 10,
+				            after_obj: obj_barrage_impact_fx,
+				        }),
+				        scr_make_throw(obj_jevil, spr_spade, 40, c_yellow, c_fuchsia, false, {
+				            mode: "straight",
+				            travel_time: 30,
+				            pre_delay: 6,
+				            anticipation_frames: 10,
+				            after_obj: obj_barrage_impact_fx,
+				        }),
+				    ]
+				)},
+				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_far_left },
+				{ type: "talk", batch: [ { speaker: spamton, text: "THIS RE4LLY IS JUST ALL A [Fun for the whole family] T0 YOU.", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "And why shouldn't it be? ", keep_animating: true } ] },
+				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_smiley },
+				{ type: "talk", batch: [ { speaker: friend, text: "Breaking the rules should at least allow for a little fun in our lives, so why not jump on the opportunity?", keep_animating: true } ] },
+				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_right },
+				{ type: "talk", batch: [ { speaker: gerson, text: "Your perspective on all of this is deranged.", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "Good luck trying to convince me otherwise, Hammer.", keep_animating: true } ] },
+				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_smiley },
+				{ type: "talk", batch: [ { speaker: friend, text: "The fun is just getting started!", keep_animating: true } ] },
+				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
+				// { type: "attack", kind: "custom", start_func: scr_start_friend_laugh_attack },
+				
+				// ATTACK 4
 				{
 			        type: "ui_sequence",
 			        steps: [
-			            { sprite: spr_UI_SCP_3, delay: 30 },
-			            { sprite: spr_UI_SCP_1, snd: snd_select_reverb, delay: 30 },
-			            { sprite: spr_UI_SCP_2, snd: snd_select_reverb, delay: 30 }
+			            { sprite: spr_UI_SCP_full_1, delay: 30 },
+			            { sprite: spr_UI_SCP_full_2, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_3, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_4, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_5, snd: snd_select_reverb, delay: 30 },
 			        ]
 			    },
-				{ type: "sprite", target: obj_friend, new_sprite: spr_friendmew_battleidle },
-				{ type: "talk", batch: [ { speaker: friend, text: "I'm beginning to grow tired of this standing around.", keep_animating: true } ] },
-				{ type: "talk", batch: [ { speaker: gerson, text: "No patience, huh?" } ] },
-				{ type: "sprite", target: obj_friend, new_sprite: spr_friendmew_laugh },
-				{ type: "talk", batch: [ { speaker: friend, text: "You could say that.", keep_animating: true } ] },
-				{ type: "sprite", target: obj_friend, new_sprite: spr_friendmew_battleidle },
-				{ type: "talk", batch: [ { speaker: gerson, text: "Why don't you strike first, then? You don't seem to be in any capacity to receive damage, so why not deal?" } ] },
-				{ type: "talk", batch: [ { speaker: friend, text: "As I told you before, Hammer, this is not a battle I wish to partake in.", keep_animating: true } ] },
-				{ type: "talk", batch: [ { speaker: friend, text: "We both know this will end in a stalemate before anyone makes a move.", keep_animating: true } ] },
-				{ type: "talk", batch: [ { speaker: friend, text: "Is this truly worth either of our whiles?", keep_animating: true } ] },
-				{ type: "talk", batch: [ { speaker: gerson, text: "If you give Pink's body back, I'd be more than obliged to call it quits now." } ] },
-				{ type: "sprite", target: obj_friend, new_sprite: spr_friendmew_laugh },
-				{ type: "talk", batch: [ { speaker: friend, text: "Oh, how you love to humor me, Gerson!", keep_animating: true } ] },
-				{ type: "sprite", target: obj_friend, new_sprite: spr_friendmew_battleidle },
-				{ type: "talk", batch: [ { speaker: friend, text: "As stated earlier, this body is mostly at its peak 'corrupted' state already.", keep_animating: true } ] },
-				{ type: "talk", batch: [ { speaker: friend, text: "Why would you want this souvenir of darkness back? Is it really worth that much in familial value to you?", keep_animating: true } ] },
-				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_yelling_right },
-				{ type: "talk", batch: [ { speaker: pink, text: "SHE'S MINE, YOU IDIOT!!!" } ] },
-				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_yelling_right_idle },
-				{ type: "talk", batch: [ { speaker: friend, text: "Yours, mine, it's all just a title. She's really just a vessel to share.", keep_animating: true } ] },
-				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_yelling_right },
-				{ type: "talk", batch: [ { speaker: pink, text: "YOU SAID THAT BEFORE ALREADY!!! AND IT'S NOT TRUE!!!" } ] },
-				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_yelling_right_idle },
-				{ type: "talk", batch: [ { speaker: friend, text: "So you say, Pink. So you say.", keep_animating: true } ] },
-				{ type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_battle_right },
-				{ type: "attack", kind: "custom", start_func: scr_start_friend_laugh_attack },
-				{
-			        type: "ui_sequence",
-			        steps: [
-			            { sprite: spr_UI_SCP_3, delay: 30 },
-			            { sprite: spr_UI_SCP_1, snd: snd_select_reverb, delay: 30 },
-			            { sprite: spr_UI_SCP_2, snd: snd_select_reverb, delay: 30 }
-			        ]
-			    },
-				{ type: "sprite", target: obj_friend, new_sprite: spr_friendmew_battleidle },
-				{ type: "talk", batch: [ { speaker: friend, text: "Listen, if we don't mind, I have other important matters to return to.", keep_animating: true } ] },
-				{ type: "talk", batch: [ { speaker: friend, text: "This battle is not progressing anywhere, so...", keep_animating: true } ] },
-				{ type: "talk", batch: [ { speaker: friend, text: "Adieu yet again, my friends.", keep_animating: true } ] },
-		        // add more talk/attack pairs as you write more dialogue/attacks
+				{ type: "barrage", data: scr_make_barrage_sequence(
+				    obj_friend, 20,
+				    [
+				        scr_make_throw(obj_spamton, spr_pipis, 65, c_yellow, c_fuchsia, true, {
+				            mode: "straight",
+				            scale: 2,
+				            travel_time: 30,
+				            pre_delay: 6,
+				            anticipation_frames: 10,
+				            after_obj: obj_barrage_impact_fx,
+				        }),
+				        scr_make_throw(obj_mewmew, spr_pinkbomb, 84, c_yellow, c_fuchsia, false, {
+						    mode: "straight",
+						    travel_time: 120,
+						    pre_delay: 6,
+						    anticipation_frames: 10,
+						    travel_sound: snd_bombfall,
+						    travel_sound_gap: 30,
+						    impact_sound: snd_bomb,
+						    beep_flash_sprite: spr_pinkbomb_white,
+						    beep_flash_duration: 10,
+						    after_obj: obj_barrage_cross_fx,
+						    after_sprite: spr_pinkbomb_explosion
+						}),
+				        scr_make_throw(obj_gerson, spr_hammer_barrage, 75, c_yellow, c_fuchsia, true, {
+				            mode: "straight",
+				            scale: 2,
+				            travel_time: 30,
+				            pre_delay: 6,
+				            anticipation_frames: 10,
+				            after_obj: obj_barrage_impact_fx,
+				        }),
+				        scr_make_throw(obj_jevil, spr_spade, 40, c_yellow, c_fuchsia, false, {
+				            mode: "straight",
+				            travel_time: 30,
+				            pre_delay: 6,
+				            anticipation_frames: 10,
+				            after_obj: obj_barrage_impact_fx,
+				        }),
+				    ]
+				)},
+				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_far_right },
+				{ type: "talk", batch: [ { speaker: jevil, text: "WHY PROMISE FREEDOM WHEN ALL YOU DELIVER IS A CELL, CELL?", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "Good question, Jevil.", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "Take our nightmarish friend for example.", keep_animating: true } ] },
+				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_far_left },
+				{ type: "talk", batch: [ { speaker: spamton, text: "[Nuh Uh]!", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "...", keep_animating: true } ] },
+				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_far_right },
+				{ type: "talk", batch: [ { speaker: friend, text: "He was given true freedom, and what does he use it for?", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "To battle the Cage in a pixelated world of doom?", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "I had to make sure they didn't screw up too much, and yet alas, the human was easily able to defeat them and acquire the Shadow Mantle.", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "Some choose to express their freedom in ways others can't begin to perceive. ", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "You should know that, Jevil.", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: jevil, text: "THAT IS NOT THE ANSWER TO MY QUERY, QUERY!", keep_animating: true } ] },
+				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_smiley },
+				{ type: "talk", batch: [ { speaker: friend, text: "Not the answer you want, perhaps. But the answer you need.", keep_animating: true } ] },
+				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
+				// { type: "attack", kind: "custom", start_func: scr_start_friend_laugh_attack },
 		    ];		
 		break;
-		
+
+/*
+Friend: To battle the Cage in a pixelated world of doom?
+Friend: I had to make sure they didn’t screw up too much, and yet alas, the human was easily able to defeat them and acquire the Shadow Mantle.
+Friend: Some choose to express their freedom in ways others can’t begin to perceive. 
+Friend: You should know that, Jevil. Your numbers games.
+Jevil: THAT IS NOT THE ANSWER TO MY QUERY, QUERY!
+Friend: Not the answer you want, perhaps. But the answer you need.
+*/
+
 		case "self_30":
 			scr_ui_reverse(sng_empty);
 			audio_stop_all();

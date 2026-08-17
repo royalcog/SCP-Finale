@@ -8,3 +8,5 @@ light_on = true;
 light_radius = 80;
 light_offset_x = 10;
 light_offset_y = -16;
+
+char_id = CharID.Spamton;
