@@ -382,6 +382,7 @@
     {"id":{"name":"spr_friend_laugh","path":"sprites/spr_friend_laugh/spr_friend_laugh.yy",},},
     {"id":{"name":"spr_friend_lookdown_animated","path":"sprites/spr_friend_lookdown_animated/spr_friend_lookdown_animated.yy",},},
     {"id":{"name":"spr_friend_lookdown_far_left","path":"sprites/spr_friend_lookdown_far_left/spr_friend_lookdown_far_left.yy",},},
+    {"id":{"name":"spr_friend_lookdown_far_right","path":"sprites/spr_friend_lookdown_far_right/spr_friend_lookdown_far_right.yy",},},
     {"id":{"name":"spr_friend_lookdown_left","path":"sprites/spr_friend_lookdown_left/spr_friend_lookdown_left.yy",},},
     {"id":{"name":"spr_friend_lookdown_right","path":"sprites/spr_friend_lookdown_right/spr_friend_lookdown_right.yy",},},
     {"id":{"name":"spr_friend_lookdown","path":"sprites/spr_friend_lookdown/spr_friend_lookdown.yy",},},

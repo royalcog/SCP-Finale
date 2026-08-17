@@ -735,47 +735,6 @@ function scr_game_text(_text_id)
 						{ sprite: spr_UI_SCP_full_5, snd: snd_select_reverb, delay: 30 },
 			        ]
 			    },
-				{ type: "barrage", data: scr_make_barrage_sequence(
-				    obj_knight, 20,
-				    [
-				        scr_make_throw(obj_spamton, spr_pipis, 65, c_yellow, c_fuchsia, true, {
-				            mode: "straight",
-				            scale: 2,
-				            travel_time: 30,
-				            pre_delay: 6,
-				            anticipation_frames: 10,
-				            after_obj: obj_barrage_impact_fx,
-				        }),
-				        scr_make_throw(obj_mewmew, spr_pinkbomb, 84, c_yellow, c_fuchsia, false, {
-						    mode: "straight",
-						    travel_time: 120,
-						    pre_delay: 6,
-						    anticipation_frames: 10,
-						    travel_sound: snd_bombfall,
-						    travel_sound_gap: 30,
-						    impact_sound: snd_bomb,
-						    beep_flash_sprite: spr_pinkbomb_white,
-						    beep_flash_duration: 10,
-						    after_obj: obj_barrage_cross_fx,
-						    after_sprite: spr_pinkbomb_explosion
-						}),
-				        scr_make_throw(obj_gerson, spr_hammer_barrage, 75, c_yellow, c_fuchsia, true, {
-				            mode: "straight",
-				            scale: 2,
-				            travel_time: 30,
-				            pre_delay: 6,
-				            anticipation_frames: 10,
-				            after_obj: obj_barrage_impact_fx,
-				        }),
-				        scr_make_throw(obj_jevil, spr_spade, 40, c_yellow, c_fuchsia, false, {
-				            mode: "straight",
-				            travel_time: 30,
-				            pre_delay: 6,
-				            anticipation_frames: 10,
-				            after_obj: obj_barrage_impact_fx,
-				        }),
-				    ]
-				)},
 		        { type: "talk", batch: [ { speaker: gerson, text: "Let's give it all we got.", no_animate: true} ] },
 				// { type: "sprite", target: obj_mewmew, new_sprite: spr_ghost_yelling_right_idle }
 				{ type: "talk", batch: [ { speaker: friend, text: "Oh no you don't, my friend.", no_animate: true } ] },
@@ -862,7 +821,7 @@ function scr_game_text(_text_id)
 			scr_text("* I remember the Knight when they lived in the Light World, normally.", "gerson");
 			scr_text("* I didn't really see them around, especially because I kicked the bucket prior, but...", "gerson");
 			scr_text("* They would plant flowers by the graves sometimes.|* Mine and others.", "gerson");
-			scr_text("* At least, that's what my son wrote to me in his letters that I read when the Dark World was created.", "gerson");
+			scr_text("* At least, that's what my son wrote to me in his letters that I read when my Dark World was created.", "gerson");
 			scr_text("* They were... normal.|* A good person.", "gerson");
 		break;
 		
@@ -898,22 +857,47 @@ function scr_game_text(_text_id)
 				scr_obj_sprite_on_page(obj_friend, spr_friend_smiley, false);
 				scr_obj_sprite_after_textbox(obj_friend, spr_friend_lookforward, false);
 				scr_sparkle_heroes_after_textbox([obj_gerson, obj_mewmew, obj_spamton, obj_jevil]);
-				scr_fist_split_after_textbox(120, , );
 		break;
 		
 		case "self_28":
-			global.song = { sound: sng_cmmmbutdestroyed, beats: 9999 };
-		    global.music = audio_play_sound(sng_cmmmbutdestroyed, 1, true);
+			scr_text("* THIS SEEMS LIKE A TRICK, TRICK!", "jevil");
+				scr_obj_sprite_on_page(obj_friend, spr_friend_lookdown_far_right, false);
+			scr_text("* HOW DO WE KNOW THAT IT WON'T BECOME UNBESTOWED AT A CRUCIAL MOMENT?", "jevil");
+			scr_text("* Alas, you will just have to trust me, my friends.", "friend");
+			scr_text("* Trust is something you earn, not something you request.", "gerson");
+				scr_obj_sprite_on_page(obj_friend, spr_friend_lookdown_right, false);
+			scr_text("* And what a valid point that is, Hammer!", "friend");
+			scr_text("* But don't you worry, Jevil.", "friend");
+				scr_obj_sprite_on_page(obj_friend, spr_friend_lookdown_far_right, false);
+			scr_text("* I have other tricks coursing through me.|* Your magic will not deter those.", "friend");
+				scr_obj_sprite_on_page(obj_friend, spr_friend_smiley, false);
+			scr_text("* I bid you all the best of luck.", "friend");
+				scr_obj_sprite_on_page(obj_friend, spr_friend_lookforward, false, 1);
+			scr_text("* SHUT IT!!!", "mewmewghost");
+				scr_obj_sprite_on_page(obj_friend, spr_friend_lookdown_left, false);
+				scr_portrait_on_page(spr_pinkghost_angry);
+				scr_portrait_tail_off();
+			scr_text("* If you say so, Pink.|* If you say so.", "friend");
+				scr_snd_after_textbox(snd_friendlaugh, 1);
+				scr_obj_sprite_after_textbox(obj_friend, spr_friend_laugh, true);
+				scr_fist_split_after_textbox(120, , );
+		break;
+		
+		case "self_29":
+			global.song = { sound: sng_wnf, beats: 9999 };
+		    global.music = audio_play_sound(sng_wnf, 1, true, 1.225);
 		    global.song_start = current_time;
 			if (instance_exists(obj_UI))
 			{
 			    instance_destroy(obj_UI);
 			}
 			instance_create_depth(0, 0, -5000, obj_UI);
-			obj_friend.sprite_index = spr_friendmew_battleidle;
+			obj_friend.sprite_index = spr_friend_lookdown_animated;
 			var pink = obj_mewmew;
 			var gerson = obj_gerson;
 			var friend = obj_friend;
+			var jevil = obj_jevil;
+			var spamton = obj_spamton;
 			var _seq = instance_create_depth(0, 0, 0, obj_fight_sequencer);
 		    _seq.sequence = [
 			    {
@@ -924,6 +908,47 @@ function scr_game_text(_text_id)
 			            { sprite: spr_UI_SCP_2, snd: snd_select_reverb, delay: 30 }
 			        ]
 			    },
+				{ type: "barrage", data: scr_make_barrage_sequence(
+				    obj_friend, 20,
+				    [
+				        scr_make_throw(obj_spamton, spr_pipis, 65, c_yellow, c_fuchsia, true, {
+				            mode: "straight",
+				            scale: 2,
+				            travel_time: 30,
+				            pre_delay: 6,
+				            anticipation_frames: 10,
+				            after_obj: obj_barrage_impact_fx,
+				        }),
+				        scr_make_throw(obj_mewmew, spr_pinkbomb, 84, c_yellow, c_fuchsia, false, {
+						    mode: "straight",
+						    travel_time: 120,
+						    pre_delay: 6,
+						    anticipation_frames: 10,
+						    travel_sound: snd_bombfall,
+						    travel_sound_gap: 30,
+						    impact_sound: snd_bomb,
+						    beep_flash_sprite: spr_pinkbomb_white,
+						    beep_flash_duration: 10,
+						    after_obj: obj_barrage_cross_fx,
+						    after_sprite: spr_pinkbomb_explosion
+						}),
+				        scr_make_throw(obj_gerson, spr_hammer_barrage, 75, c_yellow, c_fuchsia, true, {
+				            mode: "straight",
+				            scale: 2,
+				            travel_time: 30,
+				            pre_delay: 6,
+				            anticipation_frames: 10,
+				            after_obj: obj_barrage_impact_fx,
+				        }),
+				        scr_make_throw(obj_jevil, spr_spade, 40, c_yellow, c_fuchsia, false, {
+				            mode: "straight",
+				            travel_time: 30,
+				            pre_delay: 6,
+				            anticipation_frames: 10,
+				            after_obj: obj_barrage_impact_fx,
+				        }),
+				    ]
+				)},
 		        { type: "talk", batch: [ { speaker: friend, text: "Come on Gerson, where's your moxy at?", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "You know you can beat me easily.", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "So strike me down!", keep_animating: true } ] },
@@ -1026,7 +1051,7 @@ function scr_game_text(_text_id)
 		    ];		
 		break;
 		
-		case "self_29":
+		case "self_30":
 			scr_ui_reverse(sng_empty);
 			audio_stop_all();
 			scr_text("* WE'RE NOT LETTING YOU GET AWAY!!!", "mewmewghost", , , true);
@@ -1037,39 +1062,6 @@ function scr_game_text(_text_id)
 			scr_text("* So be it! I'll be further down the hall when you need me.", "friend");
 				scr_portrait_on_page(spr_friendmew_smiley);
 				scr_char_move_after_textbox(obj_friend, spr_friendmew_norm_walkright, true, 7, 0, .15, 60);
-		break;
-			
-		case "self_30":
-		    scr_text("* ...", "spamton");
-		    scr_text("* I [Burned The House Down].", "spamton");
-		        scr_obj_sprite_on_page(obj_spamton, spr_spamton_armsout_right, false);
-		    scr_text("* ...", "friend");
-				scr_portrait_on_page(spr_friendmew_talk);
-		        scr_obj_sprite_on_page(obj_friend, spr_friendmew_laugh, false);
-		    scr_text("* What?", "friend");
-				scr_portrait_on_page(spr_friendmew_questioning);
-		        scr_obj_sprite_on_page(obj_friend, spr_friendmew_norm_walkleft, false);
-		    scr_text("* THE [Don't Commit Arson] W4S [Take It Away From Me].", "spamton");
-		    scr_text("* What are you saying?", "friend");
-				scr_portrait_on_page(spr_friendmew_talk);
-		    scr_text("* Y0U [Liar Liar, Pants on Fire] COMM1TTED [Kitchen Gun].", "spamton");
-		        scr_obj_sprite_on_page(obj_spamton, spr_spamtonhands_right, false);
-		    scr_text("* You aren't making too much sense here, Spamton.", "friend");
-				scr_portrait_on_page(spr_friendmew_talk);
-		    scr_text("* That is expected, of course.|* But still.", "friend");
-				scr_portrait_on_page(spr_friendmew_smiley);
-		    scr_text("* [Joe Mama] IS [!$?#].", "spamton");
-		    scr_text("* Insults? That's what we're resorting to?", "friend");
-				scr_portrait_on_page(spr_friendmew_questioning);
-		    scr_text("* N0PE.", "spamton");
-		    scr_text("* JU5T A [Distraction Dance].", "spamton");
-		        scr_obj_sprite_on_page(obj_spamton, spr_spamtonlaughright, true);
-		    scr_text("* Hm?", "friend");
-				scr_portrait_on_page(spr_friendmew_talk);
-		        scr_obj_sprite_on_page(obj_spamton, spr_spamton_armsout_right, false);
-		    scr_text("* Check your meter, Friend.", "gerson");
-		        scr_custom_call_after_textbox_delayed(scr_doki_bar_show, 0);
-				scr_obj_sprite_after_textbox_delayed(obj_friend, spr_friendmew_norm_walkright, false, 90);
 		break;
 		
 		case "self_31":
