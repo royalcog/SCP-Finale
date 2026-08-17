@@ -312,6 +312,26 @@ function scr_snd_after_textbox_delayed(_snd, _gain, _frames)
     return _inst;
 }
 
+function scr_fist_split_after_textbox(_edge_margin, _lerp_speed, _fade_speed)
+{
+    if !instance_exists(obj_cutscenehandler_midfightattacks) exit;
+    array_push(obj_cutscenehandler_midfightattacks.after_textbox_queue, {
+        type: "fist_split",
+        edge_margin: argument_count > 0 ? _edge_margin : 40,
+        lerp_speed: argument_count > 1 ? _lerp_speed : 0.08,
+        fade_speed: argument_count > 2 ? _fade_speed : 0.04
+    });
+}
+
+function scr_sparkle_heroes_after_textbox(_heroes)
+{
+    if !instance_exists(obj_cutscenehandler_midfightattacks) exit;
+    array_push(obj_cutscenehandler_midfightattacks.after_textbox_queue, {
+        type: "sparkle_heroes",
+        heroes: _heroes
+    });
+}
+
 function scr_portrait_on_page(_spr)
 {
     speaker_portrait_spr[global.page_number - 1] = _spr;

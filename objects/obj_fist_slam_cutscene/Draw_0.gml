@@ -23,7 +23,7 @@ if (phase == "rush")
     draw_sprite_ext(fist_sprite, 0, fist_room_x, fist_room_y, image_xscale, 1, 0, c_white, 1);
     shader_reset();
 }
-else if (phase == "impact" || phase == "hold")
+else if (phase == "impact" || phase == "hold" || phase == "split_move" || phase == "split_fade")
 {
-    draw_sprite_ext(fist_sprite, 0, fist_room_x, fist_room_y, image_xscale, 1, 0, c_white, 1);
+    draw_sprite_ext(fist_sprite, 0, fist_room_x, fist_room_y, image_xscale, 1, 0, c_white, alpha);
 }

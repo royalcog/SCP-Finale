@@ -1,17 +1,16 @@
 {
   "$GMObject":"",
-  "%Name":"obj_fist_slam_cutscene",
+  "%Name":"obj_hero_sparkle_fx",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_fist_slam_cutscene",
+  "name":"obj_hero_sparkle_fx",
   "overriddenProperties":[],
   "parent":{
-    "name":"Fist Slam",
-    "path":"folders/Objects/Special Cutscenes/Fist Slam.yy",
+    "name":"Sparkle Heroes",
+    "path":"folders/Objects/Special Cutscenes/Sparkle Heroes.yy",
   },
   "parentObjectId":null,
   "persistent":false,

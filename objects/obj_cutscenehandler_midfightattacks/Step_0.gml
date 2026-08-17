@@ -440,6 +440,14 @@ if (processing_queue)
 		    _inst.fade_in_speed = _entry.fade_speed;
 		    _inst.fading_in = true;
 		}
+		else if _entry.type == "fist_split"
+		{
+		    scr_fist_slam_split(obj_fist_slam_cutscene, _entry.edge_margin, _entry.lerp_speed, _entry.fade_speed);
+		}
+		else if _entry.type == "sparkle_heroes"
+		{
+		    scr_sparkle_heroes(_entry.heroes);
+		}
     }
 
     if (array_length(after_textbox_queue) == 0 && !instance_exists(obj_cutscenefade) && array_length(move_queue_active) == 0)

@@ -1,5 +1,5 @@
 ready = false;
-depth = -9999;
+depth = -10000;
 //textbox parameters
 textbox_width = 650;  
 textbox_height = 150; 

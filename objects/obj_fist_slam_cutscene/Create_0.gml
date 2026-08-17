@@ -37,3 +37,5 @@ bob_timer = 0;
 fist_base_y = 0;     // the resting y it bobs around — set once, when it settles into "hold"
 
 punch_complete = false; // the fight sequencer watches this to know when it can move on
+
+alpha = 1; // used by the split_fade phase; normal punch always draws at full alpha

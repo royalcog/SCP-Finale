@@ -848,18 +848,17 @@ function scr_game_text(_text_id)
 				scr_portrait_on_page(spr_pinkghost_concerned_smirk);
 			scr_text("* I don't know what they paid you with to take this job, but clearly you fit in perfectly here.", "gerson");
 				scr_obj_sprite_on_page(obj_mewmew, spr_mewmew_walkup_corrupted, false);
-			scr_text("* You and all these other... bringers of hell.", "gerson");
-				
+			scr_text("* You and all these other... bringers of hell.", "gerson");	
 		break;
 		
 		case "self_24":
-			
+		    scr_fade_out_to_black(c_black, true, 0);
 		break;
 		
 		case "self_25":
 			scr_text("* ...", "gerson");
-			scr_text("* I remember the Knight when they lived in the Light World, normally.", "gerson");
 				scr_set_var_on_page(obj_textbox, "hide_box_sprite", true);
+			scr_text("* I remember the Knight when they lived in the Light World, normally.", "gerson");
 			scr_text("* I didn't really see them around, especially because I kicked the bucket prior, but...", "gerson");
 			scr_text("* They would plant flowers by the graves sometimes.|* Mine and others.", "gerson");
 			scr_text("* At least, that's what my son wrote to me in his letters that I read when the Dark World was created.", "gerson");
@@ -867,7 +866,10 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_26":
-
+		    if (instance_exists(obj_cutscenefade))
+		    {
+		        obj_cutscenefade.fade_target = 0;
+		    }
 		break;
 		
 		case "self_27":
@@ -894,6 +896,8 @@ function scr_game_text(_text_id)
 			scr_text("* Just so the complaints cease.", "friend");
 				scr_obj_sprite_on_page(obj_friend, spr_friend_smiley, false);
 				scr_obj_sprite_after_textbox(obj_friend, spr_friend_lookforward, false);
+				scr_sparkle_heroes_after_textbox([obj_gerson, obj_mewmew, obj_spamton, obj_jevil]);
+				scr_fist_split_after_textbox(120, , );
 		break;
 /*
 	(The magic is returned to them)

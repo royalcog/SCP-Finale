@@ -78,6 +78,43 @@ switch (phase)
 	        fist_room_y = fist_base_y + sin(bob_timer) * bob_amount;
 	    }
 	break;
+	
+	case "split_move":
+        fist_room_x = lerp(fist_room_x, split_target_x, split_move_lerp);
+        if (abs(fist_room_x - split_target_x) < 1)
+        {
+            fist_room_x = split_target_x;
+            fist_base_y = fist_room_y;
+            phase = "hold";
+
+            // arrived — now spawn the mirrored clone, faded out, to fade in in place
+            var _clone = instance_create_depth(0, 0, depth, obj_fist_slam_cutscene);
+            _clone.target_inst     = target_inst;
+            _clone.fist_sprite     = fist_sprite;
+            _clone.phase           = "split_fade";
+            _clone.fist_room_x     = split_mirror_x;
+            _clone.fist_room_y     = fist_room_y;
+            _clone.fist_base_y     = fist_room_y;
+            _clone.image_xscale    = -image_xscale; // inverted, mirrors the original
+            _clone.bob_enabled     = bob_enabled;
+            _clone.bob_amount      = bob_amount;
+            _clone.bob_speed       = bob_speed;
+            _clone.darken_alpha    = 0;              // don't re-darken the screen
+            _clone.punch_complete  = true;
+            _clone.explosion_played = true;          // don't replay snd_explosion for the clone
+            _clone.alpha           = 0;
+            _clone.split_fade_speed = split_fade_speed;
+        }
+    break;
+
+    case "split_fade":
+        alpha += split_fade_speed;
+        if (alpha >= 1)
+        {
+            alpha = 1;
+            phase = "hold";
+        }
+    break;
 }
 
 // tracks the knight leaving the screen, regardless of impact/hold phase, to time the explosion

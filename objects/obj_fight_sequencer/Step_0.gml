@@ -56,6 +56,12 @@ switch (state)
 		    _f.target_inst = _step.target;
 		    state = "waiting_fist_slam";
 		}
+		else if (_step.type == "fist_split")
+		{
+		    var _move = variable_struct_exists(_step, "move_right") ? _step.move_right : 30;
+		    scr_fist_slam_split(_step.target, _move);
+		    state = "advance";
+		}
     break;
 
 	case "waiting_ui_sequence":
