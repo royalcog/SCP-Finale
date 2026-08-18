@@ -1,8 +1,8 @@
-orientation   = "vertical"; // "vertical" = tall strip, hands punch through it horizontally
-                             // "horizontal" = wide strip, hands punch through it vertically
-position_frac = 0.5;        // 0..1 across the box interior
-thickness     = 40;
-blinks        = 4;
+if (!variable_instance_exists(id, "orientation")) orientation = "vertical";
+if (!variable_instance_exists(id, "position_frac")) position_frac = 0.5;
+
+thickness = 40;
+blinks = 4;
 blink_on_time  = 10;
 blink_off_time = 8;
 phase = "on";

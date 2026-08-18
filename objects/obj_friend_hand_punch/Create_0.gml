@@ -1,12 +1,12 @@
 if (!variable_instance_exists(id, "side")) side = "left";
 
 speed = 14;
-hand_scale = 1.1; // was 2 — tune this, not image_xscale/yscale directly
+hand_scale = 1.1;
 sprite_index = spr_friend_hand_rock;
 image_xscale = hand_scale;
 image_yscale = hand_scale;
 already_hit = false;
-depth = -5010; // stays in front of the box even while the box is pulled to the front (see attack1 below)
+depth = -380;
 
 var _interior = scr_get_box_interior();
 var _cx = lerp(_interior.x1, _interior.x2, 0.5);

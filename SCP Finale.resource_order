@@ -125,7 +125,6 @@
     {"name":"obj_falling_hammer","order":3,"path":"objects/obj_falling_hammer/obj_falling_hammer.yy",},
     {"name":"obj_fight_sequencer","order":3,"path":"objects/obj_fight_sequencer/obj_fight_sequencer.yy",},
     {"name":"obj_fight_test_trigger","order":4,"path":"objects/obj_fight_test_trigger/obj_fight_test_trigger.yy",},
-    {"name":"obj_friend_flash_point","order":3,"path":"objects/obj_friend_flash_point/obj_friend_flash_point.yy",},
     {"name":"obj_friend_hand_punch","order":1,"path":"objects/obj_friend_hand_punch/obj_friend_hand_punch.yy",},
     {"name":"obj_gavel_slam_attack","order":1,"path":"objects/obj_gavel_slam_attack/obj_gavel_slam_attack.yy",},
     {"name":"obj_gerson","order":1,"path":"objects/obj_gerson/obj_gerson.yy",},

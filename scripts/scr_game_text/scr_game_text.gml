@@ -756,7 +756,9 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_23":
-			audio_play_sound(sng_friends, 1, true);
+			global.friend_theme = audio_play_sound(sng_friends, 1, true);
+			audio_sound_gain(global.friend_theme, 0, 0);
+			audio_sound_gain(global.friend_theme, 1, 2000);
 			scr_text("* You are all highly intelligent beings.", "friend");
 				scr_obj_sprite_on_page(obj_friend, spr_friend_lookdown, false);
 				scr_obj_sprite_on_page(obj_mewmew, spr_mewmew_walkup_corrupted, false);
@@ -812,7 +814,13 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_24":
-			audio_pause_all();
+			if (variable_global_exists("friend_theme") && audio_is_playing(global.friend_theme))
+			{
+			    audio_sound_gain(global.friend_theme, 0, 1000);
+			    call_later(1, time_source_units_seconds, method({ _snd: global.friend_theme }, function() {
+			        if (audio_is_playing(_snd)) { audio_stop_sound(_snd); }
+			    }));
+			}
 		    scr_fade_out_to_black(c_black, true, 0);
 		break;
 		
@@ -827,7 +835,9 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_26":
-			audio_resume_all();
+			global.friend_theme = audio_play_sound(sng_friends, 1, true);
+			audio_sound_gain(global.friend_theme, 0, 0);
+			audio_sound_gain(global.friend_theme, 1, 2000);
 		    if (instance_exists(obj_cutscenefade))
 		    {
 		        obj_cutscenefade.fade_target = 0;
@@ -859,7 +869,6 @@ function scr_game_text(_text_id)
 				scr_obj_sprite_on_page(obj_friend, spr_friend_smiley, false);
 				scr_obj_sprite_after_textbox(obj_friend, spr_friend_lookforward, false);
 				scr_sparkle_heroes_after_textbox([obj_gerson, obj_mewmew, obj_spamton, obj_jevil]);
-				scr_snd_after_textbox(sng_empty, 1);
 		break;
 		
 		case "self_28":
@@ -884,6 +893,7 @@ function scr_game_text(_text_id)
 				scr_snd_after_textbox(snd_friendlaugh, 1);
 				scr_obj_sprite_after_textbox(obj_friend, spr_friend_laugh, true);
 				scr_fist_split_after_textbox(120, , );
+				scr_audio_fade_out(global.friend_theme, 300);
 		break;
 		
 		case "self_29":

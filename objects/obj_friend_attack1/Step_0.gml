@@ -1,46 +1,38 @@
 switch (phase)
 {
     case "start":
-        var _interior = scr_get_box_interior();
-        axis = choose("horizontal", "vertical"); // horizontal = hands from left/right, vertical = from up/down
-        var _pair_count = irandom_range(1, 2);   // 1 or 2 mirrored pairs -> 2 or 4 flashes total
+        orientation = choose("vertical", "horizontal"); // vertical = full-height line, hands travel it top/bottom; horizontal = full-width line, hands travel it left/right
+        var _strip_count = irandom_range(1, 2);
 
-        points = [];
-        for (var i = 0; i < _pair_count; i++)
+        strip_fracs = [];
+        strip_fracs[0] = random_range(0.25, 0.45);
+        if (_strip_count > 1) { strip_fracs[1] = 1 - strip_fracs[0]; } // mirrored for symmetry
+
+        for (var i = 0; i < array_length(strip_fracs); i++)
         {
-            var _frac = random_range(0.15, 0.4); // distance in from the near edge; mirrored for the far edge
-            if (axis == "horizontal")
-            {
-                var _y = lerp(_interior.y1, _interior.y2, random_range(0.2, 0.8));
-                points[array_length(points)] = { wx: lerp(_interior.x1, _interior.x2, _frac),     wy: _y, side: "left"  };
-                points[array_length(points)] = { wx: lerp(_interior.x1, _interior.x2, 1 - _frac), wy: _y, side: "right" };
-            }
-            else
-            {
-                var _x = lerp(_interior.x1, _interior.x2, random_range(0.2, 0.8));
-                points[array_length(points)] = { wx: _x, wy: lerp(_interior.y1, _interior.y2, _frac),     side: "up"   };
-                points[array_length(points)] = { wx: _x, wy: lerp(_interior.y1, _interior.y2, 1 - _frac), side: "down" };
-            }
+            instance_create_depth(0, 0, -390, obj_strip_flash, { orientation: orientation, position_frac: strip_fracs[i] });
         }
 
-        for (var i = 0; i < array_length(points); i++)
-        {
-            instance_create_depth(0, 0, -5010, obj_friend_flash_point, { world_x: points[i].wx, world_y: points[i].wy });
-        }
-
-        timer = 8 * 3 + 6 * 3 + 5; // matches flash_point's blink_on_time*blinks + blink_off_time*blinks, plus a small buffer
+        timer = 10 * 4 + 8 * 4 + 5; // matches obj_strip_flash's blink_on_time*blinks + blink_off_time*blinks, plus buffer
         phase = "waiting_flash";
     break;
 
     case "waiting_flash":
         timer--;
-        if (timer <= 0 && instance_number(obj_friend_flash_point) == 0)
+        if (timer <= 0 && instance_number(obj_strip_flash) == 0)
         {
-            for (var i = 0; i < array_length(points); i++)
+            var _interior = scr_get_box_interior();
+            var _side_pool = (orientation == "vertical") ? ["up", "down"] : ["left", "right"];
+
+            for (var i = 0; i < array_length(strip_fracs); i++)
             {
-                var _pt = points[i];
-                var _perp = (_pt.side == "left" || _pt.side == "right") ? _pt.wy : _pt.wx;
-                instance_create_depth(0, 0, -5010, obj_friend_hand_punch, { side: _pt.side, fixed_coord: _perp });
+                var _frac = strip_fracs[i];
+                var _side = _side_pool[irandom(1)];
+                var _perp = (orientation == "vertical")
+                    ? lerp(_interior.x1, _interior.x2, _frac)
+                    : lerp(_interior.y1, _interior.y2, _frac);
+
+                instance_create_depth(0, 0, -380, obj_friend_hand_punch, { side: _side, fixed_coord: _perp });
             }
             phase = "waiting_hand";
         }
@@ -50,15 +42,8 @@ switch (phase)
         if (instance_number(obj_friend_hand_punch) == 0)
         {
             repeat_count++;
-            if (repeat_count >= max_repeats)
-            {
-                instance_destroy();
-            }
-            else
-            {
-                timer = gap_timer;
-                phase = "gap";
-            }
+            if (repeat_count >= max_repeats) { instance_destroy(); }
+            else { timer = gap_timer; phase = "gap"; }
         }
     break;
 

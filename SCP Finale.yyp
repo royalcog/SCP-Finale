@@ -164,7 +164,6 @@
     {"id":{"name":"obj_fight_test_trigger","path":"objects/obj_fight_test_trigger/obj_fight_test_trigger.yy",},},
     {"id":{"name":"obj_fist_slam_cutscene","path":"objects/obj_fist_slam_cutscene/obj_fist_slam_cutscene.yy",},},
     {"id":{"name":"obj_friend_attack1","path":"objects/obj_friend_attack1/obj_friend_attack1.yy",},},
-    {"id":{"name":"obj_friend_flash_point","path":"objects/obj_friend_flash_point/obj_friend_flash_point.yy",},},
     {"id":{"name":"obj_friend_hand_punch","path":"objects/obj_friend_hand_punch/obj_friend_hand_punch.yy",},},
     {"id":{"name":"obj_friend_laugh_attack","path":"objects/obj_friend_laugh_attack/obj_friend_laugh_attack.yy",},},
     {"id":{"name":"obj_friend","path":"objects/obj_friend/obj_friend.yy",},},
