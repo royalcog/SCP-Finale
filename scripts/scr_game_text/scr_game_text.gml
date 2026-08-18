@@ -756,6 +756,7 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_23":
+			audio_play_sound(sng_friends, 1, true);
 			scr_text("* You are all highly intelligent beings.", "friend");
 				scr_obj_sprite_on_page(obj_friend, spr_friend_lookdown, false);
 				scr_obj_sprite_on_page(obj_mewmew, spr_mewmew_walkup_corrupted, false);
@@ -811,6 +812,7 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_24":
+			audio_pause_all();
 		    scr_fade_out_to_black(c_black, true, 0);
 		break;
 		
@@ -825,6 +827,7 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_26":
+			audio_resume_all();
 		    if (instance_exists(obj_cutscenefade))
 		    {
 		        obj_cutscenefade.fade_target = 0;
@@ -856,6 +859,7 @@ function scr_game_text(_text_id)
 				scr_obj_sprite_on_page(obj_friend, spr_friend_smiley, false);
 				scr_obj_sprite_after_textbox(obj_friend, spr_friend_lookforward, false);
 				scr_sparkle_heroes_after_textbox([obj_gerson, obj_mewmew, obj_spamton, obj_jevil]);
+				scr_snd_after_textbox(sng_empty, 1);
 		break;
 		
 		case "self_28":
