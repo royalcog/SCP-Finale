@@ -4,10 +4,7 @@ if (hold_seconds > 0) {
     {
         speaker.image_speed = 0;
     }
-    while (pause_ptr < array_length(pause_events) && char_index >= pause_events[pause_ptr].idx) {
-	    hold_seconds = max(hold_seconds, pause_events[pause_ptr].sec * game_get_speed(gamespeed_fps));
-	    pause_ptr++;
-	}
+    hold_seconds = max(0, hold_seconds - 1);
     if (keyboard_check_pressed(ord("Z")) || keyboard_check_pressed(vk_shift) || keyboard_check(vk_control)) {
         char_index = total_len;
         char_timer = 0;
@@ -127,10 +124,9 @@ if (chars_per_s > 0) {
             }
 			
             while (pause_ptr < array_length(pause_events) && char_index >= pause_events[pause_ptr].idx) {
-                hold_seconds = max(hold_seconds, pause_events[pause_ptr].sec);
-                pause_ptr++;
-            }
-
+			    hold_seconds = max(hold_seconds, pause_events[pause_ptr].sec * game_get_speed(gamespeed_fps));
+			    pause_ptr++;
+			}
             char_timer -= adv;
 
 			var _bare_quote = string_replace(quote, "* ", "");
