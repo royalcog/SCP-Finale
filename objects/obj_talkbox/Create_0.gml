@@ -126,50 +126,31 @@ function _build_pause_events_from_layout() {
 
 	for (var i = 1; i <= n; i++) {
 		var ch = string_char_at(s, i);
-		var next_is_space = (i < n && string_char_at(s, i + 1) == " ");
+		var next_char = (i < n) ? string_char_at(s, i + 1) : "";
+		var is_boundary = (next_char == " " || next_char == "" || next_char == "|");
 
-		if (ch == "," && next_is_space)
+		if (ch == ",")
 			pause_events[array_length(pause_events)] = { idx: i, sec: pause_comma };
 
-		else if (ch == ";" && next_is_space)
+		else if (ch == ";" && next_char == " ")
 			pause_events[array_length(pause_events)] = { idx: i, sec: pause_semi };
 
-		else if (ch == ":" && next_is_space)
+		else if (ch == ":" && next_char == " ")
 			pause_events[array_length(pause_events)] = { idx: i, sec: pause_colon };
 
-		else if (ch == "!") {
-			var prev_is_excl = (i > 1 && (string_char_at(s, i-1) == "!" || string_char_at(s, i+1) == "?"));
-			var next_is_excl = (i < n && (string_char_at(s, i+1) == "!" || string_char_at(s, i+1) == "?" || string_char_at(s, i+1) == "\""));
-			if ((prev_is_excl || next_is_excl)) {
-				if (!next_is_excl && next_is_space)
-					pause_events[array_length(pause_events)] = { idx: i, sec: pause_excl };
-			} else if (next_is_space) {
-				pause_events[array_length(pause_events)] = { idx: i, sec: pause_excl };
-			}
+		else if (ch == "." && is_boundary) {
+			var prev_char = (i > 1) ? string_char_at(s, i - 1) : "";
+			var _sec = (prev_char == ".") ? pause_ellipsis : pause_period;
+			pause_events[array_length(pause_events)] = { idx: i, sec: _sec };
 		}
-		else if (ch == "?") {
-			var prev_is_question = (i > 1 && (string_char_at(s, i-1) == "?" || string_char_at(s, i+1) == "!"));
-			var next_is_question = (i < n && (string_char_at(s, i+1) == "?" || string_char_at(s, i+1) == "!" || string_char_at(s, i+1) == "\""));
-			if ((prev_is_question || next_is_question)) {
-				if (!next_is_question && next_is_space)
-					pause_events[array_length(pause_events)] = { idx: i, sec: pause_question };
-			} else if (next_is_space) {
-				pause_events[array_length(pause_events)] = { idx: i, sec: pause_question };
-			}
-		}
-		else if (ch == ".") {
-			var prev_is_dot = (i > 1 && string_char_at(s, i-1) == ".");
-			var next_is_dot = (i < n && (string_char_at(s, i+1) == "." || string_char_at(s, i+1) == "!" || string_char_at(s, i+1) == "\""));
-			if ((prev_is_dot || next_is_dot)) {
-				if (!next_is_dot && next_is_space)
-					pause_events[array_length(pause_events)] = { idx: i, sec: pause_ellipsis };
-			} else if (next_is_space) {
-				pause_events[array_length(pause_events)] = { idx: i, sec: pause_period };
-			}
-		}
-		else if (ch == "\r") {
+		else if (ch == "!" && is_boundary)
+			pause_events[array_length(pause_events)] = { idx: i, sec: pause_excl };
+
+		else if (ch == "?" && is_boundary)
+			pause_events[array_length(pause_events)] = { idx: i, sec: pause_question };
+
+		else if (ch == "\r")
 			pause_events[array_length(pause_events)] = { idx: i, sec: pause_period };
-		}
 	}
 }
 
