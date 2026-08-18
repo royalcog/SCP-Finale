@@ -1,0 +1,23 @@
+switch (side)
+{
+    case "left":  x += speed; break;
+    case "right": x -= speed; break;
+    case "up":    y += speed; break;
+    case "down":  y -= speed; break;
+}
+
+if (!already_hit && instance_exists(obj_soul) && place_meeting(x, y, obj_soul))
+{
+    already_hit = true;
+    scr_soul_take_hit(0, obj_mewmew.damage_color, obj_mewmew.damage_color);
+}
+
+var _past = false;
+switch (side)
+{
+    case "left":  _past = (x >= target_val); break;
+    case "right": _past = (x <= target_val); break;
+    case "up":    _past = (y >= target_val); break;
+    case "down":  _past = (y <= target_val); break;
+}
+if (_past) instance_destroy();
