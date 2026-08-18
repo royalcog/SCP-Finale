@@ -1,6 +1,6 @@
 if (!variable_instance_exists(id, "side")) side = "left";
 
-move_speed = 14; // FIX: Renamed from 'speed'
+move_speed = 18; // FIX: Renamed from 'speed'
 hand_scale = 1.1;
 sprite_index = spr_friend_hand_rock;
 image_xscale = hand_scale;
