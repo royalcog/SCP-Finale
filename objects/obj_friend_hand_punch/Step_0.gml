@@ -1,9 +1,9 @@
 switch (side)
 {
-    case "left":  x += speed; break;
-    case "right": x -= speed; break;
-    case "up":    y += speed; break;
-    case "down":  y -= speed; break;
+    case "left":  x += move_speed; break; // FIX: using move_speed
+    case "right": x -= move_speed; break;
+    case "up":    y += move_speed; break;
+    case "down":  y -= move_speed; break;
 }
 
 var _current_val = (side == "left" || side == "right") ? x : y;

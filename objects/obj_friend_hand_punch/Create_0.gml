@@ -1,6 +1,6 @@
 if (!variable_instance_exists(id, "side")) side = "left";
 
-speed = 14;
+move_speed = 14; // FIX: Renamed from 'speed'
 hand_scale = 1.1;
 sprite_index = spr_friend_hand_rock;
 image_xscale = hand_scale;
@@ -39,11 +39,13 @@ switch (side)
 
 switch (side)
 {
-    case "left":  draw_angle = 0;   break; // fist faces right (moving +x)
-    case "right": draw_angle = 180; break; // fist faces left (moving -x)
-    case "down":  draw_angle = 90;  break; // fist faces up (moving -y)
-    case "up":    draw_angle = 270; break; // fist faces down (moving +y)
+    case "left":  image_angle = 0;   break; 
+    case "right": image_angle = 180; break; 
+    case "down":  image_angle = 90;  break; 
+    case "up":    image_angle = 270; break; 
 }
+// Map your old custom variable to image_angle so your GUI math still works
+draw_angle = image_angle; 
 
 start_val = (side == "left" || side == "right") ? x : y;
 progress = 0;
