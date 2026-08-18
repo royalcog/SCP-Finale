@@ -10,7 +10,7 @@
   "compression":1,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":38.452244,
+  "duration":40.85551,
   "exportDir":"",
   "name":"sng_friends",
   "parent":{

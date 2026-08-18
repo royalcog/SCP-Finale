@@ -1,17 +1,10 @@
 switch (phase)
 {
     case "start":
-        orientation = choose("vertical", "horizontal"); // vertical = full-height line, hands travel it top/bottom; horizontal = full-width line, hands travel it left/right
-        var _strip_count = irandom_range(1, 2);
+        orientation = choose("vertical", "horizontal");
 
-        strip_fracs = [];
-        strip_fracs[0] = random_range(0.25, 0.45);
-        if (_strip_count > 1) { strip_fracs[1] = 1 - strip_fracs[0]; } // mirrored for symmetry
-
-        for (var i = 0; i < array_length(strip_fracs); i++)
-        {
-            instance_create_depth(0, 0, -390, obj_strip_flash, { orientation: orientation, position_frac: strip_fracs[i] });
-        }
+        strip_frac = random_range(0.1, 0.9);
+        instance_create_depth(0, 0, -390, obj_strip_flash, { orientation: orientation, position_frac: strip_frac });
 
         timer = 10 * 4 + 8 * 4 + 5; // matches obj_strip_flash's blink_on_time*blinks + blink_off_time*blinks, plus buffer
         phase = "waiting_flash";
@@ -23,32 +16,45 @@ switch (phase)
         {
             var _interior = scr_get_box_interior();
             var _side_pool = (orientation == "vertical") ? ["up", "down"] : ["left", "right"];
+            var _side = _side_pool[irandom(1)];
+            var _perp = (orientation == "vertical")
+                ? lerp(_interior.x1, _interior.x2, strip_frac)
+                : lerp(_interior.y1, _interior.y2, strip_frac);
 
-            for (var i = 0; i < array_length(strip_fracs); i++)
-            {
-                var _frac = strip_fracs[i];
-                var _side = _side_pool[irandom(1)];
-                var _perp = (orientation == "vertical")
-                    ? lerp(_interior.x1, _interior.x2, _frac)
-                    : lerp(_interior.y1, _interior.y2, _frac);
-
-                instance_create_depth(0, 0, -380, obj_friend_hand_punch, { side: _side, fixed_coord: _perp });
-            }
+            current_hand = instance_create_depth(0, 0, -380, obj_friend_hand_punch, { side: _side, fixed_coord: _perp });
+            next_flash_spawned = false;
             phase = "waiting_hand";
         }
     break;
 
     case "waiting_hand":
-        if (instance_number(obj_friend_hand_punch) == 0)
+        // Once the hand is mostly through its punch, kick off the next
+        // strip flash early so it overlaps with the tail end of this hand
+        // instead of waiting for it to fully finish first.
+        if (!next_flash_spawned && instance_exists(current_hand) && current_hand.progress >= 0.6)
         {
+            next_flash_spawned = true;
             repeat_count++;
-            if (repeat_count >= max_repeats) { instance_destroy(); }
-            else { timer = gap_timer; phase = "gap"; }
-        }
-    break;
 
-    case "gap":
-        timer--;
-        if (timer <= 0) { phase = "start"; }
+            if (repeat_count < max_repeats)
+            {
+                orientation = choose("vertical", "horizontal");
+                strip_frac = random_range(0.1, 0.9);
+                instance_create_depth(0, 0, -390, obj_strip_flash, { orientation: orientation, position_frac: strip_frac });
+                timer = 10 * 4 + 8 * 4 + 5;
+            }
+        }
+
+        if (!instance_exists(current_hand))
+        {
+            if (next_flash_spawned && repeat_count < max_repeats)
+            {
+                phase = "waiting_flash"; // the overlapping flash is already ticking
+            }
+            else
+            {
+                instance_destroy();
+            }
+        }
     break;
 }

@@ -13,6 +13,15 @@ function start_walking_music()
     global.song_start = current_time;
 }
 
+function scr_song_loop_track(_sound_instance, _loop_start, _loop_end)
+{
+    array_push(global.tracked_loops, {
+        instance: _sound_instance,
+        loop_start: _loop_start,
+        loop_end: _loop_end
+    });
+}
+
 function start_battle_music()
 {
     if (variable_global_exists("song") && global.song != noone && global.song != undefined)
@@ -28,6 +37,8 @@ function start_battle_music()
     audio_sound_gain(global.music, 0, 0);
     audio_sound_gain(global.music, 1, 3000);
     global.song_start = current_time;
+
+    scr_song_loop_track(global.music, 33, 82);
 }
 
 function scr_ui_reverse(_resume_sound, _resume_pitch = 1, _sprite_obj = noone, _sprite = noone, _sprite_loop = false, _sprite_image = 0)

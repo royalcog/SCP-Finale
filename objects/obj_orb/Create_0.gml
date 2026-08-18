@@ -1,7 +1,7 @@
 scaleup = false;
 scaledown = false;
 is_fading = false;
-depth = -1001;
+depth = -150;
 
 current_hue = irandom(255); // Pick a random color for it to eventually become
 current_sat = 0;            // 0 saturation = pure white

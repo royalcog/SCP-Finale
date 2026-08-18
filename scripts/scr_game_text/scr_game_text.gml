@@ -756,9 +756,10 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_23":
-			global.friend_theme = audio_play_sound(sng_friends, 1, true);
+			global.friend_theme = audio_play_sound(sng_friends, 1, false, 0);
 			audio_sound_gain(global.friend_theme, 0, 0);
 			audio_sound_gain(global.friend_theme, 1, 2000);
+			scr_song_loop_track(global.friend_theme, 0, 38.4);
 			scr_text("* You are all highly intelligent beings.", "friend");
 				scr_obj_sprite_on_page(obj_friend, spr_friend_lookdown, false);
 				scr_obj_sprite_on_page(obj_mewmew, spr_mewmew_walkup_corrupted, false);
@@ -835,9 +836,10 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_26":
-			global.friend_theme = audio_play_sound(sng_friends, 1, true);
+			global.friend_theme = audio_play_sound(sng_friends, 1, false, 0);
 			audio_sound_gain(global.friend_theme, 0, 0);
 			audio_sound_gain(global.friend_theme, 1, 2000);
+			scr_song_loop_track(global.friend_theme, 0, 38.4);
 		    if (instance_exists(obj_cutscenefade))
 		    {
 		        obj_cutscenefade.fade_target = 0;
@@ -890,16 +892,20 @@ function scr_game_text(_text_id)
 				scr_portrait_on_page(spr_pinkghost_angry);
 				scr_portrait_tail_off();
 			scr_text("* If you say so, Pink.|* If you say so.", "friend");
-				scr_snd_after_textbox(snd_friendlaugh, 1);
-				scr_obj_sprite_after_textbox(obj_friend, spr_friend_laugh, true);
-				scr_fist_split_after_textbox(120, , );
-				scr_audio_fade_out(global.friend_theme, 300);
 		break;
 		
 		case "self_29":
-			global.song = { sound: sng_wnf, beats: 9999 };
-		    global.music = audio_play_sound(sng_wnf, 1, true, 1.225);
+			scr_snd_after_textbox(snd_friendlaugh, 1);
+			scr_obj_sprite_after_textbox(obj_friend, spr_friend_laugh, true);
+			scr_fist_split_after_textbox(120, , );
+			scr_audio_fade_out(global.friend_theme, 300);
+		break;
+		
+		case "self_30":
+		    global.song = { sound: sng_wnf, beats: 9999 };
+		    global.music = audio_play_sound(sng_wnf, 1, false, 1.225);
 		    global.song_start = current_time;
+		    scr_song_loop_track(global.music, 0, 155.13);
 			if (instance_exists(obj_UI))
 			{
 			    instance_destroy(obj_UI);
@@ -1719,7 +1725,7 @@ function scr_game_text(_text_id)
 
 */
 
-		case "self_30":
+		case "self_31":
 			scr_ui_reverse(sng_empty);
 			audio_stop_all();
 			scr_text("* WE'RE NOT LETTING YOU GET AWAY!!!", "mewmewghost", , , true);
@@ -1730,12 +1736,6 @@ function scr_game_text(_text_id)
 			scr_text("* So be it! I'll be further down the hall when you need me.", "friend");
 				scr_portrait_on_page(spr_friendmew_smiley);
 				scr_char_move_after_textbox(obj_friend, spr_friendmew_norm_walkright, true, 7, 0, .15, 60);
-		break;
-		
-		case "self_31":
-			scr_text("* ...How?", "friend");
-				scr_portrait_on_page(spr_friendmew_questioning);
-			scr_text("* Some pre-planning.", "gerson");
 		break;
 		
 		case "self_32":

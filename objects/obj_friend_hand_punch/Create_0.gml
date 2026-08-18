@@ -36,3 +36,14 @@ switch (side)
         target_val = _interior.y1 - 250;
     break;
 }
+
+switch (side)
+{
+    case "left":  draw_angle = 0;   break; // fist faces right (moving +x)
+    case "right": draw_angle = 180; break; // fist faces left (moving -x)
+    case "down":  draw_angle = 90;  break; // fist faces up (moving -y)
+    case "up":    draw_angle = 270; break; // fist faces down (moving +y)
+}
+
+start_val = (side == "left" || side == "right") ? x : y;
+progress = 0;

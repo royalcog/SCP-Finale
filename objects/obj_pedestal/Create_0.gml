@@ -1,3 +1,3 @@
 image_xscale = 2;
 image_yscale = 2;
-depth = -1000;
+depth = -149;

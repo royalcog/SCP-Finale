@@ -10,7 +10,7 @@
   "compression":1,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":155.16734,
+  "duration":158.27592,
   "exportDir":"",
   "name":"sng_wnf",
   "parent":{
