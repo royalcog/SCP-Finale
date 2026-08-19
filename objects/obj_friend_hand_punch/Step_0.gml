@@ -9,7 +9,7 @@ switch (side)
 var _current_val = (side == "left" || side == "right") ? x : y;
 progress = abs(_current_val - start_val) / abs(target_val - start_val);
 
-if (!already_hit && instance_exists(obj_soul) && place_meeting(x, y, obj_soul))
+if (!already_hit && instance_exists(obj_soul) && scr_attack_touches_soul())
 {
     already_hit = true;
     scr_soul_take_hit(0, obj_mewmew.damage_color, obj_mewmew.damage_color);

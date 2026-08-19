@@ -27,8 +27,8 @@ offx[CharID.Gerson] = 70;
 offy[CharID.Gerson] = -10;
 offx[CharID.Spamton] = 60;
 offy[CharID.Spamton] = -10;
-offx[CharID.Jevil] = 60;
-offy[CharID.Jevil] = -10;
+offx[CharID.Jevil] = 62;
+offy[CharID.Jevil] = -8;
 offx[CharID.Friend] = -49;
 offy[CharID.Friend] = 35;
 

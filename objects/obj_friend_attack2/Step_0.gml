@@ -40,62 +40,67 @@ switch (phase)
                 audio_play_sound(snd_select, 5, false);
                 left_hand.bouncing = true; right_hand.bouncing = true;
             } else if (beat == 3) {
-                chant_text = "SHOOT!";
-                audio_play_sound(snd_select, 5, false);
-                left_hand.bouncing = false;
-                right_hand.bouncing = false;
-                phase = "reveal"; 
-                timer = beat_length;
-            }
+			    chant_text = "SHOOT!";
+			    audio_play_sound(snd_select, 5, false);
+			    left_hand.bouncing = false;
+			    right_hand.bouncing = false;
+
+			    // hands show their choice immediately, right on the SHOOT beat
+			    var _choices = ["rock", "paper", "scissors"];
+			    reveal_left_choice = _choices[irandom(2)];
+			    reveal_right_choice = _choices[irandom(2)];
+
+			    switch (reveal_left_choice) {
+			        case "rock":     left_hand.sprite_index = spr_friend_hand_rock; break;
+			        case "paper":    left_hand.sprite_index = spr_friend_hand_paper; break;
+			        case "scissors": left_hand.sprite_index = spr_friend_hand_scissors; break;
+			    }
+
+			    switch (reveal_right_choice) {
+			        case "rock":     right_hand.sprite_index = spr_friend_hand_rock; break;
+			        case "paper":    right_hand.sprite_index = spr_friend_hand_paper; break;
+			        case "scissors": right_hand.sprite_index = spr_friend_hand_scissors; break;
+			    }
+
+			    phase = "reveal"; 
+			    timer = beat_length;
+}
         }
     break;
 
     case "reveal":
-        timer--;
-        if (timer <= 0)
-        {
-            var _choices = ["rock", "paper", "scissors"];
-            var _left_choice = _choices[irandom(2)];
-            var _right_choice = _choices[irandom(2)];
+	    timer--;
+	    if (timer <= 0)
+	    {
+	        var _left_choice = reveal_left_choice;
+	        var _right_choice = reveal_right_choice;
+
+	        if (_left_choice == _right_choice)
+	        {
+	            audio_play_sound(snd_error, 5, false);
+	            phase = "tie_wait";
+	            timer = 60;
+	        }
+	        else
+	        {
+	            var _left_wins = ((_left_choice == "rock" && _right_choice == "scissors") || 
+	                              (_left_choice == "paper" && _right_choice == "rock") || 
+	                              (_left_choice == "scissors" && _right_choice == "paper"));
             
-            switch (_left_choice) {
-                case "rock":     left_hand.sprite_index = spr_friend_hand_rock; break;
-                case "paper":    left_hand.sprite_index = spr_friend_hand_paper; break;
-                case "scissors": left_hand.sprite_index = spr_friend_hand_scissors; break;
-            }
+	            if (_left_wins) {
+	                match_result = _left_choice;
+	                winner_side = "left";
+	            } else {
+	                match_result = _right_choice;
+	                winner_side = "right";
+	            }
             
-            switch (_right_choice) {
-                case "rock":     right_hand.sprite_index = spr_friend_hand_rock; break;
-                case "paper":    right_hand.sprite_index = spr_friend_hand_paper; break;
-                case "scissors": right_hand.sprite_index = spr_friend_hand_scissors; break;
-            }
-            
-            if (_left_choice == _right_choice)
-            {
-                audio_play_sound(snd_error, 5, false);
-                phase = "tie_wait";
-                timer = 60;
-            }
-            else
-            {
-                var _left_wins = ((_left_choice == "rock" && _right_choice == "scissors") || 
-                                  (_left_choice == "paper" && _right_choice == "rock") || 
-                                  (_left_choice == "scissors" && _right_choice == "paper"));
-                
-                if (_left_wins) {
-                    match_result = _left_choice;
-                    winner_side = "left";
-                } else {
-                    match_result = _right_choice;
-                    winner_side = "right";
-                }
-                
-                audio_play_sound(snd_won, 5, false);
-                phase = "transition";
-                timer = 60;
-            }
-        }
-    break;
+	            audio_play_sound(snd_won, 5, false);
+	            phase = "transition";
+	            timer = 60;
+	        }
+	    }
+	break;
 
     case "tie_wait":
         timer--;
@@ -120,7 +125,8 @@ switch (phase)
 	            if (instance_exists(left_hand))  instance_destroy(left_hand);
 	            if (instance_exists(right_hand)) instance_destroy(right_hand);
 
-	            instance_create_depth(0, 0, -390, obj_strip_flash, { orientation: "vertical", position_frac: 0.5 });
+	            // full-row warning before the box even starts to shrink
+	            instance_create_depth(0, 0, -390, obj_strip_flash, { orientation: "horizontal", position_frac: 0.5 });
 	            sub_timer = 10 * 4 + 8 * 4 + 5;
 	            sub_phase = "waiting_flash";
 	        break;
@@ -138,37 +144,63 @@ switch (phase)
 	            if (scr_box_scale_settled())
 	            {
 	                punch_repeats = 0;
-	                max_punch_repeats = 6;
+	                max_punch_repeats = 3; // 3 pincer salvos
 	                sub_timer = 15;
-	                sub_phase = "bar_gap";
+	                sub_phase = "flash_pair";
 	            }
 	        break;
 
-	        case "bar_gap":
+	        case "flash_pair":
 	            sub_timer--;
 	            if (sub_timer <= 0)
 	            {
-	                punch_side = choose("left", "right");
-	                rock_bar_frac = random_range(0.15, 0.85);
-
-	                // horizontal bar telegraphs the row the fist is about to punch through
-	                instance_create_depth(0, 0, -390, obj_strip_flash, { orientation: "horizontal", position_frac: rock_bar_frac, blinks: 2 });
-	                sub_phase = "bar_wait";
+	                // two full-row flashes: one telegraphs the left hand's
+	                // row, the other the right hand's
+	                rock_left_frac  = random_range(0.15, 0.85);
+	                rock_right_frac = random_range(0.15, 0.85);
+	                instance_create_depth(0, 0, -390, obj_strip_flash, { orientation: "horizontal", position_frac: rock_left_frac,  blinks: 2 });
+	                instance_create_depth(0, 0, -390, obj_strip_flash, { orientation: "horizontal", position_frac: rock_right_frac, blinks: 2 });
+	                sub_phase = "flash_wait";
 	            }
 	        break;
 
-	        case "bar_wait":
+	        case "flash_wait":
 	            if (instance_number(obj_strip_flash) == 0)
 	            {
 	                var _interior = scr_get_box_interior();
-	                var _perp = lerp(_interior.y1, _interior.y2, rock_bar_frac);
-	                var _p = instance_create_depth(0, 0, -380, obj_friend_hand_punch, { side: punch_side, fixed_coord: _perp });
-	                _p.sprite_index = spr_friend_hand_rock;
-	                sub_phase = "bar_punching";
+
+	                // left hand: launches from its normal spot at normal speed
+	                var _left_perp = lerp(_interior.y1, _interior.y2, rock_left_frac);
+	                var _lh = instance_create_depth(0, 0, -380, obj_friend_hand_punch, { side: "left", fixed_coord: _left_perp });
+	                _lh.sprite_index = spr_friend_hand_rock;
+
+	                // right hand: launches from the screen edge (further out
+	                // than the box) but sped up so it still finishes crossing
+	                // the box in the same time the left hand's normal-speed
+	                // crossing takes
+	                var _right_perp = lerp(_interior.y1, _interior.y2, rock_right_frac);
+	                var _view_x = camera_get_view_x(view_camera[0]);
+	                var _view_w = camera_get_view_width(view_camera[0]);
+	                var _screen_start_x = _view_x + _view_w + 50;
+
+	                var _normal_speed = 18;
+	                var _left_dist  = (_interior.x2 + 250) - (_interior.x1 - 250);
+	                var _right_dist = _screen_start_x - (_interior.x1 - 250);
+	                var _right_speed = _normal_speed * (_right_dist / _left_dist);
+
+	                var _rh = instance_create_depth(0, 0, -380, obj_friend_hand_punch, {
+	                    side: "right",
+	                    fixed_coord: _right_perp,
+	                    start_override: _screen_start_x,
+	                    speed_override: _right_speed
+	                });
+	                _rh.sprite_index = spr_friend_hand_rock;
+
+	                sub_phase = "punching_pair";
 	            }
 	        break;
 
-	        case "bar_punching":
+	        case "punching_pair":
 	            if (instance_number(obj_friend_hand_punch) == 0)
 	            {
 	                punch_repeats++;
@@ -180,7 +212,7 @@ switch (phase)
 	                else
 	                {
 	                    sub_timer = 15;
-	                    sub_phase = "bar_gap";
+	                    sub_phase = "flash_pair";
 	                }
 	            }
 	        break;
@@ -265,7 +297,7 @@ switch (phase)
 	                    y += lengthdir_y(other.chase_speed, _dir);
 	                    draw_angle = _dir;
 
-	                    if (place_meeting(x, y, obj_soul))
+	                    if (scr_attack_touches_soul())
 	                    {
 	                        scr_soul_take_hit(0, obj_mewmew.damage_color, obj_mewmew.damage_color);
 	                    }
@@ -308,11 +340,14 @@ switch (phase)
 	        break;
 
 	        case "finishing":
-	            if (instance_number(obj_friend_hand_punch) == 0)
-	            {
-	                instance_destroy();
-	            }
-	        break;
+			    if (instance_number(obj_friend_hand_punch) == 0)
+			    {
+			        // the winning hand was never destroyed anywhere else, so
+			        // it used to sit there frozen forever once the loop ended
+			        if (instance_exists(chase_hand)) instance_destroy(chase_hand);
+			        instance_destroy();
+			    }
+			break;
 	    }
 	break;
 
@@ -332,7 +367,7 @@ switch (phase)
                 sub_timer--;
                 if (sub_timer <= 0 && instance_number(obj_strip_flash) == 0)
                 {
-                    if (instance_exists(obj_battlebox)) obj_battlebox.target_scale_y = 0.22;
+                    if (instance_exists(obj_battlebox)) obj_battlebox.target_scale_y = 0.15;
 
                     var _u = instance_create_depth(0, 0, -380, obj_rps_squeeze_hand, { side: "up" });
                     _u.sprite_index = spr_friend_hand_paper;

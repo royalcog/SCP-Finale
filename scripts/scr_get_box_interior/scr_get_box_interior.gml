@@ -7,21 +7,17 @@ function scr_get_box_interior(use_target = false)
     var _xscale = use_target ? _bb.target_scale_x : _bb.image_xscale;
     var _yscale = use_target ? _bb.target_scale_y : _bb.image_yscale;
 
-    var _w = _bb.sprite_width  * _xscale;
-    var _h = _bb.sprite_height * _yscale;
+    var _w = _bb.raw_width  * _xscale;
+    var _h = _bb.raw_height * _yscale;
     var _pad_x_s    = _pad_x  * _xscale;
     var _border_x_s = _border * _xscale;
     var _border_y_s = _border * _yscale;
 
-    // obj_battlebox re-centers itself around box_base_x/y as it scales
-    // (x = box_base_x + (sprite_width - sprite_width*image_xscale)/2), so
-    // predicting the future interior means predicting its future x/y too,
-    // not just its future size.
     var _bx = use_target
-        ? _bb.box_base_x + (_bb.sprite_width  - _bb.sprite_width  * _xscale) / 2
+        ? _bb.box_base_x + (_bb.raw_width  - _bb.raw_width  * _xscale) / 2
         : _bb.x;
     var _by = use_target
-        ? _bb.box_base_y + (_bb.sprite_height - _bb.sprite_height * _yscale) / 2
+        ? _bb.box_base_y + (_bb.raw_height - _bb.raw_height * _yscale) / 2
         : _bb.y;
 
     return {

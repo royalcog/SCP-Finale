@@ -18,22 +18,22 @@ switch (phase)
             phase = "hold";
         }
 
-        if (!already_hit && instance_exists(obj_soul) && place_meeting(x, y, obj_soul))
-        {
-            already_hit = true;
-            scr_soul_take_hit(0, obj_mewmew.damage_color, obj_mewmew.damage_color);
-        }
+        if (!already_hit && instance_exists(obj_soul) && scr_attack_touches_soul())
+		{
+		    already_hit = true;
+		    scr_soul_take_hit(0, obj_mewmew.damage_color, obj_mewmew.damage_color);
+		}
     }
     break;
 
     case "hold":
         hold_timer--;
 
-        if (!already_hit && instance_exists(obj_soul) && place_meeting(x, y, obj_soul))
-        {
-            already_hit = true;
-            scr_soul_take_hit(0, obj_mewmew.damage_color, obj_mewmew.damage_color);
-        }
+        if (!already_hit && instance_exists(obj_soul) && scr_attack_touches_soul())
+		{
+		    already_hit = true;
+		    scr_soul_take_hit(0, obj_mewmew.damage_color, obj_mewmew.damage_color);
+		}
 
         if (hold_timer <= 0) phase = "out";
     break;

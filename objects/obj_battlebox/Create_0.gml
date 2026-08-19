@@ -13,6 +13,12 @@ scale_speed   = 0.06;
 target_scale_x = 1;
 target_scale_y = 1;
 
-// used to detect when something requests a new stretch/shrink
 prev_target_scale_x = target_scale_x;
 prev_target_scale_y = target_scale_y;
+
+// sprite_width/sprite_height are scale-INCLUSIVE (they already factor in
+// this instance's own image_xscale/image_yscale) — the recenter math and
+// scr_get_box_interior() both need the TRUE unscaled dimensions, so we
+// cache those separately once here.
+raw_width  = sprite_get_width(sprite_index);
+raw_height = sprite_get_height(sprite_index);

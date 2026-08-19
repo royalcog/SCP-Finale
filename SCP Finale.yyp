@@ -249,6 +249,7 @@
     {"id":{"name":"rm_zero","path":"rooms/rm_zero/rm_zero.yy",},},
     {"id":{"name":"testroom","path":"rooms/testroom/testroom.yy",},},
     {"id":{"name":"scr_attack_bank","path":"scripts/scr_attack_bank/scr_attack_bank.yy",},},
+    {"id":{"name":"scr_attack_touches_soul","path":"scripts/scr_attack_touches_soul/scr_attack_touches_soul.yy",},},
     {"id":{"name":"scr_box_scale_settled","path":"scripts/scr_box_scale_settled/scr_box_scale_settled.yy",},},
     {"id":{"name":"scr_call_after_frames","path":"scripts/scr_call_after_frames/scr_call_after_frames.yy",},},
     {"id":{"name":"scr_cam_panning","path":"scripts/scr_cam_panning/scr_cam_panning.yy",},},

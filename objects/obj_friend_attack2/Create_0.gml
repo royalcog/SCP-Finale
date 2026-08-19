@@ -17,21 +17,23 @@ punch_repeats = 0;
 max_punch_repeats = 0;
 punch_side = "left";
 chase_hand = noone;
-chase_speed = 2.5; // scissors chase speed (was a hardcoded 4 in Step)
+chase_speed = 2.5;
 
-// scissors: trailing path the scissors follow to catch the soul, instead
-// of instantly homing to its live position every frame
 trail_points = [];
 trail_sample_timer = 0;
 trail_sample_interval = 8;
 trail_max_points = 12;
 
-// scissors/rock: telegraph-before-punch bookkeeping
 awaiting_punch = false;
 punch_telegraph_side = "left";
 punch_telegraph_perp = 0;
 
-// rock: which row the current horizontal bar/punch is on
-rock_bar_frac = 0.5;
+// rock: which rows the left/right pincer hands punch through
+rock_left_frac = 0.5;
+rock_right_frac = 0.5;
+
+// which shape each hand actually picked, revealed the instant SHOOT hits
+reveal_left_choice = "";
+reveal_right_choice = "";
 
 if (instance_exists(obj_friend)) { obj_friend.visible = false; }
