@@ -5,6 +5,8 @@ image_xscale = 1.1;
 image_yscale = 1.1;
 depth = -380;
 
+chase_target_scale = image_xscale; // scissors eases toward this once chasing begins
+
 base_angle = (side == "left") ? 0 : 180;
 image_angle = base_angle;
 draw_angle = image_angle;

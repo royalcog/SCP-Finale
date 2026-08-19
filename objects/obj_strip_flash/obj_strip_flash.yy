@@ -10,8 +10,8 @@
   "name":"obj_strip_flash",
   "overriddenProperties":[],
   "parent":{
-    "name":"Attack 1",
-    "path":"folders/Battle System/Objects/Attacks/Friend (2)/Objects/Attack 1.yy",
+    "name":"Attacks",
+    "path":"folders/Battle System/Objects/Attacks.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -114,117 +114,207 @@ switch (phase)
     break;
 
     case "attack_rock":
-        switch (sub_phase)
-        {
-            case "":
-                if (instance_exists(left_hand))  instance_destroy(left_hand);
-                if (instance_exists(right_hand)) instance_destroy(right_hand);
+	    switch (sub_phase)
+	    {
+	        case "":
+	            if (instance_exists(left_hand))  instance_destroy(left_hand);
+	            if (instance_exists(right_hand)) instance_destroy(right_hand);
 
-                instance_create_depth(0, 0, -390, obj_strip_flash, { orientation: "vertical", position_frac: 0.5 });
-                sub_timer = 10 * 4 + 8 * 4 + 5;
-                sub_phase = "waiting_flash";
-            break;
+	            instance_create_depth(0, 0, -390, obj_strip_flash, { orientation: "vertical", position_frac: 0.5 });
+	            sub_timer = 10 * 4 + 8 * 4 + 5;
+	            sub_phase = "waiting_flash";
+	        break;
 
-            case "waiting_flash":
-                sub_timer--;
-                if (sub_timer <= 0 && instance_number(obj_strip_flash) == 0)
-                {
-                    if (instance_exists(obj_battlebox)) obj_battlebox.target_scale_x = 0.18;
+	        case "waiting_flash":
+	            sub_timer--;
+	            if (sub_timer <= 0 && instance_number(obj_strip_flash) == 0)
+	            {
+	                if (instance_exists(obj_battlebox)) obj_battlebox.target_scale_x = 0.18;
+	                sub_phase = "shrinking";
+	            }
+	        break;
 
-                    var _l = instance_create_depth(0, 0, -380, obj_rps_squeeze_hand, { side: "left" });
-                    _l.sprite_index = spr_friend_hand_rock;
-                    var _r = instance_create_depth(0, 0, -380, obj_rps_squeeze_hand, { side: "right" });
-                    _r.sprite_index = spr_friend_hand_rock;
-                    sub_phase = "squeezing";
-                }
-            break;
+	        case "shrinking":
+	            if (scr_box_scale_settled())
+	            {
+	                punch_repeats = 0;
+	                max_punch_repeats = 6;
+	                sub_timer = 15;
+	                sub_phase = "bar_gap";
+	            }
+	        break;
 
-            case "squeezing":
-                if (instance_number(obj_rps_squeeze_hand) == 0 && scr_box_scale_settled())
-                {
-                    if (instance_exists(obj_battlebox)) obj_battlebox.target_scale_x = 1;
-                    instance_destroy();
-                }
-            break;
-        }
-    break;
+	        case "bar_gap":
+	            sub_timer--;
+	            if (sub_timer <= 0)
+	            {
+	                punch_side = choose("left", "right");
+	                rock_bar_frac = random_range(0.15, 0.85);
+
+	                // horizontal bar telegraphs the row the fist is about to punch through
+	                instance_create_depth(0, 0, -390, obj_strip_flash, { orientation: "horizontal", position_frac: rock_bar_frac, blinks: 2 });
+	                sub_phase = "bar_wait";
+	            }
+	        break;
+
+	        case "bar_wait":
+	            if (instance_number(obj_strip_flash) == 0)
+	            {
+	                var _interior = scr_get_box_interior();
+	                var _perp = lerp(_interior.y1, _interior.y2, rock_bar_frac);
+	                var _p = instance_create_depth(0, 0, -380, obj_friend_hand_punch, { side: punch_side, fixed_coord: _perp });
+	                _p.sprite_index = spr_friend_hand_rock;
+	                sub_phase = "bar_punching";
+	            }
+	        break;
+
+	        case "bar_punching":
+	            if (instance_number(obj_friend_hand_punch) == 0)
+	            {
+	                punch_repeats++;
+	                if (punch_repeats >= max_punch_repeats)
+	                {
+	                    if (instance_exists(obj_battlebox)) obj_battlebox.target_scale_x = 1;
+	                    sub_phase = "unsqueezing";
+	                }
+	                else
+	                {
+	                    sub_timer = 15;
+	                    sub_phase = "bar_gap";
+	                }
+	            }
+	        break;
+
+	        case "unsqueezing":
+	            if (scr_box_scale_settled())
+	            {
+	                instance_destroy();
+	            }
+	        break;
+	    }
+	break;
 
     case "attack_scissors":
-        switch (sub_phase)
-        {
-            case "":
-            {
-                var _loser  = (winner_side == "left") ? right_hand : left_hand;
-                var _winner = (winner_side == "left") ? left_hand  : right_hand;
+	    switch (sub_phase)
+	    {
+	        case "":
+	        {
+	            var _loser  = (winner_side == "left") ? right_hand : left_hand;
+	            var _winner = (winner_side == "left") ? left_hand  : right_hand;
 
-                if (instance_exists(_loser)) instance_destroy(_loser);
+	            if (instance_exists(_loser)) instance_destroy(_loser);
 
-                if (instance_exists(_winner))
-                {
-                    _winner.sprite_index = spr_friend_hand_scissors;
-                    _winner.image_speed = 1;
-                    _winner.bouncing = false;
-                    _winner.chasing = true;
-                }
+	            if (instance_exists(_winner))
+	            {
+	                _winner.sprite_index = spr_friend_hand_scissors;
+	                _winner.image_index = 0;
+	                _winner.image_speed = 1; // plays through all frames of the snip animation
+	                _winner.bouncing = false;
+	                _winner.chasing = true;
+	                _winner.chase_target_scale = 0.8; // shrink down from RPS-reveal size once the attack starts
+	            }
 
-                chase_hand = _winner;
+	            chase_hand = _winner;
 
-                punch_repeats = 0;
-                max_punch_repeats = 5;
-                sub_timer = 45;
-                sub_phase = "chase_and_punch";
-            }
-            break;
+	            punch_repeats = 0;
+	            max_punch_repeats = 6;
+	            sub_timer = 45;
+	            sub_phase = "chase_and_punch";
 
-            case "chase_and_punch":
-                if (instance_exists(chase_hand) && instance_exists(obj_soul))
-                {
-                    with (chase_hand)
-                    {
-                        var _dir = point_direction(x, y, obj_soul.x, obj_soul.y);
-                        x += lengthdir_x(4, _dir);
-                        y += lengthdir_y(4, _dir);
-                        draw_angle = _dir;
+	            trail_points = [];
+	            trail_sample_timer = trail_sample_interval;
+	            awaiting_punch = false;
+	        }
+	        break;
 
-                        if (place_meeting(x, y, obj_soul))
-                        {
-                            scr_soul_take_hit(0, obj_mewmew.damage_color, obj_mewmew.damage_color);
-                        }
-                    }
-                }
+	        case "chase_and_punch":
+	            // sample the soul's position periodically to build a trailing path
+	            if (instance_exists(obj_soul))
+	            {
+	                trail_sample_timer--;
+	                if (trail_sample_timer <= 0)
+	                {
+	                    array_push(trail_points, { x: obj_soul.x, y: obj_soul.y });
+	                    if (array_length(trail_points) > trail_max_points) array_delete(trail_points, 0, 1);
+	                    trail_sample_timer = trail_sample_interval;
+	                }
+	            }
 
-                sub_timer--;
-                if (sub_timer <= 0 && instance_number(obj_friend_hand_punch) == 0)
-                {
-                    var _interior = scr_get_box_interior();
-                    var _orientation = choose("vertical", "horizontal");
-                    var _frac = random_range(0.1, 0.9);
-                    var _side_pool = (_orientation == "vertical") ? ["up", "down"] : ["left", "right"];
-                    var _side = _side_pool[irandom(1)];
-                    var _perp = (_orientation == "vertical")
-                        ? lerp(_interior.x1, _interior.x2, _frac)
-                        : lerp(_interior.y1, _interior.y2, _frac);
+	            if (instance_exists(chase_hand) && instance_exists(obj_soul))
+	            {
+	                // follow the recorded trail toward the soul instead of
+	                // beelining straight at its current (live) position
+	                var _follow_x = obj_soul.x;
+	                var _follow_y = obj_soul.y;
+	                if (array_length(trail_points) > 0)
+	                {
+	                    var _lead = trail_points[0];
+	                    _follow_x = _lead.x;
+	                    _follow_y = _lead.y;
 
-                    instance_create_depth(0, 0, -380, obj_friend_hand_punch, { side: _side, fixed_coord: _perp });
+	                    if (point_distance(chase_hand.x, chase_hand.y, _follow_x, _follow_y) < 12)
+	                    {
+	                        array_delete(trail_points, 0, 1);
+	                    }
+	                }
 
-                    punch_repeats++;
-                    sub_timer = 45;
+	                with (chase_hand)
+	                {
+	                    var _dir = point_direction(x, y, _follow_x, _follow_y);
+	                    x += lengthdir_x(other.chase_speed, _dir);
+	                    y += lengthdir_y(other.chase_speed, _dir);
+	                    draw_angle = _dir;
 
-                    if (punch_repeats >= max_punch_repeats)
-                    {
-                        sub_phase = "finishing";
-                    }
-                }
-            break;
+	                    if (place_meeting(x, y, obj_soul))
+	                    {
+	                        scr_soul_take_hit(0, obj_mewmew.damage_color, obj_mewmew.damage_color);
+	                    }
+	                }
+	            }
 
-            case "finishing":
-                if (instance_number(obj_friend_hand_punch) == 0)
-                {
-                    instance_destroy();
-                }
-            break;
-        }
-    break;
+	            sub_timer--;
+	            if (!awaiting_punch && sub_timer <= 0 && instance_number(obj_friend_hand_punch) == 0)
+	            {
+	                var _interior = scr_get_box_interior();
+	                var _orientation = choose("vertical", "horizontal");
+	                var _frac = random_range(0.1, 0.9);
+	                var _side_pool = (_orientation == "vertical") ? ["up", "down"] : ["left", "right"];
+	                var _side = _side_pool[irandom(1)];
+	                var _perp = (_orientation == "vertical")
+	                    ? lerp(_interior.x1, _interior.x2, _frac)
+	                    : lerp(_interior.y1, _interior.y2, _frac);
+
+	                // telegraph where the punch is about to come through, before it fires
+	                instance_create_depth(0, 0, -390, obj_strip_flash, { orientation: _orientation, position_frac: _frac, blinks: 2 });
+
+	                punch_telegraph_side = _side;
+	                punch_telegraph_perp = _perp;
+	                awaiting_punch = true;
+	            }
+
+	            if (awaiting_punch && instance_number(obj_strip_flash) == 0)
+	            {
+	                instance_create_depth(0, 0, -380, obj_friend_hand_punch, { side: punch_telegraph_side, fixed_coord: punch_telegraph_perp });
+
+	                awaiting_punch = false;
+	                punch_repeats++;
+	                sub_timer = 45;
+
+	                if (punch_repeats >= max_punch_repeats)
+	                {
+	                    sub_phase = "finishing";
+	                }
+	            }
+	        break;
+
+	        case "finishing":
+	            if (instance_number(obj_friend_hand_punch) == 0)
+	            {
+	                instance_destroy();
+	            }
+	        break;
+	    }
+	break;
 
     case "attack_paper":
         switch (sub_phase)
@@ -263,25 +353,26 @@ switch (phase)
             break;
 
             case "punch_gap":
-                sub_timer--;
-                if (sub_timer <= 0)
-                {
-                    punch_side = choose("left", "right");
-                    instance_create_depth(0, 0, -390, obj_paper_shockwave, { side: punch_side });
-                    sub_timer = 10;
-                    sub_phase = "punch_hand_delay";
-                }
-            break;
+			    sub_timer--;
+			    if (sub_timer <= 0)
+			    {
+			        punch_side = choose("left", "right");
 
-            case "punch_hand_delay":
-                sub_timer--;
-                if (sub_timer <= 0)
-                {
-                    var _jab = instance_create_depth(0, 0, -380, obj_rps_squeeze_hand, { side: punch_side, gap_half: 120, hold_time: 8 });
-                    _jab.sprite_index = spr_friend_hand_paper;
-                    sub_phase = "punching";
-                }
-            break;
+			        // full-half indicator appears first, on its own
+			        instance_create_depth(0, 0, -390, obj_paper_shockwave, { side: punch_side });
+			        sub_phase = "punch_wait_indicator";
+			    }
+			break;
+
+			case "punch_wait_indicator":
+			    // ...and only once it's fully finished telegraphing does the hand come through
+			    if (instance_number(obj_paper_shockwave) == 0)
+			    {
+			        var _jab = instance_create_depth(0, 0, -380, obj_rps_squeeze_hand, { side: punch_side, gap_half: 120, hold_time: 8 });
+			        _jab.sprite_index = spr_friend_hand_paper;
+			        sub_phase = "punching";
+			    }
+			break;
 
             case "punching":
                 if (instance_number(obj_rps_squeeze_hand) == 0)

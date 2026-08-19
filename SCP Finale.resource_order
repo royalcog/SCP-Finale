@@ -176,7 +176,7 @@
     {"name":"obj_spadechunk","order":11,"path":"objects/obj_spadechunk/obj_spadechunk.yy",},
     {"name":"obj_spades","order":13,"path":"objects/obj_spades/obj_spades.yy",},
     {"name":"obj_spamton","order":5,"path":"objects/obj_spamton/obj_spamton.yy",},
-    {"name":"obj_strip_flash","order":2,"path":"objects/obj_strip_flash/obj_strip_flash.yy",},
+    {"name":"obj_strip_flash","order":8,"path":"objects/obj_strip_flash/obj_strip_flash.yy",},
     {"name":"obj_susie","order":2,"path":"objects/obj_susie/obj_susie.yy",},
     {"name":"obj_sweet","order":2,"path":"objects/obj_sweet/obj_sweet.yy",},
     {"name":"obj_talkbox_dialogue","order":2,"path":"objects/obj_talkbox_dialogue/obj_talkbox_dialogue.yy",},

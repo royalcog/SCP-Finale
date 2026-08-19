@@ -1,10 +1,10 @@
 if (!variable_instance_exists(id, "orientation")) orientation = "vertical";
 if (!variable_instance_exists(id, "position_frac")) position_frac = 0.5;
+if (!variable_instance_exists(id, "thickness")) thickness = 40;
+if (!variable_instance_exists(id, "blinks")) blinks = 4;
+if (!variable_instance_exists(id, "blink_on_time")) blink_on_time = 10;
+if (!variable_instance_exists(id, "blink_off_time")) blink_off_time = 8;
 
-thickness = 40;
-blinks = 4;
-blink_on_time  = 10;
-blink_off_time = 8;
 phase = "on";
 timer = blink_on_time;
 blink_count = 0;
