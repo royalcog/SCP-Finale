@@ -25,7 +25,6 @@ if (instance_exists(obj_battlebox))
     // normal, so "moving into it" means v·n is positive
     if (_local.x < _min_x)
     {
-        _local.x = _min_x;
         _clamped = true;
         var _n = scr_rotate_point(-1, 0, _angle);
         var _dot = vx * _n.x + vy * _n.y;
@@ -35,12 +34,25 @@ if (instance_exists(obj_battlebox))
             vy -= 2 * _dot * _n.y;
             vx *= _damping;
             vy *= _damping;
+
+            var _sep = -(vx * _n.x + vy * _n.y);
+            if (_sep < min_escape_speed)
+            {
+                var _boost = min_escape_speed - _sep;
+                vx -= _boost * _n.x;
+                vy -= _boost * _n.y;
+            }
+
+            _local.x = _min_x + wall_nudge;
             _bounced = true;
+        }
+        else
+        {
+            _local.x = _min_x;
         }
     }
     else if (_local.x > _max_x)
     {
-        _local.x = _max_x;
         _clamped = true;
         var _n = scr_rotate_point(1, 0, _angle);
         var _dot = vx * _n.x + vy * _n.y;
@@ -50,13 +62,26 @@ if (instance_exists(obj_battlebox))
             vy -= 2 * _dot * _n.y;
             vx *= _damping;
             vy *= _damping;
+
+            var _sep = -(vx * _n.x + vy * _n.y);
+            if (_sep < min_escape_speed)
+            {
+                var _boost = min_escape_speed - _sep;
+                vx -= _boost * _n.x;
+                vy -= _boost * _n.y;
+            }
+
+            _local.x = _max_x - wall_nudge;
             _bounced = true;
+        }
+        else
+        {
+            _local.x = _max_x;
         }
     }
 
     if (_local.y < _min_y)
     {
-        _local.y = _min_y;
         _clamped = true;
         var _n = scr_rotate_point(0, -1, _angle);
         var _dot = vx * _n.x + vy * _n.y;
@@ -66,12 +91,25 @@ if (instance_exists(obj_battlebox))
             vy -= 2 * _dot * _n.y;
             vx *= _damping;
             vy *= _damping;
+
+            var _sep = -(vx * _n.x + vy * _n.y);
+            if (_sep < min_escape_speed)
+            {
+                var _boost = min_escape_speed - _sep;
+                vx -= _boost * _n.x;
+                vy -= _boost * _n.y;
+            }
+
+            _local.y = _min_y + wall_nudge;
             _bounced = true;
+        }
+        else
+        {
+            _local.y = _min_y;
         }
     }
     else if (_local.y > _max_y)
     {
-        _local.y = _max_y;
         _clamped = true;
         var _n = scr_rotate_point(0, 1, _angle);
         var _dot = vx * _n.x + vy * _n.y;
@@ -81,13 +119,24 @@ if (instance_exists(obj_battlebox))
             vy -= 2 * _dot * _n.y;
             vx *= _damping;
             vy *= _damping;
+
+            var _sep = -(vx * _n.x + vy * _n.y);
+            if (_sep < min_escape_speed)
+            {
+                var _boost = min_escape_speed - _sep;
+                vx -= _boost * _n.x;
+                vy -= _boost * _n.y;
+            }
+
+            _local.y = _max_y - wall_nudge;
             _bounced = true;
+        }
+        else
+        {
+            _local.y = _max_y;
         }
     }
 
-    // only rewrite x/y through the local round-trip when a wall actually
-    // needed correcting this frame, to avoid needless floating-point
-    // drift on frames where nothing happened
     if (_clamped)
     {
         var _world = scr_box_local_to_world(_local.x, _local.y);
@@ -102,9 +151,6 @@ if (instance_exists(obj_battlebox))
     }
 }
 
-// tumble like a ball rolling under gravity: spin follows the current
-// horizontal velocity, so a bounce that flips it also flips which way it
-// visibly spins
 image_angle -= vx * spin_factor;
 
 if (instance_exists(obj_soul) && scr_attack_touches_soul())

@@ -15,6 +15,15 @@ spin_factor = 1.6;
 
 sound_cooldown = 0;
 
+// after a bounce, push the resting position a few pixels back inside the
+// wall (instead of leaving it exactly ON the boundary) and guarantee a
+// minimum real speed moving away from it — otherwise, once the box is
+// spinning fast, the wall's orientation can rotate out from under the
+// ball again before it's actually moved clear, re-triggering the same
+// "collision" every frame and pinning it against that edge
+wall_nudge = 3;
+min_escape_speed = 1.2;
+
 // spawns already inside the box (see obj_friend_attack3), so there's no
 // separate "falling in from above" phase to manage — it's just live,
 // bouncing physics from the moment it exists
