@@ -1,21 +1,36 @@
 if (sound_cooldown > 0) sound_cooldown--;
 
-// standard, ordinary bouncing-ball physics — entirely local to the box,
-// no rotation math involved anywhere in here
-local_vy = min(local_vy + gravity, max_speed);
+if (instance_exists(obj_battlebox))
+{
+    // real gravity always points straight down on screen — take that
+    // fixed world direction and rotate it into the box's current local
+    // frame, so the ball visibly falls the normal way no matter how the
+    // box is oriented right now
+    var _g = scr_rotate_point(0, gravity, -obj_battlebox.box_angle);
+    local_vx += _g.x;
+    local_vy += _g.y;
+
+    var _speed = point_distance(0, 0, local_vx, local_vy);
+    if (_speed > max_speed)
+    {
+        local_vx = local_vx / _speed * max_speed;
+        local_vy = local_vy / _speed * max_speed;
+    }
+}
+
 local_x += local_vx;
 local_y += local_vy;
 
 if (instance_exists(obj_battlebox))
 {
     var _interior = scr_get_box_interior();
-    var _min_x = _interior.x1 + yarn_radius;
-    var _max_x = _interior.x2 - yarn_radius;
-    var _min_y = _interior.y1 + yarn_radius;
-    var _max_y = _interior.y2 - yarn_radius;
+    var _min_x = _interior.x1 + margin;
+    var _max_x = _interior.x2 - margin;
+    var _min_y = _interior.y1 + margin;
+    var _max_y = _interior.y2 - margin;
 
     var _bounced = false;
-    var _damping = random_range(bounce_damping_min, bounce_damping_max); // rolled fresh per bounce, so it doesn't feel the same every hit
+    var _damping = random_range(bounce_damping_min, bounce_damping_max);
 
     if (local_x < _min_x)
     {
