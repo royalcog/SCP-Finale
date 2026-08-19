@@ -10,8 +10,8 @@
   "name":"obj_friend_hand_punch",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Battle System/Objects/Attacks/Friend (2)/Objects.yy",
+    "name":"Attack 1",
+    "path":"folders/Battle System/Objects/Attacks/Friend (2)/Objects/Attack 1.yy",
   },
   "parentObjectId":null,
   "persistent":false,

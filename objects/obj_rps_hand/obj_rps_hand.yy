@@ -1,17 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"obj_strip_flash",
+  "%Name":"obj_rps_hand",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":64,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_strip_flash",
+  "name":"obj_rps_hand",
   "overriddenProperties":[],
   "parent":{
-    "name":"Attack 1",
-    "path":"folders/Battle System/Objects/Attacks/Friend (2)/Objects/Attack 1.yy",
+    "name":"Attack 2",
+    "path":"folders/Battle System/Objects/Attacks/Friend (2)/Objects/Attack 2.yy",
   },
   "parentObjectId":null,
   "persistent":false,

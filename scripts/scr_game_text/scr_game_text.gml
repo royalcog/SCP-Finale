@@ -975,13 +975,13 @@ function scr_game_text(_text_id)
 		        { type: "talk", batch: [ { speaker: friend, text: "So you finally choose to meet your demise.", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "Officially, that is.", keep_animating: true } ] },
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_smiley },
-				{ type: "talk", batch: [ { speaker: friend, text: "I'm proud of all of you for standing up for what you all truly believe in.", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "I'm proud of all of you for standing up for what you truly believe in.", keep_animating: true } ] },
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
 				{ type: "talk", batch: [ { speaker: friend, text: "But I can't help but wonder why you're so against battling the Prophecy.", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "None of you are the Prince. None of you need to follow your strict paths.", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "These crystals were meant to enlighten you, not turn you away from carving a new direction.", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "If this is how you wish to repay me, however, so be it.", keep_animating: true } ] },
-		        { type: "attack", kind: "custom", start_func: scr_start_friend_attack1 },
+		        { type: "attack", kind: "custom", start_func: scr_start_friend_attack2 },
 							
 				// ATTACK 2
 				{
@@ -1041,7 +1041,7 @@ function scr_game_text(_text_id)
 				{ type: "talk", batch: [ { speaker: friend, text: "Revenge?", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: gerson, text: "I was going more for justice, but if that's what you wanna call it.", keep_animating: true } ] },
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
-				// { type: "attack", kind: "custom", start_func: scr_start_friend_laugh_attack },
+				{ type: "attack", kind: "custom", start_func: scr_start_friend_attack2 },
 				
 				// ATTACK 3
 				{
