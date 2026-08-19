@@ -16,6 +16,7 @@ switch (phase)
         
         beat = 0;
         chant_text = "ROCK";
+        audio_play_sound(snd_select, 5, false);
         left_hand.bouncing = true; 
         right_hand.bouncing = true;
         
@@ -32,16 +33,19 @@ switch (phase)
             
             if (beat == 1) {
                 chant_text = "PAPER";
+                audio_play_sound(snd_select, 5, false);
                 left_hand.bouncing = true; right_hand.bouncing = true;
             } else if (beat == 2) {
                 chant_text = "SCISSORS";
+                audio_play_sound(snd_select, 5, false);
                 left_hand.bouncing = true; right_hand.bouncing = true;
             } else if (beat == 3) {
                 chant_text = "SHOOT!";
+                audio_play_sound(snd_select, 5, false);
                 left_hand.bouncing = false;
                 right_hand.bouncing = false;
                 phase = "reveal"; 
-                timer = 15;
+                timer = beat_length;
             }
         }
     break;
@@ -68,6 +72,7 @@ switch (phase)
             
             if (_left_choice == _right_choice)
             {
+                audio_play_sound(snd_error, 5, false);
                 phase = "tie_wait";
                 timer = 60;
             }
@@ -85,6 +90,7 @@ switch (phase)
                     winner_side = "right";
                 }
                 
+                audio_play_sound(snd_won, 5, false);
                 phase = "transition";
                 timer = 60;
             }
@@ -134,7 +140,7 @@ switch (phase)
             break;
 
             case "squeezing":
-                if (instance_number(obj_rps_squeeze_hand) == 0)
+                if (instance_number(obj_rps_squeeze_hand) == 0 && scr_box_scale_settled())
                 {
                     if (instance_exists(obj_battlebox)) obj_battlebox.target_scale_x = 1;
                     instance_destroy();
@@ -156,7 +162,7 @@ switch (phase)
                 if (instance_exists(_winner))
                 {
                     _winner.sprite_index = spr_friend_hand_scissors;
-                    _winner.image_speed = 1; // plays your 3-frame snip animation
+                    _winner.image_speed = 1;
                     _winner.bouncing = false;
                     _winner.chasing = true;
                 }
@@ -247,7 +253,7 @@ switch (phase)
             break;
 
             case "flattening":
-                if (instance_number(obj_rps_squeeze_hand) == 0)
+                if (instance_number(obj_rps_squeeze_hand) == 0 && scr_box_scale_settled())
                 {
                     punch_repeats = 0;
                     max_punch_repeats = 6;
@@ -261,11 +267,8 @@ switch (phase)
                 if (sub_timer <= 0)
                 {
                     punch_side = choose("left", "right");
-
-                    // shockwave leads
                     instance_create_depth(0, 0, -390, obj_paper_shockwave, { side: punch_side });
-
-                    sub_timer = 10; // hand follows a beat later
+                    sub_timer = 10;
                     sub_phase = "punch_hand_delay";
                 }
             break;

@@ -4,7 +4,6 @@ var _vdir = keyboard_check(vk_down) - keyboard_check(vk_up);
 x += _hdir * move_speed;
 y += _vdir * move_speed;
 
-// clamp inside the battlebox bounds
 if (instance_exists(obj_battlebox))
 {
     var _bb = obj_battlebox;
@@ -19,9 +18,18 @@ if (instance_exists(obj_battlebox))
     var _min_y = _bb.y + (_box_pad_y * _bb.image_yscale) + _soul_margin_y;
     var _max_y = _bb.y + (_bb.sprite_height * _bb.image_yscale) - (_box_pad_y * _bb.image_yscale) - _soul_margin_y;
 
+    // When the box is squeezed thinner than the soul's own margin (e.g. mid
+    // rock/paper squeeze), min can end up greater than max on that axis,
+    // which made clamp() lock the soul in place on BOTH axes instead of
+    // just restricting movement on the squeezed one.
+    if (_min_x > _max_x) { var _mid_x = (_min_x + _max_x) / 2; _min_x = _mid_x; _max_x = _mid_x; }
+    if (_min_y > _max_y) { var _mid_y = (_min_y + _max_y) / 2; _min_y = _mid_y; _max_y = _mid_y; }
+
     x = clamp(x, _min_x, _max_x);
     y = clamp(y, _min_y, _max_y);
 }
+
+
 
 if (invulnerable)
 {

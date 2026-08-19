@@ -1,3 +1,10 @@
+if (target_scale_x != prev_target_scale_x || target_scale_y != prev_target_scale_y)
+{
+    audio_play_sound(snd_impact, 5, false);
+    prev_target_scale_x = target_scale_x;
+    prev_target_scale_y = target_scale_y;
+}
+
 image_xscale = lerp(image_xscale, target_scale_x, scale_speed);
 image_yscale = lerp(image_yscale, target_scale_y, scale_speed);
 
@@ -22,7 +29,6 @@ switch (state)
 	break;
 
     case "idle":
-        // just sits on last frame, doing nothing, until you tell it to close
     break;
 
     case "closing":

@@ -1106,7 +1106,7 @@ function scr_game_text(_text_id)
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_smiley },
 				{ type: "talk", batch: [ { speaker: friend, text: "The fun is just getting started!", keep_animating: true } ] },
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
-				// { type: "attack", kind: "custom", start_func: scr_start_friend_laugh_attack },
+				{ type: "attack", kind: "custom", start_func: scr_start_friend_attack2 },
 				
 				// ATTACK 4
 				{
