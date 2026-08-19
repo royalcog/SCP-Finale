@@ -18,6 +18,17 @@ if (instance_exists(obj_battlebox))
     var _angle = obj_battlebox.box_angle;
     var _damping = random_range(bounce_damping_min, bounce_damping_max); // rolled fresh per bounce, so it doesn't feel the same every hit
 
+    // how far the box actually turned this one frame, and how far the ball
+    // currently sits from the box's center — together these tell us how
+    // fast a point way out near this ball is sweeping right now purely
+    // from rotation, independent of the ball's own velocity
+    var _angular_delta = abs(_angle - last_box_angle);
+    last_box_angle = _angle;
+    var _center = scr_box_center();
+    var _radius_from_center = point_distance(_local.x, _local.y, _center.x, _center.y);
+    var _rotation_sweep_speed = _radius_from_center * degtorad(_angular_delta);
+    var _min_escape_speed = max(min_escape_speed_base, _rotation_sweep_speed * escape_safety_factor);
+
     // each wall reflects the ball off ITS current world-space facing (the
     // local axis direction rotated by the box's live angle), and only
     // actually bounces (and counts as a hit for the sound) when the
@@ -36,9 +47,9 @@ if (instance_exists(obj_battlebox))
             vy *= _damping;
 
             var _sep = -(vx * _n.x + vy * _n.y);
-            if (_sep < min_escape_speed)
+            if (_sep < _min_escape_speed)
             {
-                var _boost = min_escape_speed - _sep;
+                var _boost = _min_escape_speed - _sep;
                 vx -= _boost * _n.x;
                 vy -= _boost * _n.y;
             }
@@ -64,9 +75,9 @@ if (instance_exists(obj_battlebox))
             vy *= _damping;
 
             var _sep = -(vx * _n.x + vy * _n.y);
-            if (_sep < min_escape_speed)
+            if (_sep < _min_escape_speed)
             {
-                var _boost = min_escape_speed - _sep;
+                var _boost = _min_escape_speed - _sep;
                 vx -= _boost * _n.x;
                 vy -= _boost * _n.y;
             }
@@ -93,9 +104,9 @@ if (instance_exists(obj_battlebox))
             vy *= _damping;
 
             var _sep = -(vx * _n.x + vy * _n.y);
-            if (_sep < min_escape_speed)
+            if (_sep < _min_escape_speed)
             {
-                var _boost = min_escape_speed - _sep;
+                var _boost = _min_escape_speed - _sep;
                 vx -= _boost * _n.x;
                 vy -= _boost * _n.y;
             }
@@ -121,9 +132,9 @@ if (instance_exists(obj_battlebox))
             vy *= _damping;
 
             var _sep = -(vx * _n.x + vy * _n.y);
-            if (_sep < min_escape_speed)
+            if (_sep < _min_escape_speed)
             {
-                var _boost = min_escape_speed - _sep;
+                var _boost = _min_escape_speed - _sep;
                 vx -= _boost * _n.x;
                 vy -= _boost * _n.y;
             }

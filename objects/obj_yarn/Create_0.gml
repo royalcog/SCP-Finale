@@ -17,12 +17,19 @@ sound_cooldown = 0;
 
 // after a bounce, push the resting position a few pixels back inside the
 // wall (instead of leaving it exactly ON the boundary) and guarantee a
-// minimum real speed moving away from it — otherwise, once the box is
-// spinning fast, the wall's orientation can rotate out from under the
-// ball again before it's actually moved clear, re-triggering the same
-// "collision" every frame and pinning it against that edge
-wall_nudge = 3;
-min_escape_speed = 1.2;
+// minimum real speed moving away from it. This minimum has to scale with
+// how fast the box is actually spinning and how far the ball is from the
+// box's center — a point far from center sweeps a lot more distance per
+// degree of rotation than one near the middle, so a single fixed number
+// was enough for a small test box but not for the real one (worked out
+// via simulation: the box is 332x300, so a corner can sweep upward of 7px
+// a frame from rotation alone at top spin speed — a flat 1.2px/frame
+// minimum was nowhere near enough to outrun that).
+wall_nudge = 5;
+min_escape_speed_base = 2;
+escape_safety_factor = 3.5; // extra margin on top of the raw rotation-sweep speed
+last_box_angle = 0;
+if (instance_exists(obj_battlebox)) last_box_angle = obj_battlebox.box_angle;
 
 // spawns already inside the box (see obj_friend_attack3), so there's no
 // separate "falling in from above" phase to manage — it's just live,
