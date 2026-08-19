@@ -18,11 +18,18 @@ if (instance_exists(obj_battlebox))
     if (_min_x > _max_x) { var _mid_x = (_min_x + _max_x) / 2; _min_x = _mid_x; _max_x = _mid_x; }
     if (_min_y > _max_y) { var _mid_y = (_min_y + _max_y) / 2; _min_y = _mid_y; _max_y = _mid_y; }
 
+    // Do the actual wall-clamp in the box's local (unrotated) frame, so this
+    // still works correctly while the box is spinning (attack 3) — when
+    // box_angle is 0 these transforms are a no-op and this behaves exactly
+    // like before.
+    var _local = scr_world_to_box_local(x, y);
+    var _wall_local_x = clamp(_local.x, _min_x, _max_x);
+    var _wall_local_y = clamp(_local.y, _min_y, _max_y);
+    var _wall_world = scr_box_local_to_world(_wall_local_x, _wall_local_y);
+
     var _push_speed = move_speed * 2;
-    var _wall_x = clamp(x, _min_x, _max_x);
-    var _wall_y = clamp(y, _min_y, _max_y);
-    x += clamp(_wall_x - x, -_push_speed, _push_speed);
-    y += clamp(_wall_y - y, -_push_speed, _push_speed);
+    x += clamp(_wall_world.x - x, -_push_speed, _push_speed);
+    y += clamp(_wall_world.y - y, -_push_speed, _push_speed);
 }
 
 

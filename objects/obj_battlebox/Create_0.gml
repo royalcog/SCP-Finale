@@ -13,6 +13,12 @@ scale_speed   = 0.06;
 target_scale_x = 1;
 target_scale_y = 1;
 
+// rotation (used by the box-spin attack); box still lives at x/y (top-left,
+// unrotated reference) for all existing math — box_angle only affects how
+// it's drawn and how scr_world_to_box_local/scr_box_local_to_world convert
+// points, so nothing that reads x/y/raw_width/raw_height needs to change.
+box_angle = 0;
+
 prev_target_scale_x = target_scale_x;
 prev_target_scale_y = target_scale_y;
 
