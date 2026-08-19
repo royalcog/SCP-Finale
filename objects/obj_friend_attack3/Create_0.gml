@@ -11,7 +11,7 @@ ramp_duration = 90;          // steps to spin up / spin down (1.5s @ 60fps)
 spin_duration = 360;         // steps held at full speed — the "x seconds" (6s @ 60fps, tune as needed)
 
 max_angular_speed = 3;       // degrees/step at full spin speed
-max_hand_image_speed = 0.3;  // hand grip-animation speed at full spin speed
+max_hand_image_speed = 0.8;  // hand grip-animation speed at full spin speed
 
 angular_speed = 0;
 settle_target = 0;

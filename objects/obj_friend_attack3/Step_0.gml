@@ -11,12 +11,15 @@ switch (phase)
 
             // yarn starts falling in right as the box begins to turn
             if (instance_exists(obj_battlebox))
-            {
-                var _interior = scr_get_box_interior();
-                var _spawn_x = lerp(_interior.x1, _interior.x2, 0.5) + random_range(-40, 40);
-                var _spawn_y = _interior.y1 - 150;
-                yarn = instance_create_depth(_spawn_x, _spawn_y, -370, obj_yarn);
-            }
+			{
+			    // spawn already inside the box interior, roughly toward
+			    // the upper-middle so it has room to bounce down and
+			    // around — no need to fall in from off-screen first
+			    var _interior = scr_get_box_interior();
+			    var _spawn_x = lerp(_interior.x1, _interior.x2, 0.5) + random_range(-40, 40);
+			    var _spawn_y = lerp(_interior.y1, _interior.y2, 0.3);
+			    yarn = instance_create_depth(_spawn_x, _spawn_y, -370, obj_yarn);
+			}
 
             timer = 0;
             phase = "spin_up";

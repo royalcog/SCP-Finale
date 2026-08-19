@@ -13,98 +13,98 @@ if (instance_exists(obj_battlebox))
     var _min_y = _interior.y1 + yarn_radius;
     var _max_y = _interior.y2 - yarn_radius;
 
-    if (!entered_box && _local.y >= _min_y) entered_box = true;
+    var _clamped = false;
+    var _bounced = false;
+    var _angle = obj_battlebox.box_angle;
+    var _damping = random_range(bounce_damping_min, bounce_damping_max); // rolled fresh per bounce, so it doesn't feel the same every hit
 
-    if (entered_box)
+    // each wall reflects the ball off ITS current world-space facing (the
+    // local axis direction rotated by the box's live angle), and only
+    // actually bounces (and counts as a hit for the sound) when the
+    // ball's real velocity is moving into it — _n is the wall's OUTWARD
+    // normal, so "moving into it" means v·n is positive
+    if (_local.x < _min_x)
     {
-        var _clamped = false;
-        var _bounced = false;
-        var _angle = obj_battlebox.box_angle;
+        _local.x = _min_x;
+        _clamped = true;
+        var _n = scr_rotate_point(-1, 0, _angle);
+        var _dot = vx * _n.x + vy * _n.y;
+        if (_dot > 0)
+        {
+            vx -= 2 * _dot * _n.x;
+            vy -= 2 * _dot * _n.y;
+            vx *= _damping;
+            vy *= _damping;
+            _bounced = true;
+        }
+    }
+    else if (_local.x > _max_x)
+    {
+        _local.x = _max_x;
+        _clamped = true;
+        var _n = scr_rotate_point(1, 0, _angle);
+        var _dot = vx * _n.x + vy * _n.y;
+        if (_dot > 0)
+        {
+            vx -= 2 * _dot * _n.x;
+            vy -= 2 * _dot * _n.y;
+            vx *= _damping;
+            vy *= _damping;
+            _bounced = true;
+        }
+    }
 
-        if (_local.x < _min_x)
+    if (_local.y < _min_y)
+    {
+        _local.y = _min_y;
+        _clamped = true;
+        var _n = scr_rotate_point(0, -1, _angle);
+        var _dot = vx * _n.x + vy * _n.y;
+        if (_dot > 0)
         {
-            _local.x = _min_x;
-            _clamped = true;
-            var _n = scr_rotate_point(-1, 0, _angle);
-            var _dot = vx * _n.x + vy * _n.y;
-            if (_dot < 0)
-            {
-                vx -= 2 * _dot * _n.x;
-                vy -= 2 * _dot * _n.y;
-                vx *= bounce_damping;
-                vy *= bounce_damping;
-                _bounced = true;
-            }
+            vx -= 2 * _dot * _n.x;
+            vy -= 2 * _dot * _n.y;
+            vx *= _damping;
+            vy *= _damping;
+            _bounced = true;
         }
-        else if (_local.x > _max_x)
+    }
+    else if (_local.y > _max_y)
+    {
+        _local.y = _max_y;
+        _clamped = true;
+        var _n = scr_rotate_point(0, 1, _angle);
+        var _dot = vx * _n.x + vy * _n.y;
+        if (_dot > 0)
         {
-            _local.x = _max_x;
-            _clamped = true;
-            var _n = scr_rotate_point(1, 0, _angle);
-            var _dot = vx * _n.x + vy * _n.y;
-            if (_dot < 0)
-            {
-                vx -= 2 * _dot * _n.x;
-                vy -= 2 * _dot * _n.y;
-                vx *= bounce_damping;
-                vy *= bounce_damping;
-                _bounced = true;
-            }
+            vx -= 2 * _dot * _n.x;
+            vy -= 2 * _dot * _n.y;
+            vx *= _damping;
+            vy *= _damping;
+            _bounced = true;
         }
+    }
 
-        if (_local.y < _min_y)
-        {
-            _local.y = _min_y;
-            _clamped = true;
-            var _n = scr_rotate_point(0, -1, _angle);
-            var _dot = vx * _n.x + vy * _n.y;
-            if (_dot < 0)
-            {
-                vx -= 2 * _dot * _n.x;
-                vy -= 2 * _dot * _n.y;
-                vx *= bounce_damping;
-                vy *= bounce_damping;
-                _bounced = true;
-            }
-        }
-        else if (_local.y > _max_y)
-        {
-            _local.y = _max_y;
-            _clamped = true;
-            var _n = scr_rotate_point(0, 1, _angle);
-            var _dot = vx * _n.x + vy * _n.y;
-            if (_dot < 0)
-            {
-                vx -= 2 * _dot * _n.x;
-                vy -= 2 * _dot * _n.y;
-                vx *= bounce_damping;
-                vy *= bounce_damping;
-                _bounced = true;
-            }
-        }
+    // only rewrite x/y through the local round-trip when a wall actually
+    // needed correcting this frame, to avoid needless floating-point
+    // drift on frames where nothing happened
+    if (_clamped)
+    {
+        var _world = scr_box_local_to_world(_local.x, _local.y);
+        x = _world.x;
+        y = _world.y;
+    }
 
-        // only rewrite x/y through the local round-trip when a wall
-        // actually needed correcting this frame. Doing that conversion
-        // every single frame — even while just resting with nothing to
-        // correct — was introducing a tiny bit of floating-point error
-        // each time, which compounded over hundreds of frames into a
-        // slow, visible sink below the box (and made it look "stuck"
-        // since it kept getting re-snapped for no reason).
-        if (_clamped)
-        {
-            var _world = scr_box_local_to_world(_local.x, _local.y);
-            x = _world.x;
-            y = _world.y;
-        }
-
-        if (_bounced && sound_cooldown <= 0)
-        {
-            audio_play_sound(snd_impact, 2, false);
-            sound_cooldown = 6;
-        }
+    if (_bounced && sound_cooldown <= 0)
+    {
+        audio_play_sound(snd_impact, 2, false);
+        sound_cooldown = 6;
     }
 }
 
+// tumble like a ball rolling under gravity: spin follows the current
+// horizontal velocity, so a bounce that flips it also flips which way it
+// visibly spins
 image_angle -= vx * spin_factor;
 
 if (instance_exists(obj_soul) && scr_attack_touches_soul())

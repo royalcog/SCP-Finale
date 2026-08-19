@@ -8,19 +8,15 @@ image_yscale = yarn_scale;
 yarn_radius = 32; // roughly the sprite's half-size at yarn_scale 2
 
 gravity = 0.35;
-bounce_damping = 0.82;
+bounce_damping_min = 0.55; // how much speed survives a bounce, at least
+bounce_damping_max = 0.85; // ...and at most — kept modest so it can't get too lively
 max_speed = 14;
 spin_factor = 1.6;
 
 sound_cooldown = 0;
-entered_box = false;
 
-// genuine world-space physics — x/y and vx/vy stay real, honest values the
-// whole time. On a wall hit we just reflect off whatever direction that
-// wall is facing RIGHT NOW (recomputed from the box's live box_angle),
-// the same way a ball bounces off a mirror that happens to be tilted —
-// instead of simulating the ball as if it's riding along inside the box's
-// own rotating reference frame, which was dragging its position around in
-// a circle independent of any real bounce.
-vx = random_range(-1, 1);
+// spawns already inside the box (see obj_friend_attack3), so there's no
+// separate "falling in from above" phase to manage — it's just live,
+// bouncing physics from the moment it exists
+vx = random_range(-2, 2);
 vy = 0;
