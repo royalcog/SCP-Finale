@@ -4,7 +4,11 @@ function scr_trigger_damage_popup(_target, _amount = 0, _color_top = c_white, _c
     {
         audio_play_sound(snd_hurt, 5, false);
 
-        var _dmg = instance_create_depth(_target.x, _target.y - 20, -300, obj_damage_number);
+        // spawn one depth-step in front of whatever it's attached to, so
+        // it's always visible in front of that target specifically —
+        // hardcoding this to a fixed depth meant it could end up drawn
+        // behind targets whose own depth runs lower than that fixed value
+        var _dmg = instance_create_depth(_target.x, _target.y - 20, _target.depth - 1, obj_damage_number);
         _dmg.damage_amount = _amount;
         _dmg.color_top = _color_top;
         _dmg.color_bottom = _color_bottom;

@@ -13,23 +13,18 @@ if (instance_exists(obj_battlebox))
     var _min_y = _interior.y1 + yarn_radius;
     var _max_y = _interior.y2 - yarn_radius;
 
-    // while it's still above the box, just let it fall freely — once it's
-    // dropped down past the top wall for the first time, treat it as "in"
-    // and start bouncing off all four walls from then on
     if (!entered_box && _local.y >= _min_y) entered_box = true;
 
     if (entered_box)
     {
+        var _clamped = false;
         var _bounced = false;
         var _angle = obj_battlebox.box_angle;
 
-        // each wall reflects the ball off ITS current world-space facing
-        // (the local axis direction rotated by the box's live angle),
-        // and only actually bounces (and counts as a hit for the sound)
-        // when the ball's real velocity is moving into it
         if (_local.x < _min_x)
         {
             _local.x = _min_x;
+            _clamped = true;
             var _n = scr_rotate_point(-1, 0, _angle);
             var _dot = vx * _n.x + vy * _n.y;
             if (_dot < 0)
@@ -44,6 +39,7 @@ if (instance_exists(obj_battlebox))
         else if (_local.x > _max_x)
         {
             _local.x = _max_x;
+            _clamped = true;
             var _n = scr_rotate_point(1, 0, _angle);
             var _dot = vx * _n.x + vy * _n.y;
             if (_dot < 0)
@@ -59,6 +55,7 @@ if (instance_exists(obj_battlebox))
         if (_local.y < _min_y)
         {
             _local.y = _min_y;
+            _clamped = true;
             var _n = scr_rotate_point(0, -1, _angle);
             var _dot = vx * _n.x + vy * _n.y;
             if (_dot < 0)
@@ -73,6 +70,7 @@ if (instance_exists(obj_battlebox))
         else if (_local.y > _max_y)
         {
             _local.y = _max_y;
+            _clamped = true;
             var _n = scr_rotate_point(0, 1, _angle);
             var _dot = vx * _n.x + vy * _n.y;
             if (_dot < 0)
@@ -85,9 +83,19 @@ if (instance_exists(obj_battlebox))
             }
         }
 
-        var _world = scr_box_local_to_world(_local.x, _local.y);
-        x = _world.x;
-        y = _world.y;
+        // only rewrite x/y through the local round-trip when a wall
+        // actually needed correcting this frame. Doing that conversion
+        // every single frame — even while just resting with nothing to
+        // correct — was introducing a tiny bit of floating-point error
+        // each time, which compounded over hundreds of frames into a
+        // slow, visible sink below the box (and made it look "stuck"
+        // since it kept getting re-snapped for no reason).
+        if (_clamped)
+        {
+            var _world = scr_box_local_to_world(_local.x, _local.y);
+            x = _world.x;
+            y = _world.y;
+        }
 
         if (_bounced && sound_cooldown <= 0)
         {
@@ -97,9 +105,6 @@ if (instance_exists(obj_battlebox))
     }
 }
 
-// tumble like a ball rolling under gravity: spin follows the current
-// horizontal velocity, so a bounce that flips it also flips which way it
-// visibly spins
 image_angle -= vx * spin_factor;
 
 if (instance_exists(obj_soul) && scr_attack_touches_soul())
