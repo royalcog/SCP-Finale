@@ -1,25 +1,23 @@
-vspeed_y = min(vspeed_y + gravity, max_speed);
-x += vspeed_x;
-y += vspeed_y;
+if (sound_cooldown > 0) sound_cooldown--;
 
-if (!entered_box && instance_exists(obj_battlebox))
+if (instance_exists(obj_battlebox))
 {
-    var _check_interior = scr_get_box_interior();
-    var _check_local = scr_world_to_box_local(x, y);
-    if (_check_local.y >= _check_interior.y1 + yarn_radius)
+    // gravity always points straight down in world space, but the sim runs
+    // in the box's local frame, so re-derive what "down" looks like from
+    // inside the (rotating) box each step
+    var _local_gravity = scr_rotate_point(0, gravity, -obj_battlebox.box_angle);
+    local_vx += _local_gravity.x;
+    local_vy += _local_gravity.y;
+
+    var _speed = point_distance(0, 0, local_vx, local_vy);
+    if (_speed > max_speed)
     {
-        entered_box = true;
+        local_vx = local_vx / _speed * max_speed;
+        local_vy = local_vy / _speed * max_speed;
     }
-}
 
-if (entered_box && instance_exists(obj_battlebox))
-{
-    // do the wall bounce in the box's local (unrotated) frame — this is
-    // what makes it bounce correctly off edges that are themselves
-    // continuously rotating, without needing to track each wall's
-    // instantaneous velocity by hand
-    var _local_pos = scr_world_to_box_local(x, y);
-    var _local_vel = scr_rotate_point(vspeed_x, vspeed_y, -obj_battlebox.box_angle);
+    local_x += local_vx;
+    local_y += local_vy;
 
     var _interior = scr_get_box_interior();
     var _min_x = _interior.x1 + yarn_radius;
@@ -27,38 +25,38 @@ if (entered_box && instance_exists(obj_battlebox))
     var _min_y = _interior.y1 + yarn_radius;
     var _max_y = _interior.y2 - yarn_radius;
 
-    var _bounced = false;
+    // while it's still above the box, just let it fall freely — once it's
+    // dropped down past the top wall for the first time, treat it as "in"
+    // and apply full 4-wall bouncing from then on (including that same
+    // top wall, correctly, if it later bounces back up into it)
+    if (!entered_box && local_y >= _min_y) entered_box = true;
 
-    if (_local_pos.x < _min_x)      { _local_pos.x = _min_x; _local_vel.x = abs(_local_vel.x);  _bounced = true; }
-    else if (_local_pos.x > _max_x) { _local_pos.x = _max_x; _local_vel.x = -abs(_local_vel.x); _bounced = true; }
-
-    if (_local_pos.y < _min_y)      { _local_pos.y = _min_y; _local_vel.y = abs(_local_vel.y);  _bounced = true; }
-    else if (_local_pos.y > _max_y) { _local_pos.y = _max_y; _local_vel.y = -abs(_local_vel.y); _bounced = true; }
-
-    if (_bounced)
+    if (entered_box)
     {
-        _local_vel.x *= bounce_damping;
-        _local_vel.y *= bounce_damping;
+        var _bounced = false;
 
-        var _world_vel = scr_rotate_point(_local_vel.x, _local_vel.y, obj_battlebox.box_angle);
-        vspeed_x = clamp(_world_vel.x, -max_speed, max_speed);
-        vspeed_y = clamp(_world_vel.y, -max_speed, max_speed);
+        if (local_x < _min_x)      { local_x = _min_x; local_vx = abs(local_vx)  * bounce_damping; _bounced = true; }
+        else if (local_x > _max_x) { local_x = _max_x; local_vx = -abs(local_vx) * bounce_damping; _bounced = true; }
 
-        var _world_pos = scr_box_local_to_world(_local_pos.x, _local_pos.y);
-        x = _world_pos.x;
-        y = _world_pos.y;
+        if (local_y < _min_y)      { local_y = _min_y; local_vy = abs(local_vy)  * bounce_damping; _bounced = true; }
+        else if (local_y > _max_y) { local_y = _max_y; local_vy = -abs(local_vy) * bounce_damping; _bounced = true; }
 
-        audio_play_sound(snd_impact, 2, false);
+        if (_bounced && sound_cooldown <= 0)
+        {
+            audio_play_sound(snd_impact, 2, false);
+            sound_cooldown = 6;
+        }
     }
-}
 
-// tumble like a ball rolling under gravity: spin is driven by the current
-// (box-relative) horizontal velocity, so a bounce that flips vx also flips
-// which way it visibly spins
-var _spin_vel = instance_exists(obj_battlebox)
-    ? scr_rotate_point(vspeed_x, vspeed_y, -obj_battlebox.box_angle)
-    : { x: vspeed_x, y: vspeed_y };
-image_angle -= _spin_vel.x * spin_factor;
+    var _world = scr_box_local_to_world(local_x, local_y);
+    x = _world.x;
+    y = _world.y;
+
+    // tumble like a ball rolling under gravity: spin follows the current
+    // local horizontal velocity, so a bounce that flips it also flips
+    // which way it visibly spins
+    image_angle -= local_vx * spin_factor;
+}
 
 if (instance_exists(obj_soul) && scr_attack_touches_soul())
 {

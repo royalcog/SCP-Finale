@@ -58,11 +58,27 @@ for (var i = 0; i < array_length(lights); i++)
 // Full-brightness cutouts for battlebox, UI, and hammers
 if (instance_exists(obj_battlebox))
 {
+    var _caller_vx = _vx;
+    var _caller_vy = _vy;
+    var _caller_scale_x = _scale_x;
+    var _caller_scale_y = _scale_y;
+
     with (obj_battlebox)
     {
-        var _sx = (x - _vx) * _scale_x;
-        var _sy = (y - _vy) * _scale_y;
-        draw_sprite_ext(sprite_index, image_index, _sx, _sy, image_xscale * _scale_x, image_yscale * _scale_y, image_angle, c_white, 1);
+        // mirror the same center-pivot rotation math as obj_battlebox's own
+        // Draw event — otherwise this cutout stays put (unrotated) while the
+        // real box spins away from it, showing up as a ghost/"shadow" of the
+        // box left behind at its original angle
+        var _c = scr_box_center();
+        var _half_w = (raw_width  * image_xscale) / 2;
+        var _half_h = (raw_height * image_yscale) / 2;
+        var _off = scr_rotate_point(-_half_w, -_half_h, box_angle);
+        var _draw_x = _c.x + _off.x;
+        var _draw_y = _c.y + _off.y;
+
+        var _sx = (_draw_x - _caller_vx) * _caller_scale_x;
+        var _sy = (_draw_y - _caller_vy) * _caller_scale_y;
+        draw_sprite_ext(sprite_index, image_index, _sx, _sy, image_xscale * _caller_scale_x, image_yscale * _caller_scale_y, box_angle, c_white, 1);
     }
 }
 
