@@ -94,7 +94,7 @@ switch (phase)
     case "tie_wait":
         timer--;
         if (timer <= 0) {
-            phase = "start"; // hands' bouncing gets re-enabled by "start"
+            phase = "start";
         }
     break;
 
@@ -123,6 +123,8 @@ switch (phase)
                 sub_timer--;
                 if (sub_timer <= 0 && instance_number(obj_strip_flash) == 0)
                 {
+                    if (instance_exists(obj_battlebox)) obj_battlebox.target_scale_x = 0.18;
+
                     var _l = instance_create_depth(0, 0, -380, obj_rps_squeeze_hand, { side: "left" });
                     _l.sprite_index = spr_friend_hand_rock;
                     var _r = instance_create_depth(0, 0, -380, obj_rps_squeeze_hand, { side: "right" });
@@ -134,6 +136,7 @@ switch (phase)
             case "squeezing":
                 if (instance_number(obj_rps_squeeze_hand) == 0)
                 {
+                    if (instance_exists(obj_battlebox)) obj_battlebox.target_scale_x = 1;
                     instance_destroy();
                 }
             break;
@@ -153,7 +156,7 @@ switch (phase)
                 if (instance_exists(_winner))
                 {
                     _winner.sprite_index = spr_friend_hand_scissors;
-                    _winner.image_speed = 1;
+                    _winner.image_speed = 1; // plays your 3-frame snip animation
                     _winner.bouncing = false;
                     _winner.chasing = true;
                 }
@@ -233,6 +236,8 @@ switch (phase)
                 sub_timer--;
                 if (sub_timer <= 0 && instance_number(obj_strip_flash) == 0)
                 {
+                    if (instance_exists(obj_battlebox)) obj_battlebox.target_scale_y = 0.22;
+
                     var _u = instance_create_depth(0, 0, -380, obj_rps_squeeze_hand, { side: "up" });
                     _u.sprite_index = spr_friend_hand_paper;
                     var _d = instance_create_depth(0, 0, -380, obj_rps_squeeze_hand, { side: "down" });
@@ -255,13 +260,22 @@ switch (phase)
                 sub_timer--;
                 if (sub_timer <= 0)
                 {
-                    var _side = choose("left", "right");
+                    punch_side = choose("left", "right");
 
-                    var _jab = instance_create_depth(0, 0, -380, obj_rps_squeeze_hand, { side: _side, gap_half: 120, hold_time: 8 });
+                    // shockwave leads
+                    instance_create_depth(0, 0, -390, obj_paper_shockwave, { side: punch_side });
+
+                    sub_timer = 10; // hand follows a beat later
+                    sub_phase = "punch_hand_delay";
+                }
+            break;
+
+            case "punch_hand_delay":
+                sub_timer--;
+                if (sub_timer <= 0)
+                {
+                    var _jab = instance_create_depth(0, 0, -380, obj_rps_squeeze_hand, { side: punch_side, gap_half: 120, hold_time: 8 });
                     _jab.sprite_index = spr_friend_hand_paper;
-
-                    instance_create_depth(0, 0, -390, obj_paper_shockwave, { side: _side });
-
                     sub_phase = "punching";
                 }
             break;
@@ -272,6 +286,7 @@ switch (phase)
                     punch_repeats++;
                     if (punch_repeats >= max_punch_repeats)
                     {
+                        if (instance_exists(obj_battlebox)) obj_battlebox.target_scale_y = 1;
                         instance_destroy();
                     }
                     else

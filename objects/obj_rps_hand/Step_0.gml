@@ -4,7 +4,7 @@ depth = -380;
 
 if (chasing)
 {
-    // draw_angle is driven externally frame-by-frame during the scissors chase
+    // draw_angle driven externally during the scissors chase
 }
 else if (bouncing)
 {

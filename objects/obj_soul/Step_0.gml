@@ -11,14 +11,13 @@ if (instance_exists(obj_battlebox))
     var _soul_margin_x = sprite_width / 2;
     var _soul_margin_y = sprite_height / 2;
 
-    // tune these two independently to match the VISIBLE box, not the sprite canvas
-    var _box_pad_x = 23; // try adjusting this until horizontal clamp feels right
+    var _box_pad_x = 23;
     var _box_pad_y = 7.5;
 
-    var _min_x = _bb.x + _box_pad_x + _soul_margin_x;
-    var _max_x = _bb.x + _bb.sprite_width - _box_pad_x - _soul_margin_x;
-    var _min_y = _bb.y + _box_pad_y + _soul_margin_y;
-    var _max_y = _bb.y + _bb.sprite_height - _box_pad_y - _soul_margin_y;
+    var _min_x = _bb.x + (_box_pad_x * _bb.image_xscale) + _soul_margin_x;
+    var _max_x = _bb.x + (_bb.sprite_width * _bb.image_xscale) - (_box_pad_x * _bb.image_xscale) - _soul_margin_x;
+    var _min_y = _bb.y + (_box_pad_y * _bb.image_yscale) + _soul_margin_y;
+    var _max_y = _bb.y + (_bb.sprite_height * _bb.image_yscale) - (_box_pad_y * _bb.image_yscale) - _soul_margin_y;
 
     x = clamp(x, _min_x, _max_x);
     y = clamp(y, _min_y, _max_y);

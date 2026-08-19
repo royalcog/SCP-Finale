@@ -103,6 +103,8 @@ switch (state)
 	    {
 	        global.fight_attack_active = false;
 	        scr_ui_show();
+			if (instance_exists(obj_friend)) { obj_friend.visible = true; }
+			with (obj_fist_slam_cutscene) { visible = true; }
 
 	        if (instance_exists(obj_friend)) { obj_friend.visible = true; }
 	        with (obj_fist_slam_cutscene) { visible = true; }

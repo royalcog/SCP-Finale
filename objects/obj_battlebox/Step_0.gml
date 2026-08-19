@@ -1,3 +1,9 @@
+image_xscale = lerp(image_xscale, target_scale_x, scale_speed);
+image_yscale = lerp(image_yscale, target_scale_y, scale_speed);
+
+x = box_base_x + (sprite_width  - sprite_width  * image_xscale) / 2;
+y = box_base_y + (sprite_height - sprite_height * image_yscale) / 2;
+
 switch (state)
 {
     case "rising":

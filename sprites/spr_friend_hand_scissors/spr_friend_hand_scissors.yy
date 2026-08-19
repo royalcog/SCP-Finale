@@ -81,7 +81,7 @@
     },
     "name":"spr_friend_hand_scissors",
     "playback":1,
-    "playbackSpeed":5.0,
+    "playbackSpeed":7.0,
     "playbackSpeedType":0,
     "resourceType":"GMSequence",
     "resourceVersion":"2.0",
