@@ -18,12 +18,16 @@ switch (state)
             state = "waiting_talk";
         }
         else if (_step.type == "attack")
-        {
-            scr_ui_hide();
-            global.fight_attack_active = true;
-            box_inst = scr_spawn_battlebox();
-            state = "waiting_box_open";
-        }
+		{
+		    scr_ui_hide();
+		    global.fight_attack_active = true;
+
+		    if (instance_exists(obj_friend)) { obj_friend.visible = false; }
+		    with (obj_fist_slam_cutscene) { visible = false; }
+
+		    box_inst = scr_spawn_battlebox();
+		    state = "waiting_box_open";
+		}
         else if (_step.type == "sprite")
 		{
 		    var _target = _step.target;
@@ -95,26 +99,32 @@ switch (state)
 	break;
 
     case "waiting_attack":
-        if (instance_exists(_step.attacker) && !_step.attacker.attack_active)
-        {
-            global.fight_attack_active = false;
-            scr_ui_show();
+	    if (instance_exists(_step.attacker) && !_step.attacker.attack_active)
+	    {
+	        global.fight_attack_active = false;
+	        scr_ui_show();
 
-            if (instance_exists(obj_soul))
-            {
-                instance_destroy(obj_soul);
-            }
+	        if (instance_exists(obj_friend)) { obj_friend.visible = true; }
+	        with (obj_fist_slam_cutscene) { visible = true; }
 
-            box_inst.state = "closing";
-            state = "waiting_box_close";
-        }
-    break;
+	        if (instance_exists(obj_soul))
+	        {
+	            instance_destroy(obj_soul);
+	        }
+
+	        box_inst.state = "closing";
+	        state = "waiting_box_close";
+	    }
+	break;
 
 	case "waiting_custom_attack":
 	    if (!instance_exists(custom_inst))
 	    {
 	        global.fight_attack_active = false;
 	        scr_ui_show();
+
+	        if (instance_exists(obj_friend)) { obj_friend.visible = true; }
+	        with (obj_fist_slam_cutscene) { visible = true; }
 
 	        if (instance_exists(obj_soul))
 	        {
