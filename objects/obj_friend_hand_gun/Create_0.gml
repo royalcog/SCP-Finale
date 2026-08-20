@@ -4,7 +4,7 @@ sprite_index = spr_friend_hand_gun;
 image_index = 0;
 image_speed = 0;
 
-hand_scale = 0.6; // scaled down a bit, per request
+hand_scale = 0.85; // bigger — was 0.6
 image_xscale = (side == "left") ? hand_scale : -hand_scale; // mirror so the muzzle points into the box from either side
 image_yscale = hand_scale;
 
@@ -16,8 +16,10 @@ depth = -380;
 muzzle_local_x = 238 - 120;
 muzzle_local_y = 85 - 106;
 
-move_speed = 0.5; // slow drift along the box edge
-move_dir = 1;     // left hand starts near the top and drifts down; right hand starts near the bottom and drifts up (set below)
+move_speed = 1.6; // drift speed along the box edge — faster than before
+move_dir = 1;
+move_vel = 0;       // current eased velocity (lerps toward move_dir * move_speed)
+move_ease = 0.08;   // how quickly velocity eases into a new direction after a turnaround
 
 base_angle = 0;
 recoil_angle = 0;          // eases back to 0 after each shot's kick
@@ -37,3 +39,5 @@ if (instance_exists(obj_battlebox))
 }
 
 if (side == "right") move_dir = -1;
+
+move_vel = move_dir * move_speed; // start at full speed — only turnarounds ease

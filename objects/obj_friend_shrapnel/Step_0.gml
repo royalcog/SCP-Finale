@@ -1,5 +1,7 @@
 timer++;
 
+move_dir += spin_speed; // curve the flight path so the burst rotates as it expands
+
 x += lengthdir_x(move_speed, move_dir);
 y += lengthdir_y(move_speed, move_dir);
 

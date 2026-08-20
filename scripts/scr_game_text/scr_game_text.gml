@@ -981,7 +981,7 @@ function scr_game_text(_text_id)
 				{ type: "talk", batch: [ { speaker: friend, text: "None of you are the Prince. None of you need to follow your strict paths.", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "These crystals were meant to enlighten you, not turn you away from carving a new direction.", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "If this is how you wish to repay me, however, so be it.", keep_animating: true } ] },
-		        { type: "attack", kind: "custom", start_func: scr_start_friend_attack4 },
+		        { type: "attack", kind: "custom", start_func: scr_start_friend_attack5 },
 							
 				// ATTACK 2
 				{

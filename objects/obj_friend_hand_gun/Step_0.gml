@@ -4,15 +4,12 @@ if (instance_exists(obj_battlebox))
     var _top = _interior.y1;
     var _bottom = _interior.y2;
 
-    y += move_dir * move_speed;
+    move_vel = lerp(move_vel, move_dir * move_speed, move_ease);
+    y += move_vel;
 
     if (y >= _bottom) { y = _bottom; move_dir = -1; }
     if (y <= _top)    { y = _top;    move_dir = 1; }
 }
-
-// recoil is purely a tilt — position/drift along the edge is untouched
-recoil_angle = lerp(recoil_angle, 0, recoil_recover_rate);
-image_angle = base_angle + recoil_angle;
 
 shoot_timer--;
 if (shoot_timer <= 0 && instance_exists(obj_soul))
@@ -26,6 +23,12 @@ if (shoot_timer <= 0 && instance_exists(obj_soul))
         target_y: obj_soul.y
     });
 
-    recoil_angle = recoil_kick; // kick happens right after the bullet spawns, so the shot itself fires from the un-recoiled muzzle
+    recoil_angle = recoil_kick;
+    image_angle = base_angle + recoil_angle;
     shoot_timer = irandom_range(shoot_interval_min, shoot_interval_max);
+}
+else
+{
+    recoil_angle = lerp(recoil_angle, 0, recoil_recover_rate);
+    image_angle = base_angle + recoil_angle;
 }

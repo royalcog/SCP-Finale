@@ -21,3 +21,6 @@ phase = "travel"; // "travel" -> "blink" -> explode + destroy
 
 sprite_index = -1;
 depth = -375;
+
+// each bullet is randomly gold or pink
+bullet_color = choose(make_color_rgb(255, 204, 0), make_color_rgb(255, 105, 180));

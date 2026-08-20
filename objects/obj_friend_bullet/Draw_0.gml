@@ -4,7 +4,7 @@
 if (phase == "travel")
 {
     draw_set_alpha(1);
-    draw_set_color(c_orange);
+    draw_set_color(bullet_color);
     draw_circle(x, y, 6, false);
 
     draw_set_alpha(0.6);
@@ -15,7 +15,7 @@ else if (phase == "blink")
 {
     if (blink_visible)
     {
-        draw_set_color(c_yellow);
+        draw_set_color(c_red);
         draw_circle(x, y, 8, false);
     }
 }
