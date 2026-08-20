@@ -6,10 +6,13 @@ yarn_scale = 2;
 image_xscale = yarn_scale;
 image_yscale = yarn_scale;
 
-// margin based on the actual sprite size, not a guessed number — this is
-// what keeps the visible sprite from poking past the wall, since the
-// collision now respects how big the thing on screen actually is
-margin = max(sprite_get_width(sprite_index), sprite_get_height(sprite_index)) * yarn_scale / 2;
+// margin based on the actual sprite size — but the sprite also spins for
+// the tumble effect, so half its width/height alone isn't enough: at some
+// rotation angles a CORNER swings out further than that (up to the full
+// diagonal from center), even though the center point stays safely
+// inside. Using the diagonal half-length instead means it stays fully
+// contained no matter which way it's currently facing.
+margin = point_distance(0, 0, sprite_get_width(sprite_index) * yarn_scale / 2, sprite_get_height(sprite_index) * yarn_scale / 2);
 
 gravity = 0.35;
 bounce_damping_min = 0.55; // how much speed survives a bounce, at least
