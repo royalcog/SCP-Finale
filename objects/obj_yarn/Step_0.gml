@@ -65,7 +65,18 @@ if (instance_exists(obj_soul))
 {
     var _hit_radius = margin * 0.7; // a bit tighter than the wall-collision margin — more like the visible ball
     var _soul_radius = 8;
-    if (point_distance(x, y, obj_soul.x, obj_soul.y) <= _hit_radius + _soul_radius)
+    var _dist = point_distance(x, y, obj_soul.x, obj_soul.y);
+
+    // TEMP DEBUG — remove once damage is confirmed working. Reports even
+    // when it's close but not quite touching, so we can see in the
+    // console whether this check is being reached at all, how close it's
+    // actually getting, and whether invulnerable is unexpectedly stuck on
+    if (_dist <= _hit_radius + _soul_radius + 60)
+    {
+        show_debug_message("yarn dist=" + string(_dist) + " threshold=" + string(_hit_radius + _soul_radius) + " invuln=" + string(obj_soul.invulnerable));
+    }
+
+    if (_dist <= _hit_radius + _soul_radius)
     {
         scr_soul_take_hit(0, obj_mewmew.damage_color, obj_mewmew.damage_color);
     }
