@@ -23,13 +23,13 @@ move_ease = 0.08;   // how quickly velocity eases into a new direction after a t
 
 base_angle = 0;
 recoil_angle = 0;          // eases back to 0 after each shot's kick
-recoil_kick = -25;         // degrees kicked back the instant it fires — tune to taste
+recoil_kick = 25;         // degrees kicked back the instant it fires — tune to taste
 recoil_recover_rate = 0.15;
 image_angle = base_angle;
 
-shoot_timer = irandom_range(60, 120); // staggered first shot
-shoot_interval_min = 90;
-shoot_interval_max = 180;
+shoot_timer = irandom_range(30, 60); // staggered first shot
+shoot_interval_min = 50;
+shoot_interval_max = 100;
 
 if (instance_exists(obj_battlebox))
 {
