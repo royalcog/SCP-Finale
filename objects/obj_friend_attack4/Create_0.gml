@@ -4,14 +4,15 @@ swing_amplitude = 90;
 swing_period = 150;
 pendulum_duration = 600;
 
-angle = 0;
+angle = 0; // starts hanging straight down, at rest
 prev_angle = 0;
+swing_direction = 0; // tracks whether it's currently swinging toward +angle or -angle
 
 sprite_index = spr_friend_tail;
 image_speed = 0;
 depth = -370;
 
-tail_scale = 4; // bigger, per request
+tail_scale = 8; // much bigger, per request
 tail_raw_width = sprite_get_width(sprite_index);
 tail_raw_height = sprite_get_height(sprite_index);
 tail_length = tail_raw_height * tail_scale;

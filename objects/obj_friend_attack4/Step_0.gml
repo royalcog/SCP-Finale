@@ -3,13 +3,15 @@ timer++;
 prev_angle = angle;
 angle = swing_amplitude * dsin(360 * timer / swing_period);
 
-// every time it swings back through dead center (straight down — the
-// deepest point of its arc into the box) counts as "going through the
-// box" — re-roll the color for the pass that's about to begin
-if (sign(angle) != sign(prev_angle) && prev_angle != 0)
+// re-roll the color at each direction REVERSAL — i.e. the moment it hits
+// one extreme of the swing and starts heading back the other way — rather
+// than at the center crossing
+var _direction_now = sign(angle - prev_angle);
+if (_direction_now != 0 && swing_direction != 0 && _direction_now != swing_direction)
 {
     color_mode = choose("blue", "orange");
 }
+if (_direction_now != 0) swing_direction = _direction_now;
 
 if (instance_exists(obj_soul))
 {
@@ -21,8 +23,6 @@ if (instance_exists(obj_soul))
 
     if (_dist <= tail_half_width + 10)
     {
-        // blue: getting hit while MOVING is what costs you; stand still
-        // and you're safe. orange: the opposite.
         var _is_moving = (obj_soul.x != obj_soul.xprevious) || (obj_soul.y != obj_soul.yprevious);
         var _should_hit = ((color_mode == "blue") && _is_moving) || ((color_mode == "orange") && !_is_moving);
 
