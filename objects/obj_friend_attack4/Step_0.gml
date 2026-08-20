@@ -3,9 +3,6 @@ timer++;
 prev_angle = angle;
 angle = swing_amplitude * dsin(360 * timer / swing_period);
 
-// re-roll the color at each direction REVERSAL — i.e. the moment it hits
-// one extreme of the swing and starts heading back the other way — rather
-// than at the center crossing
 var _direction_now = sign(angle - prev_angle);
 if (_direction_now != 0 && swing_direction != 0 && _direction_now != swing_direction)
 {
@@ -23,7 +20,15 @@ if (instance_exists(obj_soul))
 
     if (_dist <= tail_half_width + 10)
     {
-        var _is_moving = (obj_soul.x != obj_soul.xprevious) || (obj_soul.y != obj_soul.yprevious);
+        // threshold-based instead of a strict != check — the soul's own
+        // wall-clamp logic runs every frame regardless of input, and even
+        // when it's mathematically a no-op, floating-point rounding in
+        // that round-trip can shift x/y by a sub-pixel amount every
+        // single frame. A strict != comparison would then see that as
+        // "moving" constantly, even while standing still — which is
+        // exactly what was making orange's "stand still to be safe" rule
+        // impossible to ever satisfy
+        var _is_moving = point_distance(obj_soul.x, obj_soul.y, obj_soul.xprevious, obj_soul.yprevious) > 0.05;
         var _should_hit = ((color_mode == "blue") && _is_moving) || ((color_mode == "orange") && !_is_moving);
 
         if (_should_hit)

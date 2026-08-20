@@ -18,10 +18,6 @@ if (instance_exists(obj_battlebox))
     if (_min_x > _max_x) { var _mid_x = (_min_x + _max_x) / 2; _min_x = _mid_x; _max_x = _mid_x; }
     if (_min_y > _max_y) { var _mid_y = (_min_y + _max_y) / 2; _min_y = _mid_y; _max_y = _mid_y; }
 
-    // Do the actual wall-clamp in the box's local (unrotated) frame, so this
-    // still works correctly while the box is spinning (attack 3) — when
-    // box_angle is 0 these transforms are a no-op and this behaves exactly
-    // like before.
     var _local = scr_world_to_box_local(x, y);
     var _wall_local_x = clamp(_local.x, _min_x, _max_x);
     var _wall_local_y = clamp(_local.y, _min_y, _max_y);
@@ -31,8 +27,6 @@ if (instance_exists(obj_battlebox))
     x += clamp(_wall_world.x - x, -_push_speed, _push_speed);
     y += clamp(_wall_world.y - y, -_push_speed, _push_speed);
 }
-
-
 
 if (invulnerable)
 {
@@ -55,7 +49,11 @@ else
     flash_visible = true;
 }
 
-image_blend = flash_visible ? c_white : c_red;
+// blink fully invisible during the "off" phase instead of tinting red —
+// standard invulnerability-flicker convention, and works cleanly now that
+// obj_soul's Draw event actually respects image_alpha
+image_blend = c_white;
+image_alpha = flash_visible ? 1 : 0;
 
 if (invulnerable)
 {
