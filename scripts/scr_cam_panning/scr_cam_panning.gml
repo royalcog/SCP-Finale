@@ -2,11 +2,20 @@ function scr_camera_pan_to(_target_x, _duration)
 {
     with (obj_camera_controller)
     {
-        pan_start_x = camera_get_view_x(view_camera[0]);
+        pan_start_x = cam_x;
         pan_target_x = _target_x;
         pan_timer = 0;
         pan_duration = _duration;
         panning = true;
+    }
+}
+
+function scr_camera_shake(_intensity, _duration)
+{
+    with (obj_camera_controller)
+    {
+        shake_intensity = _intensity;
+        shake_timer = _duration;
     }
 }
 
