@@ -11,7 +11,8 @@ function scr_friend_bullet_explode(_bullet)
             move_dir: _dir,
             move_speed: _bullet.shrapnel_speed,
             lifespan: _bullet.shrapnel_lifespan,
-            shrapnel_color: (_i % 2 == 0) ? _gold : _pink
+            shrapnel_color: (_i % 2 == 0) ? _gold : _pink,
+            shrapnel_radius: _bullet.shrapnel_size
         });
     }
 }

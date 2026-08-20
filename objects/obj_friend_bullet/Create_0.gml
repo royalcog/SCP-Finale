@@ -4,7 +4,24 @@ if (!variable_instance_exists(id, "target_y")) target_y = y;
 start_x = x;
 start_y = y;
 
-travel_frames = 40;
+// each shot is randomly a small fast bullet or a big slow one, each with its
+// own random speed range — travel_frames doubles as the "speed" knob since
+// travel is a fixed-frame lerp (fewer frames = arrives faster)
+variant = choose("small_fast", "big_slow");
+
+if (variant == "small_fast")
+{
+    travel_frames  = irandom_range(18, 28);
+    bullet_radius  = 4;
+    shrapnel_size  = 3;
+}
+else // "big_slow"
+{
+    travel_frames  = irandom_range(55, 75);
+    bullet_radius  = 11;
+    shrapnel_size  = 7;
+}
+
 travel_timer = 0;
 
 blink_duration = 100; // ~1.6s telegraph blink before it explodes
