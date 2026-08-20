@@ -16,7 +16,7 @@ sprite_index = spr_friend_tail;
 image_speed = 0;
 depth = -370;
 
-tail_scale = 8; // much bigger, per request
+tail_scale = 9; // much bigger, per request
 tail_raw_width = sprite_get_width(sprite_index);
 tail_raw_height = sprite_get_height(sprite_index);
 tail_length = tail_raw_height * tail_scale;
@@ -28,7 +28,7 @@ if (instance_exists(obj_battlebox))
 {
     var _interior = scr_get_box_interior();
     pivot_x = lerp(_interior.x1, _interior.x2, 0.5);
-    pivot_y = _interior.y1;
+    pivot_y = _interior.y1 - 20; // nudged up a bit from the box's top edge
     x = pivot_x;
     y = pivot_y;
 }
