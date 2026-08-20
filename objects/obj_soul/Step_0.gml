@@ -1,8 +1,8 @@
-var _hdir = keyboard_check(vk_right) - keyboard_check(vk_left);
-var _vdir = keyboard_check(vk_down) - keyboard_check(vk_up);
+hdir = keyboard_check(vk_right) - keyboard_check(vk_left);
+vdir = keyboard_check(vk_down) - keyboard_check(vk_up);
 
-x += _hdir * move_speed;
-y += _vdir * move_speed;
+x += hdir * move_speed;
+y += vdir * move_speed;
 
 if (instance_exists(obj_battlebox))
 {

@@ -20,15 +20,14 @@ if (instance_exists(obj_soul))
 
     if (_dist <= tail_half_width + 10)
     {
-        // threshold-based instead of a strict != check — the soul's own
-        // wall-clamp logic runs every frame regardless of input, and even
-        // when it's mathematically a no-op, floating-point rounding in
-        // that round-trip can shift x/y by a sub-pixel amount every
-        // single frame. A strict != comparison would then see that as
-        // "moving" constantly, even while standing still — which is
-        // exactly what was making orange's "stand still to be safe" rule
-        // impossible to ever satisfy
-        var _is_moving = point_distance(obj_soul.x, obj_soul.y, obj_soul.xprevious, obj_soul.yprevious) > 0.05;
+        // driven by held input, not realized position delta — the old
+        // position-delta check could read "not moving" even while a
+        // direction key was held, whenever the wall-clamp correction in
+        // obj_soul's Step canceled out that frame's movement (e.g. dodging
+        // right up against the box edge), which is exactly the situation
+        // players are most likely to be in while trying to move through
+        // the orange tail
+        var _is_moving = (obj_soul.hdir != 0) || (obj_soul.vdir != 0);
         var _should_hit = ((color_mode == "blue") && _is_moving) || ((color_mode == "orange") && !_is_moving);
 
         if (_should_hit)

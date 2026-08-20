@@ -37,4 +37,10 @@ color_blue = c_aqua;
 color_orange = c_orange;
 color_mode = choose("blue", "orange");
 
+// offscreen buffer used to recolor the tail sprite in real time (see
+// Draw event) — sized generously around the pivot so the fully-extended,
+// scaled-up tail always fits inside it regardless of swing angle
+tail_surf = -1;
+tail_surf_size = (tail_length + tail_half_width) * 2 + 40;
+
 if (instance_exists(obj_friend)) { obj_friend.visible = false; }
