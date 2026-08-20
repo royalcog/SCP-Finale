@@ -1,8 +1,12 @@
 timer = 0;
 
-swing_amplitude = 90;
-swing_period = 150;
-pendulum_duration = 600;
+// pendulum motion: oscillates smoothly around "straight down" (our own
+// angle convention: 0 = down, 90 = right, 180 = up, 270 = left — matches
+// GameMaker's image_angle direction), swinging out toward horizontal on
+// each side and back, like a real pendulum, for as long as this attack lasts
+swing_amplitude = 90;    // how far it swings to each side (90 = fully horizontal)
+swing_period = 150;      // frames for one full left-right-left cycle
+pendulum_duration = 600; // total frames this attack lasts before ending
 
 angle = 0; // starts hanging straight down, at rest
 prev_angle = 0;
@@ -32,7 +36,5 @@ if (instance_exists(obj_battlebox))
 color_blue = c_aqua;
 color_orange = c_orange;
 color_mode = choose("blue", "orange");
-
-mask_surface = -1;
 
 if (instance_exists(obj_friend)) { obj_friend.visible = false; }
