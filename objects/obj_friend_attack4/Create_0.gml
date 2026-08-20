@@ -1,13 +1,13 @@
 phase = "swinging";
 timer = 0;
 
-swing_duration = 100;
-gap_duration = 60;
-repeat_count = 0;
-max_repeats = 4;
+swing_duration = 100; // frames for the one left-to-right swing
 
-start_angle = 270;
-end_angle = 450;
+// our own rotation convention here: 0 = pointing straight down (how the
+// sprite hangs when unrotated), 90 = right, 180 = up, 270 = left — this
+// matches GameMaker's image_angle direction exactly
+start_angle = 270; // pointing left
+end_angle = 450;   // pointing right (270 + 180) — sweeps through 0/360 (straight down) on the way, a single 180-degree pass
 
 angle = start_angle;
 
@@ -34,6 +34,6 @@ if (instance_exists(obj_battlebox))
 
 color_blue = c_aqua;
 color_orange = c_orange;
-color_mode = choose("blue", "orange");
+color_mode = choose("blue", "orange"); // chosen once for this swing
 
 if (instance_exists(obj_friend)) { obj_friend.visible = false; }

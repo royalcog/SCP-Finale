@@ -27,27 +27,7 @@ switch (phase)
 
         if (_t >= 1)
         {
-            repeat_count++;
-            if (repeat_count >= max_repeats)
-            {
-                phase = "done";
-            }
-            else
-            {
-                phase = "gap";
-                timer = 0;
-            }
-        }
-    break;
-
-    case "gap":
-        timer++;
-        if (timer >= gap_duration)
-        {
-            angle = start_angle;
-            color_mode = choose("blue", "orange");
-            timer = 0;
-            phase = "swinging";
+            phase = "done";
         }
     break;
 

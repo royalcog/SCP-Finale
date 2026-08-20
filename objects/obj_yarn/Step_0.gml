@@ -56,7 +56,17 @@ if (instance_exists(obj_battlebox))
 
 image_angle -= local_vx * spin_factor;
 
-if (instance_exists(obj_soul) && scr_attack_touches_soul())
+// checked directly by distance instead of scr_attack_touches_soul() /
+// position_meeting — that relies on the yarn's collision MASK, which
+// doesn't rotate along with image_angle (GameMaker only rotates the
+// visual, not the mask, unless you handle it yourself), so with the yarn
+// spinning constantly for the tumble effect, hits were landing unreliably
+if (instance_exists(obj_soul))
 {
-    scr_soul_take_hit(0, obj_mewmew.damage_color, obj_mewmew.damage_color);
+    var _hit_radius = margin * 0.7; // a bit tighter than the wall-collision margin — more like the visible ball
+    var _soul_radius = 8;
+    if (point_distance(x, y, obj_soul.x, obj_soul.y) <= _hit_radius + _soul_radius)
+    {
+        scr_soul_take_hit(0, obj_mewmew.damage_color, obj_mewmew.damage_color);
+    }
 }
