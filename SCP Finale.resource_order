@@ -347,6 +347,7 @@
     {"name":"spr_friend_lookleft_tall","order":5,"path":"sprites/spr_friend_lookleft_tall/spr_friend_lookleft_tall.yy",},
     {"name":"spr_friend_lookleft","order":4,"path":"sprites/spr_friend_lookleft/spr_friend_lookleft.yy",},
     {"name":"spr_friend_smiley","order":1,"path":"sprites/spr_friend_smiley/spr_friend_smiley.yy",},
+    {"name":"spr_friend_tail","order":20,"path":"sprites/spr_friend_tail/spr_friend_tail.yy",},
     {"name":"spr_friendmew_battleidle","order":4,"path":"sprites/spr_friendmew_battleidle/spr_friendmew_battleidle.yy",},
     {"name":"spr_friendmew_laugh","order":5,"path":"sprites/spr_friendmew_laugh/spr_friendmew_laugh.yy",},
     {"name":"spr_friendmew_norm_smiley","order":1,"path":"sprites/spr_friendmew_norm_smiley/spr_friendmew_norm_smiley.yy",},

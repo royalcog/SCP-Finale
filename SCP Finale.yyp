@@ -420,6 +420,7 @@
     {"id":{"name":"spr_friend_lookleft_tall","path":"sprites/spr_friend_lookleft_tall/spr_friend_lookleft_tall.yy",},},
     {"id":{"name":"spr_friend_lookleft","path":"sprites/spr_friend_lookleft/spr_friend_lookleft.yy",},},
     {"id":{"name":"spr_friend_smiley","path":"sprites/spr_friend_smiley/spr_friend_smiley.yy",},},
+    {"id":{"name":"spr_friend_tail","path":"sprites/spr_friend_tail/spr_friend_tail.yy",},},
     {"id":{"name":"spr_friendmew_battleidle","path":"sprites/spr_friendmew_battleidle/spr_friendmew_battleidle.yy",},},
     {"id":{"name":"spr_friendmew_laugh","path":"sprites/spr_friendmew_laugh/spr_friendmew_laugh.yy",},},
     {"id":{"name":"spr_friendmew_norm_smiley","path":"sprites/spr_friendmew_norm_smiley/spr_friendmew_norm_smiley.yy",},},
