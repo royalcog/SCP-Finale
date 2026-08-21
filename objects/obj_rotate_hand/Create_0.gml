@@ -10,3 +10,5 @@ image_xscale = (side == "left") ? hand_scale : -hand_scale; // mirror for the ri
 image_yscale = hand_scale;
 
 depth = -380;
+
+shake_jitter_amount = 0; // set >0 externally while the box is being shaken

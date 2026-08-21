@@ -151,6 +151,7 @@
     {"name":"obj_falling_hammer","order":3,"path":"objects/obj_falling_hammer/obj_falling_hammer.yy",},
     {"name":"obj_fight_sequencer","order":3,"path":"objects/obj_fight_sequencer/obj_fight_sequencer.yy",},
     {"name":"obj_fight_test_trigger","order":4,"path":"objects/obj_fight_test_trigger/obj_fight_test_trigger.yy",},
+    {"name":"obj_friend_attack_scissors_solo","order":1,"path":"objects/obj_friend_attack_scissors_solo/obj_friend_attack_scissors_solo.yy",},
     {"name":"obj_friend_attack3","order":2,"path":"objects/obj_friend_attack3/obj_friend_attack3.yy",},
     {"name":"obj_friend_attack8","order":1,"path":"objects/obj_friend_attack8/obj_friend_attack8.yy",},
     {"name":"obj_friend_bullet","order":2,"path":"objects/obj_friend_bullet/obj_friend_bullet.yy",},

@@ -14,3 +14,12 @@ if (instance_exists(obj_battlebox))
     image_angle = obj_battlebox.box_angle;
     draw_angle = image_angle;
 }
+
+// optional extra jitter — set by whatever's currently shaking the box
+// (e.g. obj_friend_attack8/9 during their "shake" phase) so the hands
+// visibly rattle in place instead of relying on the camera shake alone
+if (shake_jitter_amount > 0)
+{
+    x += random_range(-shake_jitter_amount, shake_jitter_amount);
+    y += random_range(-shake_jitter_amount, shake_jitter_amount);
+}

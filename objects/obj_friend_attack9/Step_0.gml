@@ -28,6 +28,7 @@ switch (phase)
             // position directly, and the two would otherwise fight
             if (instance_exists(hand_left))  hand_left.shake_jitter_amount  = 0;
             if (instance_exists(hand_right)) hand_right.shake_jitter_amount = 0;
+
             // capture the box's current look right as we start tearing it,
             // then hide the real instance (sequencer still owns its actual
             // lifetime) and draw our own splitting halves in its place
@@ -44,9 +45,6 @@ switch (phase)
                 obj_battlebox.visible = false;
             }
 
-            // wherever the hands actually are right now becomes their own
-            // baseline — no snap, and it stays correct even if their grip
-            // point isn't pixel-identical to the box's raw sprite edge
             hand_left_start_x  = instance_exists(hand_left)  ? hand_left.x  : tear_base_x;
             hand_right_start_x = instance_exists(hand_right) ? hand_right.x : (tear_base_x + tear_raw_w * tear_xscale);
 
@@ -61,9 +59,6 @@ switch (phase)
         var _t = clamp(timer / tear_duration, 0, 1);
         tear_split = lerp(0, 220, _t);
 
-        // hands track the exact same growing split as the box halves
-        // below, so they read as pulling the walls apart together
-        // instead of two separately-timed motions
         if (instance_exists(hand_left))  hand_left.x  = hand_left_start_x  - tear_split;
         if (instance_exists(hand_right)) hand_right.x = hand_right_start_x + tear_split;
 
@@ -71,6 +66,21 @@ switch (phase)
         {
             if (instance_exists(hand_left))  instance_destroy(hand_left);
             if (instance_exists(hand_right)) instance_destroy(hand_right);
+            phase = "flipping";
+            scr_screen_flip_to(180, flip_duration);
+        }
+    break;
+
+    case "flipping":
+        if (!scr_screen_flip_busy())
+        {
+            if (instance_exists(obj_mewmew))
+            {
+                obj_mewmew.sprite_index = spr_mewmew_shocked_backwards_corrupted;
+                obj_mewmew.image_index  = 0;
+                obj_mewmew.image_speed  = 0; // static pose, not animating
+            }
+
             phase = "dark_in";
         }
     break;
@@ -90,10 +100,8 @@ switch (phase)
             dark_active = true;
         }
 
-        // kill every active personal light (Gerson's lantern, Mewmew's
-        // glow, anything else) so nothing else stays visible through a
-        // punched-out circle while we fade — only our own whitelisted
-        // attack visuals should stay visible through the black
+        // kill every active personal light so nothing stays visible
+        // through a punched-out circle while we fade
         saved_light_states = [];
         var _n = instance_number(obj_light_source);
         for (var i = 0; i < _n; i++)
@@ -119,41 +127,46 @@ switch (phase)
 
         if (_ft >= 1)
         {
-            phase = "guns";
+            phase = "combo";
         }
     break;
 
-    case "guns":
-	    if (!guns_spawned)
-	    {
-	        guns_spawned = true;
-	        for (var i = 0; i < array_length(gun_corners); i++)
-	        {
-	            instance_create_depth(0, 0, -380, obj_friend_hand_gun, { side: gun_corners[i], fade_in_duration: guns_fade_in_duration });
-	        }
-	    }
+    case "combo":
+        if (!combo_started)
+        {
+            combo_started = true;
 
-	    if (!rock_started)
-	    {
-	        rock_delay--;
-	        if (rock_delay <= 0)
-	        {
-	            rock_started = true;
-	            rock_inst = instance_create_depth(0, 0, -380, obj_friend_attack_rock_solo, { duration: total_dark_frames - dark_timer });
-	        }
-	    }
+            // tail: the same Attack 4 pendulum, just scaled up so its swing
+            // reaches clear across the screen instead of just the box —
+            // scale is derived from the actual view width so it always
+            // covers the full screen regardless of resolution
+            var _view_w = camera_get_view_width(view_camera[0]);
+            var _tail_raw_h = sprite_get_height(spr_friend_tail);
+            var _big_scale = _view_w / _tail_raw_h;
 
-	    dark_timer++;
-	    if (dark_timer >= total_dark_frames)
-	    {
-	        with (obj_friend_hand_gun) instance_destroy();
-	        with (obj_friend_bullet)   instance_destroy();
-	        with (obj_friend_shrapnel) instance_destroy();
-	        if (instance_exists(rock_inst)) instance_destroy(rock_inst);
+            tail_inst = instance_create_depth(0, 0, -370, obj_friend_attack4, {
+                scale_override: _big_scale,
+                duration_override: total_dark_frames - dark_timer,
+                pivot_at_screen_center: true
+            });
 
-	        phase = "dark_out";
-	    }
-	break;
+            scissors_inst = instance_create_depth(0, 0, -380, obj_friend_attack_scissors_solo, { duration: total_dark_frames - dark_timer });
+
+            rock_inst = instance_create_depth(0, 0, -380, obj_friend_attack_rock_solo, { duration: total_dark_frames - dark_timer });
+        }
+
+        dark_timer++;
+        if (dark_timer >= total_dark_frames)
+        {
+            if (instance_exists(tail_inst))     instance_destroy(tail_inst);
+            if (instance_exists(scissors_inst)) instance_destroy(scissors_inst);
+            if (instance_exists(rock_inst))     instance_destroy(rock_inst);
+            with (obj_friend_hand_punch) instance_destroy();
+            with (obj_strip_flash)       instance_destroy();
+
+            phase = "dark_out";
+        }
+    break;
 
     case "dark_out":
         if (instance_exists(obj_soul)) instance_destroy(obj_soul);
@@ -171,6 +184,21 @@ switch (phase)
             obj_lighting.darkness_target_right = prev_darkness_right;
         }
 
-        instance_destroy();
+        phase = "unflipping";
+        scr_screen_flip_to(0, flip_duration);
+    break;
+
+    case "unflipping":
+        if (!scr_screen_flip_busy())
+        {
+            if (instance_exists(obj_mewmew))
+            {
+                obj_mewmew.sprite_index = spr_mewmew_walkup_corrupted;
+                obj_mewmew.image_index  = 0;
+                obj_mewmew.image_speed  = 0;
+            }
+
+            instance_destroy();
+        }
     break;
 }
