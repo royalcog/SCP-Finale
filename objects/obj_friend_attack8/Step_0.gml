@@ -34,6 +34,12 @@ switch (phase)
                 obj_battlebox.visible = false;
             }
 
+            // wherever the hands actually are right now becomes their own
+            // baseline — no snap, and it stays correct even if their grip
+            // point isn't pixel-identical to the box's raw sprite edge
+            hand_left_start_x  = instance_exists(hand_left)  ? hand_left.x  : tear_base_x;
+            hand_right_start_x = instance_exists(hand_right) ? hand_right.x : (tear_base_x + tear_raw_w * tear_xscale);
+
             timer = 0;
             phase = "tear";
         }
@@ -42,8 +48,14 @@ switch (phase)
     case "tear":
         timer++;
 
-        if (instance_exists(hand_left))  hand_left.x  -= 6;
-        if (instance_exists(hand_right)) hand_right.x += 6;
+        var _t = clamp(timer / tear_duration, 0, 1);
+        tear_split = lerp(0, 220, _t);
+
+        // hands track the exact same growing split as the box halves
+        // below, so they read as pulling the walls apart together
+        // instead of two separately-timed motions
+        if (instance_exists(hand_left))  hand_left.x  = hand_left_start_x  - tear_split;
+        if (instance_exists(hand_right)) hand_right.x = hand_right_start_x + tear_split;
 
         if (timer >= tear_duration)
         {
@@ -59,20 +71,19 @@ switch (phase)
             prev_darkness_left  = obj_lighting.darkness_target_left;
             prev_darkness_right = obj_lighting.darkness_target_right;
 
+            dark_fade_start_left  = obj_lighting.darkness_alpha_left;
+            dark_fade_start_right = obj_lighting.darkness_alpha_right;
+
             obj_lighting.darkness_target_left  = 1;
             obj_lighting.darkness_target_right = 1;
-            // snap instantly rather than riding the usual slow ambient
-            // lerp — this is a hard blackout beat, not a gradual dim
-            obj_lighting.darkness_alpha_left  = 1;
-            obj_lighting.darkness_alpha_right = 1;
 
             dark_active = true;
         }
 
         // kill every active personal light (Gerson's lantern, Mewmew's
         // glow, anything else) so nothing else stays visible through a
-        // punched-out circle — everything but our own whitelisted attack
-        // visuals should be fully hidden
+        // punched-out circle while we fade — only our own whitelisted
+        // attack visuals should stay visible through the black
         saved_light_states = [];
         var _n = instance_number(obj_light_source);
         for (var i = 0; i < _n; i++)
@@ -82,7 +93,24 @@ switch (phase)
             _inst.light_on = false;
         }
 
-        phase = "guns";
+        dark_fade_timer = 0;
+        phase = "dark_fading_in";
+    break;
+
+    case "dark_fading_in":
+        dark_fade_timer++;
+        var _ft = clamp(dark_fade_timer / dark_fade_duration, 0, 1);
+
+        if (instance_exists(obj_lighting))
+        {
+            obj_lighting.darkness_alpha_left  = lerp(dark_fade_start_left,  1, _ft);
+            obj_lighting.darkness_alpha_right = lerp(dark_fade_start_right, 1, _ft);
+        }
+
+        if (_ft >= 1)
+        {
+            phase = "guns";
+        }
     break;
 
     case "guns":
@@ -133,10 +161,6 @@ switch (phase)
             obj_lighting.darkness_target_right = prev_darkness_right;
         }
 
-        // don't wait around for the ambient fade to visually finish —
-        // obj_lighting keeps lerping on its own in the background, the
-        // sequencer can move straight on to closing the box and restoring
-        // the UI
         instance_destroy();
     break;
 }

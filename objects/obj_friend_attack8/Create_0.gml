@@ -11,6 +11,10 @@ shake_duration = 30;
 shake_timer = 0;
 
 tear_duration = 40; // frames the two halves spend sliding apart
+tear_split = 0;
+
+hand_left_start_x = 0;
+hand_right_start_x = 0;
 
 tear_sprite = -1;
 tear_image_index = 0;
@@ -20,6 +24,11 @@ tear_xscale = 1;
 tear_yscale = 1;
 tear_base_x = 0;
 tear_base_y = 0;
+
+dark_fade_duration = 30; // frames to smoothly fade to full black
+dark_fade_timer = 0;
+dark_fade_start_left = 0;
+dark_fade_start_right = 0;
 
 dark_active = false;
 prev_darkness_left = 0;
@@ -40,3 +49,7 @@ if (instance_exists(obj_friend)) { obj_friend.visible = false; }
 
 hand_left  = instance_create_depth(0, 0, -380, obj_rotate_hand, { side: "left"  });
 hand_right = instance_create_depth(0, 0, -380, obj_rotate_hand, { side: "right" });
+
+// start invisible so the "grab" phase actually has something to fade from
+if (instance_exists(hand_left))  hand_left.image_alpha  = 0;
+if (instance_exists(hand_right)) hand_right.image_alpha = 0;
