@@ -29,3 +29,9 @@ if (instance_exists(obj_battlebox)) obj_battlebox.target_scale_y = box_shrink_sc
 // very start of this attack, through the dialogue line and the laugh, until
 // something else happened to touch .visible.
 if (instance_exists(obj_friend)) { obj_friend.visible = true; }
+
+// capture Friend's actual pose going into this attack (whatever the story
+// script set beforehand) so we can put him back on exactly that after the
+// laugh, instead of guessing/hardcoding a specific sprite
+friend_restore_sprite = instance_exists(obj_friend) ? obj_friend.sprite_index : spr_friend_lookdown_animated;
+friend_restore_speed  = instance_exists(obj_friend) ? obj_friend.image_speed  : 1;

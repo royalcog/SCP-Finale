@@ -43,7 +43,7 @@ switch (phase)
             {
                 obj_mewmew.sprite_index = spr_mewmew_shocked_backwards_corrupted;
                 obj_mewmew.image_index  = 0;
-                obj_mewmew.image_speed  = 1;
+                obj_mewmew.image_speed  = 0; // static pose, not animating
             }
 
             phase = "laugh";
@@ -61,12 +61,13 @@ switch (phase)
             // obj_friend_laugh_attack drives Friend's sprite directly and
             // never restores it afterward, so he'd otherwise be stuck on
             // the tail end of the laugh animation for the rest of the
-            // attack — put him back to a normal acting pose here
+            // attack — put him back on whatever pose he actually had going
+            // into this attack (captured in Create), not a hardcoded guess
             if (instance_exists(obj_friend))
             {
-                obj_friend.sprite_index = spr_friend_lookdown_animated;
+                obj_friend.sprite_index = friend_restore_sprite;
                 obj_friend.image_index  = 0;
-                obj_friend.image_speed  = 1;
+                obj_friend.image_speed  = friend_restore_speed;
             }
 
             // obj_friend_attack2 expects to run against a normal, full-size
@@ -84,6 +85,17 @@ switch (phase)
     case "attack2":
         if (!instance_exists(attack2_inst))
         {
+            // re-assert Friend's restored pose — obj_friend_attack2 only
+            // ever touches his .visible, never his sprite, but pinning this
+            // again here costs nothing and rules it out as a source of him
+            // drifting to some other sprite after the replay
+            if (instance_exists(obj_friend))
+            {
+                obj_friend.sprite_index = friend_restore_sprite;
+                obj_friend.image_index  = 0;
+                obj_friend.image_speed  = friend_restore_speed;
+            }
+
             phase = "unflipping";
             scr_screen_flip_to(0, flip_duration);
         }
@@ -96,7 +108,7 @@ switch (phase)
             {
                 obj_mewmew.sprite_index = spr_mewmew_walkup_corrupted;
                 obj_mewmew.image_index  = 0;
-                obj_mewmew.image_speed  = 1;
+                obj_mewmew.image_speed  = 0; // static pose, not animating/walking
             }
 
             phase = "revert";
