@@ -1,5 +1,5 @@
 if (!variable_instance_exists(id, "side")) side = "left";
-if (!variable_instance_exists(id, "armed")) armed = true; // corner guns spawn unarmed and get switched on later by attack8/9
+if (!variable_instance_exists(id, "fade_in_duration")) fade_in_duration = 0; // >0 makes it spawn faded out, stationary, and hold fire until it's fully visible
 
 sprite_index = spr_friend_hand_gun;
 image_index = 0;
@@ -88,3 +88,7 @@ else
 image_angle = base_angle;
 depth = -380;
 move_vel = move_dir * move_speed;
+
+spawn_state = (fade_in_duration > 0) ? "fading_in" : "active";
+fade_timer = 0;
+image_alpha = (fade_in_duration > 0) ? 0 : 1;

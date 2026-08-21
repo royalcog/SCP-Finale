@@ -119,24 +119,11 @@ switch (phase)
 	        guns_spawned = true;
 	        for (var i = 0; i < array_length(gun_corners); i++)
 	        {
-	            instance_create_depth(0, 0, -380, obj_friend_hand_gun, { side: gun_corners[i], armed: false });
+	            instance_create_depth(0, 0, -380, obj_friend_hand_gun, { side: gun_corners[i], fade_in_duration: guns_fade_in_duration });
 	        }
 	    }
 
-	    if (!guns_armed)
-	    {
-	        guns_arm_delay--;
-	        if (guns_arm_delay <= 0)
-	        {
-	            guns_armed = true;
-	            with (obj_friend_hand_gun)
-	            {
-	                armed = true;
-	                shoot_timer = irandom_range(10, 30); // small stagger so all four don't fire in perfect unison
-	            }
-	        }
-	    }
-	    else if (!rock_started)
+	    if (!rock_started)
 	    {
 	        rock_delay--;
 	        if (rock_delay <= 0)

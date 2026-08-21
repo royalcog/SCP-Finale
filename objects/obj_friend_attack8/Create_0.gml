@@ -38,12 +38,11 @@ saved_light_states = [];
 gun_corners = ["top_left", "top_right", "bottom_left", "bottom_right"];
 guns_spawned = false;
 
-guns_armed = false;
-guns_arm_delay = 100; // ~1.6s after spawning before they start shooting
+guns_fade_in_duration = 45; // ~0.75s fade before the guns fire their first shot
 
 rock_started = false;
 rock_inst = noone;
-rock_delay = 100; // ~1.6s after guns start shooting before the punches join in
+rock_delay = guns_fade_in_duration + 100; // ~1.6s after guns start shooting before the punches join in
 
 total_dark_frames = 900; // ~15s — a few seconds past a full guns-only pass
 dark_timer = 0;
