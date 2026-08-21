@@ -42,9 +42,13 @@ var _scale_y = _gui_h / camera_get_view_height(view_camera[0]);
 for (var i = 0; i < array_length(lights); i++)
 {
     var _l = lights[i];
-    var _lx = (_l.x - _vx) * _scale_x;
-    var _ly = (_l.y - _vy) * _scale_y;
-    var _r = _l.radius * _scale_x;
+    // scr_room_to_gui is rotation-aware, so each character's light glow
+    // (Pink included) stays centered on them even while the camera is
+    // rotated, e.g. during a screen-flip attack
+    var _p = scr_room_to_gui(_l.x, _l.y);
+    var _lx = _p.x;
+    var _ly = _p.y;
+    var _r = _l.radius * _p.sx;
 
     var _steps = 16;
     for (var j = _steps; j > 0; j--)
@@ -58,17 +62,8 @@ for (var i = 0; i < array_length(lights); i++)
 // Full-brightness cutouts for battlebox, UI, and hammers
 if (instance_exists(obj_battlebox))
 {
-    var _caller_vx = _vx;
-    var _caller_vy = _vy;
-    var _caller_scale_x = _scale_x;
-    var _caller_scale_y = _scale_y;
-
     with (obj_battlebox)
     {
-        // mirror the same center-pivot rotation math as obj_battlebox's own
-        // Draw event — otherwise this cutout stays put (unrotated) while the
-        // real box spins away from it, showing up as a ghost/"shadow" of the
-        // box left behind at its original angle
         var _c = scr_box_center();
         var _half_w = (raw_width  * image_xscale) / 2;
         var _half_h = (raw_height * image_yscale) / 2;
@@ -76,9 +71,13 @@ if (instance_exists(obj_battlebox))
         var _draw_x = _c.x + _off.x;
         var _draw_y = _c.y + _off.y;
 
-        var _sx = (_draw_x - _caller_vx) * _caller_scale_x;
-        var _sy = (_draw_y - _caller_vy) * _caller_scale_y;
-        draw_sprite_ext(sprite_index, image_index, _sx, _sy, image_xscale * _caller_scale_x, image_yscale * _caller_scale_y, box_angle, c_white, 1);
+        // scr_room_to_gui is rotation-aware (accounts for the camera's own
+        // current view angle, e.g. during a screen-flip attack) — using it
+        // here instead of a separate inline vx/vy/scale calculation keeps
+        // this cutout lined up with the box no matter what the camera is
+        // doing, the same way the box itself always stays lined up with it
+        var _p = scr_room_to_gui(_draw_x, _draw_y);
+        draw_sprite_ext(sprite_index, image_index, _p.x, _p.y, image_xscale * _p.sx, image_yscale * _p.sy, box_angle + _p.angle, c_white, 1);
     }
 }
 

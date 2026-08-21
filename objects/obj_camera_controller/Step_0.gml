@@ -31,3 +31,5 @@ if (flipping)
         flipping = false;
     }
 }
+
+camera_set_view_angle(view_camera[0], flip_angle);
