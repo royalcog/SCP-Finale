@@ -12,11 +12,14 @@ cam_y = camera_get_view_y(view_camera[0]);
 shake_timer = 0;
 shake_intensity = 0;
 
-// full-screen flip — a post-process squish-flip applied to the whole
-// rendered frame (not an actual camera rotation), so nothing that manually
-// converts room coords to GUI space (hand punches, strip flashes, etc.)
-// gets thrown out of alignment with the soul/battlebox while it's active
-flip_progress = 0;  // 0 = normal, 1 = fully flipped
+// full-screen flip — a post-process rotation of the whole rendered frame
+// as a single flat image (not an actual camera rotation), so nothing that
+// manually converts room coords to GUI space (hand punches, strip flashes,
+// etc.) gets thrown out of alignment with the soul/battlebox while it's
+// active. flip_angle spins the captured frame around its own center —
+// 0 = normal, 180 = fully flipped (upside-down) — the same rotate-around-
+// center technique obj_battlebox already uses for its own spin.
+flip_angle = 0;
 flip_start = 0;
 flip_target = 0;
 flip_timer = 0;

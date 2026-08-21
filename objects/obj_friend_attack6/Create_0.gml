@@ -22,3 +22,10 @@ if (instance_exists(obj_battlebox)) obj_battlebox.target_scale_y = box_shrink_sc
 // he needs to stay visible so his laugh (obj_friend_laugh_attack, which
 // drives his sprite directly) is actually seen. obj_friend_attack2 still
 // hides/restores him itself when it's spawned below, same as always.
+//
+// The outer fight sequencer hides obj_friend right before it opens the box
+// and calls this attack's start_func (same as it does for every attack), so
+// we have to explicitly show him again here or he'd stay invisible from the
+// very start of this attack, through the dialogue line and the laugh, until
+// something else happened to touch .visible.
+if (instance_exists(obj_friend)) { obj_friend.visible = true; }

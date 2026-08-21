@@ -19,12 +19,12 @@ function scr_camera_shake(_intensity, _duration)
     }
 }
 
-function scr_screen_flip_to(_target, _duration)
+function scr_screen_flip_to(_target_angle, _duration)
 {
     with (obj_camera_controller)
     {
-        flip_start = flip_progress;
-        flip_target = _target;
+        flip_start = flip_angle;
+        flip_target = _target_angle;
         flip_timer = 0;
         flip_duration = _duration;
         flipping = true;

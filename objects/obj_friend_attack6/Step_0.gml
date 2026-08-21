@@ -22,7 +22,7 @@ switch (phase)
         if (timer <= 0)
         {
             phase = "flipping";
-            scr_screen_flip_to(1, flip_duration);
+            scr_screen_flip_to(180, flip_duration);
         }
     break;
 

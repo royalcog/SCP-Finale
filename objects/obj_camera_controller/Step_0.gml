@@ -25,7 +25,7 @@ if (flipping)
 {
     flip_timer++;
     var _ft = clamp(flip_timer / flip_duration, 0, 1);
-    flip_progress = lerp(flip_start, flip_target, _ft);
+    flip_angle = lerp(flip_start, flip_target, _ft);
     if (_ft >= 1)
     {
         flipping = false;
