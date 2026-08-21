@@ -1,4 +1,4 @@
-var _interior = scr_get_attack_bounds();
+var _interior = scr_get_flash_bounds();
 var _p1 = scr_room_to_gui(_interior.x1, _interior.y1);
 var _p2 = scr_room_to_gui(_interior.x2, _interior.y2);
 

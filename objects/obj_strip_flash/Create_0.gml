@@ -10,7 +10,7 @@ timer = blink_on_time;
 blink_count = 0;
 alpha = 1;
 
-var _interior = scr_get_attack_bounds();
+var _interior = scr_get_flash_bounds();
 world_pos = (orientation == "vertical")
     ? lerp(_interior.x1, _interior.x2, position_frac)
     : lerp(_interior.y1, _interior.y2, position_frac);

@@ -991,7 +991,7 @@ function scr_game_text(_text_id)
 				{ type: "talk", batch: [ { speaker: friend, text: "These crystals were meant to enlighten you, not turn you away from carving a new direction.", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "If this is how you wish to repay me, however, so be it.", keep_animating: true } ] },
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
-		        { type: "attack", kind: "custom", start_func: scr_start_friend_attack7 },
+		        { type: "attack", kind: "custom", start_func: scr_start_friend_attack8 },
 							
 				// ATTACK 2
 				{
@@ -1729,9 +1729,135 @@ function scr_game_text(_text_id)
 				{ type: "talk", batch: [ { speaker: spamton, text: "YOUR A [Donkey].", keep_animating: true } ] },
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
 				// { type: "attack", kind: "custom", start_func: scr_start_friend_laugh_attack },
+				
+				// ATTACK 13
+				{
+			        type: "ui_sequence",
+			        steps: [
+			            { sprite: spr_UI_SCP_full_1, delay: 30 },
+			            { sprite: spr_UI_SCP_full_2, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_3, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_4, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_5, snd: snd_select_reverb, delay: 30 },
+			        ]
+			    },
+				{ type: "barrage", data: scr_make_barrage_sequence(
+				    obj_friend, 20,
+				    [
+				        scr_make_throw(obj_spamton, spr_pipis, 65, c_yellow, c_fuchsia, true, {
+				            mode: "straight",
+				            scale: 2,
+				            travel_time: 30,
+				            pre_delay: 6,
+				            anticipation_frames: 10,
+				            after_obj: obj_barrage_impact_fx,
+				        }),
+				        scr_make_throw(obj_mewmew, spr_pinkbomb, 84, c_yellow, c_fuchsia, false, {
+						    mode: "straight",
+						    travel_time: 120,
+						    pre_delay: 6,
+						    anticipation_frames: 10,
+						    travel_sound: snd_bombfall,
+						    travel_sound_gap: 30,
+						    impact_sound: snd_bomb,
+						    beep_flash_sprite: spr_pinkbomb_white,
+						    beep_flash_duration: 10,
+						    after_obj: obj_barrage_cross_fx,
+						    after_sprite: spr_pinkbomb_explosion
+						}),
+				        scr_make_throw(obj_gerson, spr_hammer_barrage, 75, c_yellow, c_fuchsia, true, {
+				            mode: "straight",
+				            scale: 2,
+				            travel_time: 30,
+				            pre_delay: 6,
+				            anticipation_frames: 10,
+				            after_obj: obj_barrage_impact_fx,
+				        }),
+				        scr_make_throw(obj_jevil, spr_spade, 40, c_yellow, c_fuchsia, false, {
+				            mode: "straight",
+				            travel_time: 30,
+				            pre_delay: 6,
+				            anticipation_frames: 10,
+				            after_obj: obj_barrage_impact_fx,
+				        }),
+				    ]
+				)},
+				{ type: "talk", batch: [ { speaker: friend, text: "The point of the matter is that your false sense of 'pure' heroism is not enough to cover the cost of your past actions.", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: pink, text: "OUR actions???", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: gerson, text: "Don't forget, Friend. You were the one who brought this on yourself when you stole Pink's body.", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: gerson, text: "Could've avoided a lot of reproach.", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "Who said I needed your accreditation, Hammer?", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "I am well aware of my actions, and I do not regret any of them.", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: spamton, text: "YOUR [When the demon heart] IS [Come to confess]?", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "Confessions aren't necessary here, Spamton. My actions are self-justified.", keep_animating: true } ] },
+				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
+				// { type: "attack", kind: "custom", start_func: scr_start_friend_laugh_attack },
+				
+				// END OF BATTLE
+				{
+			        type: "ui_sequence",
+			        steps: [
+			            { sprite: spr_UI_SCP_full_1, delay: 30 },
+			            { sprite: spr_UI_SCP_full_2, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_3, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_4, snd: snd_select_reverb, delay: 30 },
+						{ sprite: spr_UI_SCP_full_5, snd: snd_select_reverb, delay: 30 },
+			        ]
+			    },
+				{ type: "barrage", data: scr_make_barrage_sequence(
+				    obj_friend, 20,
+				    [
+				        scr_make_throw(obj_spamton, spr_pipis, 65, c_yellow, c_fuchsia, true, {
+				            mode: "straight",
+				            scale: 2,
+				            travel_time: 30,
+				            pre_delay: 6,
+				            anticipation_frames: 10,
+				            after_obj: obj_barrage_impact_fx,
+				        }),
+				        scr_make_throw(obj_mewmew, spr_pinkbomb, 84, c_yellow, c_fuchsia, false, {
+						    mode: "straight",
+						    travel_time: 120,
+						    pre_delay: 6,
+						    anticipation_frames: 10,
+						    travel_sound: snd_bombfall,
+						    travel_sound_gap: 30,
+						    impact_sound: snd_bomb,
+						    beep_flash_sprite: spr_pinkbomb_white,
+						    beep_flash_duration: 10,
+						    after_obj: obj_barrage_cross_fx,
+						    after_sprite: spr_pinkbomb_explosion
+						}),
+				        scr_make_throw(obj_gerson, spr_hammer_barrage, 75, c_yellow, c_fuchsia, true, {
+				            mode: "straight",
+				            scale: 2,
+				            travel_time: 30,
+				            pre_delay: 6,
+				            anticipation_frames: 10,
+				            after_obj: obj_barrage_impact_fx,
+				        }),
+				        scr_make_throw(obj_jevil, spr_spade, 40, c_yellow, c_fuchsia, false, {
+				            mode: "straight",
+				            travel_time: 30,
+				            pre_delay: 6,
+				            anticipation_frames: 10,
+				            after_obj: obj_barrage_impact_fx,
+				        }),
+				    ]
+				)},
+				{ type: "talk", batch: [ { speaker: friend, text: "None of you understand the full statutes of this plan.", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "Then again, there are still more chapters of life to go before it comes into fruition.", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "So, I think it is due time for a final attack of sorts.", keep_animating: true } ] },
+				{ type: "talk", batch: [ { speaker: friend, text: "Let us commence", keep_animating: true } ] },
 		    ];		
 		break;
 /*
+Friend: None of you understand the full statutes of this plan.
+Friend: Then again, there are still more chapters of life to go before it comes into fruition.
+Friend: So, I think it is due time for a final attack of sorts.
+Friend: Let us commence
+(A sword comes from the left side of the screen and hits Friend to the right like Friend did to them earlier)
+(Battle Ends)
 
 */
 
@@ -1746,125 +1872,6 @@ function scr_game_text(_text_id)
 			scr_text("* So be it! I'll be further down the hall when you need me.", "friend");
 				scr_portrait_on_page(spr_friendmew_smiley);
 				scr_char_move_after_textbox(obj_friend, spr_friendmew_norm_walkright, true, 7, 0, .15, 60);
-		break;
-		
-		case "self_32":
-			scr_fade_warp_with_music(rm_four, 60, sng_empty);
-		break;
-		
-		case "self_33":
-			audio_stop_all();
-			global.song = { sound: sng_cmmmbutdestroyed, beats: 9999 };
-		    global.music = audio_play_sound(sng_cmmmbutdestroyed, 1, true, 1, 0, 1.225);
-		    global.song_start = current_time;
-			scr_text("* What the hell...?", "friend");
-				scr_set_var_on_page(obj_textbox, "hide_box_sprite", true);
-			scr_text("* Do you really think this will work on me?", "friend");
-			scr_text("* It's worth a shot.", "gerson");
-			scr_text("* Pink, try to connect with your body in some way.|* Kick the evil out of it.", "gerson");
-			scr_text("* I...", "mewmewghost");
-				scr_portrait_on_page(spr_pinkghost_sad)
-				scr_portrait_tail_off();
-			scr_text("* Body, please...", "mewmewghost");
-				scr_portrait_on_page(spr_pinkghost_sad)
-				scr_portrait_tail_off();
-			scr_text("* I know you're still in there..", "mewmewghost");
-				scr_portrait_on_page(spr_pinkghost_concerned)
-				scr_portrait_tail_off();
-			scr_text("* I need you...", "mewmewghost");
-				scr_portrait_on_page(spr_pinkghost_sad)
-				scr_portrait_tail_off();
-			scr_text("* ...mew...", "mewmewghost");
-				scr_portrait_on_page(spr_pinkghost_sad)
-				scr_portrait_tail_off();
-			scr_text("* Grovelling will not get you anywhere, Pink.|* This body is mine.", "friend");
-				scr_set_var_on_page(obj_datingsim_inverted, "portrait", spr_friendmew_talk);
-			scr_text("* Heh.", "gerson");
-			scr_text("* Can I help you, Hammer?", "friend");
-				scr_set_var_on_page(obj_datingsim_inverted, "portrait", spr_friendmew_questioning);
-			scr_text("* Yeah. Try not to get TOO tired.", "gerson");
-			scr_text("* Hm?", "friend");
-				
-		break;
-		
-		case "self_34":
-			audio_stop_all();
-			scr_snd_on_textbox(snd_hypnosis, 1);
-			scr_text("* Thanks, Jevil.", "gerson");
-				scr_set_var_on_page(obj_textbox, "hide_box_sprite", true);
-				scr_set_var_on_page(obj_datingsim_inverted, "portrait", spr_friendmew_talk);
-			scr_text("* OF COURSE! MY PLEASURE, PLEASURE!", "jevil");
-			scr_text("* I...", "friend");
-			scr_text("* Was that a whiff of hypnosis?", "friend");
-				scr_set_var_on_page(obj_datingsim_inverted, "portrait", spr_friendmew_talk_look_left);
-			scr_text("* How did you...", "friend");
-				scr_set_var_on_page(obj_datingsim_inverted, "portrait", spr_friendmew_talk);
-			scr_text("* You shouldn't all be here.", "friend");
-			scr_text("* Alas.", "friend");
-			scr_text("* Alas?", "gerson");
-			scr_text("* If this is truly what you all want, who am I to stand in your way?", "friend");
-				scr_set_var_on_page(obj_datingsim_inverted, "portrait", spr_friendmew_smiley);
-		break;
-		
-		case "self_35":
-			instance_deactivate_layer("Instances");
-			audio_play_sound(snd_impact, 1, false);
-			scr_fade_warp_with_music(rm_five, 60, sng_empty);
-			
-		break;
-		
-		case "self_36":
-			obj_textbox.hide_box_sprite = false;
-			instance_activate_layer("Instances");
-			scr_text("* IT WAS THAT EASY???", "mewmewghost");		
-				scr_portrait_on_page(spr_pinkghost_angry)
-				scr_portrait_tail_off();
-			scr_text("* Better I don't fall asleep out of boredom then risk losing this vessel.", "friend");
-			scr_text("* BODY!!! ARE YOU OKAY???", "mewmewghost");
-				scr_portrait_on_page(spr_pinkghost_yelling)
-				scr_portrait_tail_off();
-			scr_text("* I've... felt better... mew...", "mewmew");
-				scr_portrait_on_page(spr_mewmewspeaker_sad_corrupted);
-				scr_portrait_tail_off();
-			scr_text("* I applaud all of you for your coordination.|* Very impressive.", "friend");
-			scr_text("* You would all do very well on the side of good.", "friend");
-			scr_text("* Good?", "gerson");
-			scr_text("* Let me tell you something about 'good', Friend.", "gerson");
-			scr_text("* 'Good' is when the world is changed for the positive from a string of actions.", "gerson");
-			scr_text("* If your version of 'good' is to follow the prophecy, you may do so on your own time.", "gerson");
-			scr_text("* But if the path you choose is one of violence,", "gerson");
-			scr_text("* You will be heartily mistaken on your definition of 'good'.", "gerson");
-			scr_text("* Very intellectual, Hammer.|* Thank you for those brilliant words.", "friend");
-			scr_text("* One more thing, though.", "friend");
-			scr_text("* I assume none of you were ever told that Shadow Crystals allow us here to use others' magic attacks?", "friend");
-				scr_custom_call_after_textbox_delayed(scr_spadechunk_show, 0);
-				scr_obj_sprite_after_textbox_delayed(obj_spamton, spr_spamton_hurt, false, 60);
-				scr_obj_sprite_after_textbox_delayed(obj_jevil, spr_jevil_right_neutral, false, 60);
-		break;
-		
-		case "self_37":
-			with (obj_textbox)
-				{
-				    hide_box_sprite = false;
-				}		
-			scr_text("* Have fun in hell, the four of you.", "friend");
-			scr_fade_out_to_black();
-		break;
-		
-		case "self_38":
-			scr_snd_after_textbox(snd_hurt, 1);
-		break;
-		
-		case "self_39":
-			scr_snd_after_textbox(snd_hurt, 1);
-		break;
-		
-		case "self_40":
-			scr_snd_after_textbox(snd_hurt, 1);
-		break;
-		
-		case "self_41":
-			scr_snd_after_textbox(snd_hurt, 1);
 		break;
 	}
 		/*array_push(obj_cutscenehandler_midfightattacks.after_textbox_queue, {

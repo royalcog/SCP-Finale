@@ -1,16 +1,30 @@
 phase = "grab";
 timer = 0;
+depth = -200; // match the box's own layering for the tear visual
 
 hand_left = noone;
 hand_right = noone;
 hand_fade_speed = 0.04;
 
-tear_duration = 40; // frames the hands spend visibly pulling apart
+shake_intensity = 6;
+shake_duration = 30;
+shake_timer = 0;
 
-light_inst = noone;
+tear_duration = 40; // frames the two halves spend sliding apart
+
+tear_sprite = -1;
+tear_image_index = 0;
+tear_raw_w = 0;
+tear_raw_h = 0;
+tear_xscale = 1;
+tear_yscale = 1;
+tear_base_x = 0;
+tear_base_y = 0;
+
 dark_active = false;
 prev_darkness_left = 0;
 prev_darkness_right = 0;
+saved_light_states = [];
 
 gun_corners = ["top_left", "top_right", "bottom_left", "bottom_right"];
 guns_spawned = false;

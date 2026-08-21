@@ -136,6 +136,80 @@ with (obj_bar_int)
     draw_sprite_ext(sprite_index, image_index, _sx, _sy, image_xscale * _scale_x, image_yscale * _scale_y, image_angle, c_white, 1);
 }
 
+with (obj_rotate_hand)
+{
+    var _p = scr_room_to_gui(x, y);
+    draw_sprite_ext(sprite_index, image_index, _p.x, _p.y, image_xscale * _p.sx, image_yscale * _p.sy, image_angle + _p.angle, image_blend, image_alpha);
+}
+
+with (obj_friend_hand_punch)
+{
+    var _p = scr_room_to_gui(x, y);
+    draw_sprite_ext(sprite_index, image_index, _p.x, _p.y, image_xscale * _p.sx, image_yscale * _p.sy, image_angle + _p.angle, image_blend, image_alpha);
+}
+
+with (obj_friend_hand_gun)
+{
+    var _p = scr_room_to_gui(x, y);
+    draw_sprite_ext(sprite_index, image_index, _p.x, _p.y, image_xscale * _p.sx, image_yscale * _p.sy, image_angle + _p.angle, image_blend, image_alpha);
+}
+
+with (obj_friend_bullet)
+{
+    var _p = scr_room_to_gui(x, y);
+
+    if (phase == "travel")
+    {
+        draw_set_alpha(1);
+        draw_set_color(bullet_color);
+        draw_circle(_p.x, _p.y, bullet_radius * _p.sx, false);
+
+        var _pt = scr_room_to_gui(target_x, target_y);
+        draw_set_alpha(0.6);
+        draw_circle(_pt.x, _pt.y, (bullet_radius + 4) * _p.sx, true);
+        draw_set_alpha(1);
+    }
+    else if (phase == "blink")
+    {
+        if (blink_visible)
+        {
+            draw_set_color(c_red);
+            draw_circle(_p.x, _p.y, (bullet_radius + 2) * _p.sx, false);
+        }
+    }
+}
+draw_set_color(c_white);
+
+with (obj_friend_shrapnel)
+{
+    var _p = scr_room_to_gui(x, y);
+    draw_set_color(shrapnel_color);
+    draw_circle(_p.x, _p.y, shrapnel_radius * _p.sx, false);
+}
+draw_set_color(c_white);
+
+if (instance_exists(obj_soul) && obj_soul.image_alpha > 0)
+{
+    with (obj_soul)
+    {
+        var _p = scr_room_to_gui(round(x), round(y));
+        draw_sprite_ext(sprite_index, image_index, _p.x, _p.y, image_xscale * _p.sx, image_yscale * _p.sy, image_angle + _p.angle, image_blend, image_alpha);
+    }
+}
+
+with (obj_damage_number)
+{
+    var _p = scr_room_to_gui(x + x_offset, y + y_offset);
+
+    draw_set_font(fnt_greaterdetermination);
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_middle);
+    draw_text_transformed_color(_p.x, _p.y, string(damage_amount), scale * _p.sx, scale * _p.sy, _p.angle,
+        color_top, color_top, color_bottom, color_bottom, alpha);
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_top);
+}
+
 // Reset settings
 draw_set_alpha(1);
 gpu_set_blendmode(bm_normal);

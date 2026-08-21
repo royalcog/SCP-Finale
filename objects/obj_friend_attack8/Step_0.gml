@@ -8,6 +8,32 @@ switch (phase)
             (!instance_exists(hand_right) || hand_right.image_alpha >= 1))
         {
             audio_play_sound(snd_impact, 5, false);
+            scr_camera_shake(shake_intensity, shake_duration);
+            shake_timer = shake_duration;
+            phase = "shake";
+        }
+    break;
+
+    case "shake":
+        shake_timer--;
+        if (shake_timer <= 0)
+        {
+            // capture the box's current look right as we start tearing it,
+            // then hide the real instance (sequencer still owns its actual
+            // lifetime) and draw our own splitting halves in its place
+            if (instance_exists(obj_battlebox))
+            {
+                tear_sprite       = obj_battlebox.sprite_index;
+                tear_image_index  = obj_battlebox.image_index;
+                tear_raw_w        = obj_battlebox.raw_width;
+                tear_raw_h        = obj_battlebox.raw_height;
+                tear_xscale       = obj_battlebox.image_xscale;
+                tear_yscale       = obj_battlebox.image_yscale;
+                tear_base_x       = obj_battlebox.x;
+                tear_base_y       = obj_battlebox.y;
+                obj_battlebox.visible = false;
+            }
+
             timer = 0;
             phase = "tear";
         }
@@ -15,11 +41,6 @@ switch (phase)
 
     case "tear":
         timer++;
-
-        // hide the box the instant the pull starts — the sequencer still
-        // owns the real instance and will close/destroy it normally once
-        // this whole attack ends, so we only ever touch its visibility
-        if (timer == 1 && instance_exists(obj_battlebox)) obj_battlebox.visible = false;
 
         if (instance_exists(hand_left))  hand_left.x  -= 6;
         if (instance_exists(hand_right)) hand_right.x += 6;
@@ -37,28 +58,34 @@ switch (phase)
         {
             prev_darkness_left  = obj_lighting.darkness_target_left;
             prev_darkness_right = obj_lighting.darkness_target_right;
+
             obj_lighting.darkness_target_left  = 1;
             obj_lighting.darkness_target_right = 1;
+            // snap instantly rather than riding the usual slow ambient
+            // lerp — this is a hard blackout beat, not a gradual dim
+            obj_lighting.darkness_alpha_left  = 1;
+            obj_lighting.darkness_alpha_right = 1;
+
             dark_active = true;
         }
 
-        // a light that just follows the soul, so it's the only thing
-        // still visible once the darkness fully settles in
-        if (instance_exists(obj_soul))
+        // kill every active personal light (Gerson's lantern, Mewmew's
+        // glow, anything else) so nothing else stays visible through a
+        // punched-out circle — everything but our own whitelisted attack
+        // visuals should be fully hidden
+        saved_light_states = [];
+        var _n = instance_number(obj_light_source);
+        for (var i = 0; i < _n; i++)
         {
-            light_inst = instance_create_depth(obj_soul.x, obj_soul.y, 0, obj_light_source, { light_on: true, light_radius: 140 });
+            var _inst = instance_find(obj_light_source, i);
+            array_push(saved_light_states, { inst: _inst, was_on: _inst.light_on });
+            _inst.light_on = false;
         }
 
         phase = "guns";
     break;
 
     case "guns":
-        if (instance_exists(light_inst) && instance_exists(obj_soul))
-        {
-            light_inst.x = obj_soul.x;
-            light_inst.y = obj_soul.y;
-        }
-
         if (!guns_spawned)
         {
             guns_spawned = true;
@@ -91,9 +118,14 @@ switch (phase)
     break;
 
     case "dark_out":
-        if (instance_exists(light_inst)) instance_destroy(light_inst);
-        if (instance_exists(obj_soul))   instance_destroy(obj_soul);
+        if (instance_exists(obj_soul)) instance_destroy(obj_soul);
         if (instance_exists(obj_battlebox)) obj_battlebox.visible = true;
+
+        for (var i = 0; i < array_length(saved_light_states); i++)
+        {
+            var _entry = saved_light_states[i];
+            if (instance_exists(_entry.inst)) _entry.inst.light_on = _entry.was_on;
+        }
 
         if (instance_exists(obj_lighting))
         {
@@ -101,17 +133,10 @@ switch (phase)
             obj_lighting.darkness_target_right = prev_darkness_right;
         }
 
-        phase = "fading_in";
-    break;
-
-    case "fading_in":
-        // ride obj_lighting's own smooth lerp back down to the ambient
-        // level we captured, then this attack is done
-        if (!instance_exists(obj_lighting) ||
-            (abs(obj_lighting.darkness_alpha_left  - prev_darkness_left)  < 0.01 &&
-             abs(obj_lighting.darkness_alpha_right - prev_darkness_right) < 0.01))
-        {
-            instance_destroy();
-        }
+        // don't wait around for the ambient fade to visually finish —
+        // obj_lighting keeps lerping on its own in the background, the
+        // sequencer can move straight on to closing the box and restoring
+        // the UI
+        instance_destroy();
     break;
 }

@@ -19,6 +19,8 @@ switch (state)
         }
         else if (_step.type == "attack")
 		{
+		    pre_attack_ui_sprite = instance_exists(obj_UI) ? obj_UI.sprite_index : spr_UI_Pink;
+
 		    scr_ui_hide();
 		    global.fight_attack_active = true;
 
@@ -102,12 +104,9 @@ switch (state)
 	    if (instance_exists(_step.attacker) && !_step.attacker.attack_active)
 	    {
 	        global.fight_attack_active = false;
-	        scr_ui_show();
+	        scr_ui_show(pre_attack_ui_sprite);
 			if (instance_exists(obj_friend)) { obj_friend.visible = true; }
 			with (obj_fist_slam_cutscene) { visible = true; }
-
-	        if (instance_exists(obj_friend)) { obj_friend.visible = true; }
-	        with (obj_fist_slam_cutscene) { visible = true; }
 
 	        if (instance_exists(obj_soul))
 	        {
@@ -123,7 +122,7 @@ switch (state)
 	    if (!instance_exists(custom_inst))
 	    {
 	        global.fight_attack_active = false;
-	        scr_ui_show();
+	        scr_ui_show(pre_attack_ui_sprite);
 
 	        if (instance_exists(obj_friend)) { obj_friend.visible = true; }
 	        with (obj_fist_slam_cutscene) { visible = true; }
