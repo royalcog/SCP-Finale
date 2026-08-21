@@ -60,7 +60,7 @@ for (var i = 0; i < array_length(lights); i++)
 }
 
 // Full-brightness cutouts for battlebox, UI, and hammers
-if (instance_exists(obj_battlebox))
+if (instance_exists(obj_battlebox) && obj_battlebox.visible)
 {
     with (obj_battlebox)
     {

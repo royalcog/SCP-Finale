@@ -10,7 +10,7 @@ image_yscale = hand_scale;
 already_hit = false;
 depth = -380;
 
-var _interior = scr_get_box_interior();
+var _interior = scr_get_attack_bounds();
 var _cx = lerp(_interior.x1, _interior.x2, 0.5);
 var _cy = lerp(_interior.y1, _interior.y2, 0.5);
 var _perp = variable_instance_exists(id, "fixed_coord") ? fixed_coord : undefined;
