@@ -114,36 +114,49 @@ switch (phase)
     break;
 
     case "guns":
-        if (!guns_spawned)
-        {
-            guns_spawned = true;
-            for (var i = 0; i < array_length(gun_corners); i++)
-            {
-                instance_create_depth(0, 0, -380, obj_friend_hand_gun, { side: gun_corners[i] });
-            }
-        }
+	    if (!guns_spawned)
+	    {
+	        guns_spawned = true;
+	        for (var i = 0; i < array_length(gun_corners); i++)
+	        {
+	            instance_create_depth(0, 0, -380, obj_friend_hand_gun, { side: gun_corners[i], armed: false });
+	        }
+	    }
 
-        if (!rock_started)
-        {
-            rock_delay--;
-            if (rock_delay <= 0)
-            {
-                rock_started = true;
-                rock_inst = instance_create_depth(0, 0, -380, obj_friend_attack_rock_solo, { duration: total_dark_frames - dark_timer });
-            }
-        }
+	    if (!guns_armed)
+	    {
+	        guns_arm_delay--;
+	        if (guns_arm_delay <= 0)
+	        {
+	            guns_armed = true;
+	            with (obj_friend_hand_gun)
+	            {
+	                armed = true;
+	                shoot_timer = irandom_range(10, 30); // small stagger so all four don't fire in perfect unison
+	            }
+	        }
+	    }
+	    else if (!rock_started)
+	    {
+	        rock_delay--;
+	        if (rock_delay <= 0)
+	        {
+	            rock_started = true;
+	            rock_inst = instance_create_depth(0, 0, -380, obj_friend_attack_rock_solo, { duration: total_dark_frames - dark_timer });
+	        }
+	    }
 
-        dark_timer++;
-        if (dark_timer >= total_dark_frames)
-        {
-            with (obj_friend_hand_gun) instance_destroy();
-            with (obj_friend_bullet)   instance_destroy();
-            with (obj_friend_shrapnel) instance_destroy();
-            if (instance_exists(rock_inst)) instance_destroy(rock_inst);
+	    dark_timer++;
+	    if (dark_timer >= total_dark_frames)
+	    {
+	        with (obj_friend_hand_gun) instance_destroy();
+	        with (obj_friend_bullet)   instance_destroy();
+	        with (obj_friend_shrapnel) instance_destroy();
+	        if (instance_exists(rock_inst)) instance_destroy(rock_inst);
 
-            phase = "dark_out";
-        }
-    break;
+	        phase = "dark_out";
+	    }
+	break;
 
     case "dark_out":
         if (instance_exists(obj_soul)) instance_destroy(obj_soul);
