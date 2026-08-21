@@ -26,3 +26,21 @@ flip_target = 0;
 flip_timer = 0;
 flip_duration = 1;
 flipping = false;
+
+// pendulum tilt — an oscillating angle offset added on top of flip_angle,
+// used mid-attack (e.g. attack7's gun phase) for a rocking-camera effect.
+// Independent of the flip lerp above so it can run at the same time.
+tilting = false;
+tilt_timer = 0;
+tilt_amplitude = 0;
+tilt_period = 90; // frames per full left-right-left cycle
+
+tilt_ramping_in = false;
+tilt_ramp_timer = 0;
+tilt_ramp_duration = 60; // frames to ease the swing up to full amplitude
+
+tilt_offset = 0;
+tilt_stopping = false;
+tilt_stop_start = 0;
+tilt_stop_timer = 0;
+tilt_stop_duration = 20; // frames to ease back to level once stopped

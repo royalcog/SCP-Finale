@@ -36,6 +36,36 @@ function scr_screen_flip_busy()
     return instance_exists(obj_camera_controller) && obj_camera_controller.flipping;
 }
 
+function scr_camera_tilt_start(_amplitude, _period, _ramp_in_duration = 60)
+{
+    with (obj_camera_controller)
+    {
+        tilting = true;
+        tilt_stopping = false;
+        tilt_timer = 0;
+        tilt_amplitude = _amplitude;
+        tilt_period = _period;
+
+        tilt_ramping_in = _ramp_in_duration > 0;
+        tilt_ramp_timer = 0;
+        tilt_ramp_duration = _ramp_in_duration;
+    }
+}
+
+function scr_camera_tilt_stop()
+{
+    with (obj_camera_controller)
+    {
+        if (tilting)
+        {
+            tilting = false;
+            tilt_stopping = true;
+            tilt_stop_start = tilt_offset;
+            tilt_stop_timer = 0;
+        }
+    }
+}
+
 function scr_start_pan_and_reveal_left()
 {
     scr_extend_bg_left(10, "Tiles_1");

@@ -991,7 +991,7 @@ function scr_game_text(_text_id)
 				{ type: "talk", batch: [ { speaker: friend, text: "These crystals were meant to enlighten you, not turn you away from carving a new direction.", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "If this is how you wish to repay me, however, so be it.", keep_animating: true } ] },
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
-		        { type: "attack", kind: "custom", start_func: scr_start_friend_attack6 },
+		        { type: "attack", kind: "custom", start_func: scr_start_friend_attack7 },
 							
 				// ATTACK 2
 				{
@@ -1051,7 +1051,7 @@ function scr_game_text(_text_id)
 				{ type: "talk", batch: [ { speaker: friend, text: "Revenge?", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: gerson, text: "I was going more for justice, but if that's what you wanna call it.", keep_animating: true } ] },
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
-				{ type: "attack", kind: "custom", start_func: scr_start_friend_attack6 },
+				{ type: "attack", kind: "custom", start_func: scr_start_friend_attack7 },
 				
 				// ATTACK 3
 				{

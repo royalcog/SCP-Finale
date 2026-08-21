@@ -31,5 +31,31 @@ if (flipping)
         flipping = false;
     }
 }
+if (tilting)
+{
+    tilt_timer++;
 
-camera_set_view_angle(view_camera[0], flip_angle);
+    var _amp = tilt_amplitude;
+    if (tilt_ramping_in)
+    {
+        tilt_ramp_timer++;
+        var _rt = clamp(tilt_ramp_timer / tilt_ramp_duration, 0, 1);
+        _amp = lerp(0, tilt_amplitude, _rt);
+        if (_rt >= 1) tilt_ramping_in = false;
+    }
+
+    tilt_offset = sin(tilt_timer * (2 * pi / tilt_period)) * _amp;
+}
+else if (tilt_stopping)
+{
+    tilt_stop_timer++;
+    var _st = clamp(tilt_stop_timer / tilt_stop_duration, 0, 1);
+    tilt_offset = lerp(tilt_stop_start, 0, _st);
+    if (_st >= 1)
+    {
+        tilt_stopping = false;
+        tilt_offset = 0;
+    }
+}
+
+camera_set_view_angle(view_camera[0], flip_angle + tilt_offset);
