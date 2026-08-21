@@ -11,3 +11,15 @@ cam_x = camera_get_view_x(view_camera[0]);
 cam_y = camera_get_view_y(view_camera[0]);
 shake_timer = 0;
 shake_intensity = 0;
+
+// full-screen flip — a post-process squish-flip applied to the whole
+// rendered frame (not an actual camera rotation), so nothing that manually
+// converts room coords to GUI space (hand punches, strip flashes, etc.)
+// gets thrown out of alignment with the soul/battlebox while it's active
+flip_progress = 0;  // 0 = normal, 1 = fully flipped
+flip_start = 0;
+flip_target = 0;
+flip_timer = 0;
+flip_duration = 1;
+flipping = false;
+flip_surface = -1;

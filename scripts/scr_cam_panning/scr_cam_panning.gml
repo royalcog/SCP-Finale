@@ -19,6 +19,23 @@ function scr_camera_shake(_intensity, _duration)
     }
 }
 
+function scr_screen_flip_to(_target, _duration)
+{
+    with (obj_camera_controller)
+    {
+        flip_start = flip_progress;
+        flip_target = _target;
+        flip_timer = 0;
+        flip_duration = _duration;
+        flipping = true;
+    }
+}
+
+function scr_screen_flip_busy()
+{
+    return instance_exists(obj_camera_controller) && obj_camera_controller.flipping;
+}
+
 function scr_start_pan_and_reveal_left()
 {
     scr_extend_bg_left(10, "Tiles_1");

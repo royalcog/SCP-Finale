@@ -21,32 +21,32 @@ switch (phase)
         timer--;
         if (timer <= 0)
         {
-            phase = "flip";
+            phase = "flipping";
+            scr_screen_flip_to(1, flip_duration);
+        }
+    break;
 
-            camera_set_view_angle(view_camera[0], 180);
-
+    case "flipping":
+        if (!scr_screen_flip_busy())
+        {
             if (instance_exists(obj_mewmew))
             {
                 obj_mewmew.sprite_index = spr_mewmew_shocked_backwards_corrupted;
                 obj_mewmew.image_index  = 0;
-                obj_mewmew.image_speed  = 0;
+                obj_mewmew.image_speed  = 1;
             }
 
-            timer = flip_hold_timer;
-        }
-    break;
-
-    case "flip":
-        timer--;
-        if (timer <= 0)
-        {
             phase = "laugh";
-            instance_create_depth(0, 0, 0, obj_friend_laugh_attack);
         }
     break;
 
     case "laugh":
-        if (instance_number(obj_friend_laugh_attack) == 0)
+        if (!laugh_started)
+        {
+            laugh_started = true;
+            instance_create_depth(0, 0, 0, obj_friend_laugh_attack);
+        }
+        else if (instance_number(obj_friend_laugh_attack) == 0)
         {
             phase = "attack2";
             attack2_inst = instance_create_depth(0, 0, 0, obj_friend_attack2);
@@ -56,20 +56,27 @@ switch (phase)
     case "attack2":
         if (!instance_exists(attack2_inst))
         {
+            phase = "unflipping";
+            scr_screen_flip_to(0, flip_duration);
+        }
+    break;
+
+    case "unflipping":
+        if (!scr_screen_flip_busy())
+        {
+            if (instance_exists(obj_mewmew))
+            {
+                obj_mewmew.sprite_index = spr_mewmew_walkup_corrupted;
+                obj_mewmew.image_index  = 0;
+                obj_mewmew.image_speed  = 1;
+            }
+
             phase = "revert";
         }
     break;
 
     case "revert":
-        camera_set_view_angle(view_camera[0], 0);
-
-        if (instance_exists(obj_mewmew))
-        {
-            obj_mewmew.sprite_index = spr_mewmew_walkup_corrupted;
-            obj_mewmew.image_index  = 0;
-            obj_mewmew.image_speed  = 0;
-        }
-
+        if (instance_exists(obj_battlebox)) obj_battlebox.target_scale_y = 1;
         if (instance_exists(obj_friend)) { obj_friend.visible = true; }
 
         instance_destroy();

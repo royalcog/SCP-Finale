@@ -1,7 +1,9 @@
 // safety net in case this attack instance is ever destroyed mid-sequence —
-// make sure the screen isn't left flipped, Pink isn't stuck scared-backwards,
-// and Friend is visible again
-camera_set_view_angle(view_camera[0], 0);
+// make sure the screen isn't left flipped, the box isn't left shrunk,
+// Pink isn't stuck scared-backwards, and Friend is visible again
+scr_screen_flip_to(0, 1);
+
+if (instance_exists(obj_battlebox)) obj_battlebox.target_scale_y = 1;
 
 if (instance_exists(obj_mewmew))
 {
