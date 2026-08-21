@@ -4,7 +4,7 @@ if (!started)
     started = true;
     if (instance_exists(obj_friend))
     {
-        obj_friend.sprite_index = spr_friendmew_laugh;
+        obj_friend.sprite_index = spr_friend_laugh;
         obj_friend.image_index = 0;
         obj_friend.image_speed = 1;
     }

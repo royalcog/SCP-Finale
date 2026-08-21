@@ -582,6 +582,15 @@ function scr_game_text(_text_id)
 			scr_text("* HELL YEAH!!!", "mewmewghost");
 				scr_portrait_on_page(spr_pinkghost_angry);
 				scr_portrait_tail_off();
+			scr_text("* Pink, seeing as you can't take physical damage, you're our best bet on recieving it.", "gerson");
+				scr_portrait_on_page(spr_pinkghost_angry);
+				scr_portrait_tail_off();
+			scr_text("* Is that alright?", "gerson");
+				scr_portrait_on_page(spr_pinkghost_angry);
+				scr_portrait_tail_off();
+			scr_text("* All good with us, mew!", "mewmew");
+				scr_portrait_on_page(spr_mewmewspeaker_talkhappy_corrupted);
+			scr_text("* Alright.", "gerson");
 			scr_text("* Let's get 'em.", "gerson");
 		break;
 		
