@@ -11,6 +11,16 @@ switch (phase)
         }
         else if (!instance_exists(dialogue_inst))
         {
+            phase = "waiting_shrink";
+        }
+    break;
+
+    // make sure the box has fully finished settling into its shrunk height
+    // BEFORE the shake/flip starts, so nothing on screen is still drifting
+    // into place at the same time the flip happens
+    case "waiting_shrink":
+        if (scr_box_scale_settled())
+        {
             phase = "shake";
             scr_camera_shake(shake_intensity, shake_duration);
             timer = shake_duration;
@@ -48,6 +58,24 @@ switch (phase)
         }
         else if (instance_number(obj_friend_laugh_attack) == 0)
         {
+            // obj_friend_laugh_attack drives Friend's sprite directly and
+            // never restores it afterward, so he'd otherwise be stuck on
+            // the tail end of the laugh animation for the rest of the
+            // attack — put him back to a normal acting pose here
+            if (instance_exists(obj_friend))
+            {
+                obj_friend.sprite_index = spr_friend_lookdown_animated;
+                obj_friend.image_index  = 0;
+                obj_friend.image_speed  = 1;
+            }
+
+            // obj_friend_attack2 expects to run against a normal, full-size
+            // box (same as every other time it's played) — restore scale
+            // before handing off to it so its own box-scale moves (paper's
+            // squeeze, rock's shrink) aren't starting from our already-
+            // shrunk state
+            if (instance_exists(obj_battlebox)) obj_battlebox.target_scale_y = 1;
+
             phase = "attack2";
             attack2_inst = instance_create_depth(0, 0, 0, obj_friend_attack2);
         }
