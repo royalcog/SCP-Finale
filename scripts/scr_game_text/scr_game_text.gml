@@ -991,7 +991,7 @@ function scr_game_text(_text_id)
 				{ type: "talk", batch: [ { speaker: friend, text: "These crystals were meant to enlighten you, not turn you away from carving a new direction.", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "If this is how you wish to repay me, however, so be it.", keep_animating: true } ] },
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
-		        { type: "attack", kind: "custom", start_func: scr_start_friend_attack10 },
+		        { type: "attack", kind: "custom", start_func: scr_start_friend_attack1 },
 							
 				// ATTACK 2
 				{
@@ -1051,7 +1051,7 @@ function scr_game_text(_text_id)
 				{ type: "talk", batch: [ { speaker: friend, text: "Revenge?", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: gerson, text: "I was going more for justice, but if that's what you wanna call it.", keep_animating: true } ] },
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
-				{ type: "attack", kind: "custom", start_func: scr_start_friend_attack9 },
+				{ type: "attack", kind: "custom", start_func: scr_start_friend_attack2 },
 				
 				// ATTACK 3
 				{
@@ -1251,7 +1251,7 @@ function scr_game_text(_text_id)
 				{ type: "talk", batch: [ { speaker: friend, text: "Do not fret, Hammer. I assume you'll hear about it from your protege soon enough.", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: gerson, text: "...", keep_animating: true } ] },
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
-				// { type: "attack", kind: "custom", start_func: scr_start_friend_laugh_attack },
+				{ type: "attack", kind: "custom", start_func: scr_start_friend_attack5 },
 				
 				// ATTACK 6
 				{
@@ -1317,7 +1317,7 @@ function scr_game_text(_text_id)
 				{ type: "talk", batch: [ { speaker: pink, text: "What a narcissist...", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "Just honest, Pink. Just honest.", keep_animating: true } ] },
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
-				// { type: "attack", kind: "custom", start_func: scr_start_friend_laugh_attack },
+				{ type: "attack", kind: "custom", start_func: scr_start_friend_attack6 },
 				
 				// ATTACK 7
 				{
@@ -1395,7 +1395,7 @@ function scr_game_text(_text_id)
 				{ type: "talk", batch: [ { speaker: friend, text: "So cranky, Gerson. Does the old coot need a nap?", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: gerson, text: "...", keep_animating: true } ] },
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
-				// { type: "attack", kind: "custom", start_func: scr_start_friend_laugh_attack },
+				{ type: "attack", kind: "custom", start_func: scr_start_friend_attack7 },
 				
 				// ATTACK 8
 				{
@@ -1461,7 +1461,7 @@ function scr_game_text(_text_id)
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_smiley },
 				{ type: "talk", batch: [ { speaker: friend, text: "I'll try to remember that the next time I give out my crystals.", keep_animating: true } ] },
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
-				// { type: "attack", kind: "custom", start_func: scr_start_friend_laugh_attack },
+				{ type: "attack", kind: "custom", start_func: scr_start_friend_attack2 },
 				
 				// ATTACK 9
 				{
@@ -1529,7 +1529,7 @@ function scr_game_text(_text_id)
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_smiley },
 				{ type: "talk", batch: [ { speaker: friend, text: "And look where that got you, my friend.", keep_animating: true } ] },
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
-				// { type: "attack", kind: "custom", start_func: scr_start_friend_laugh_attack },
+				{ type: "attack", kind: "custom", start_func: scr_start_friend_attack3 },
 				
 				// ATTACK 10
 				{
@@ -1599,7 +1599,7 @@ function scr_game_text(_text_id)
 				{ type: "talk", batch: [ { speaker: pink, text: "Who's... they?", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "Oh, how the plot thickens!", keep_animating: true } ] },
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
-				// { type: "attack", kind: "custom", start_func: scr_start_friend_laugh_attack },
+				{ type: "attack", kind: "custom", start_func: scr_start_friend_attack10 },
 				
 				// ATTACK 11
 				{
@@ -1663,7 +1663,7 @@ function scr_game_text(_text_id)
 				{ type: "talk", batch: [ { speaker: friend, text: "Why else would an old scholar have giant statues that resemble themselves in their study?", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: gerson, text: "For decor???", keep_animating: true } ] },
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
-				// { type: "attack", kind: "custom", start_func: scr_start_friend_laugh_attack },
+				{ type: "attack", kind: "custom", start_func: scr_start_friend_attack4 },
 				
 				// ATTACK 12
 				{
@@ -1728,7 +1728,7 @@ function scr_game_text(_text_id)
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_far_left },
 				{ type: "talk", batch: [ { speaker: spamton, text: "YOUR A [Donkey].", keep_animating: true } ] },
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
-				// { type: "attack", kind: "custom", start_func: scr_start_friend_laugh_attack },
+				{ type: "attack", kind: "custom", start_func: scr_start_friend_attack9 },
 				
 				// ATTACK 13
 				{
@@ -1791,7 +1791,7 @@ function scr_game_text(_text_id)
 				{ type: "talk", batch: [ { speaker: spamton, text: "YOUR [When the demon heart] IS [Come to confess]?", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "Confessions aren't necessary here, Spamton. My actions are self-justified.", keep_animating: true } ] },
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
-				// { type: "attack", kind: "custom", start_func: scr_start_friend_laugh_attack },
+				{ type: "attack", kind: "custom", start_func: scr_start_friend_attack8 },
 				
 				// END OF BATTLE
 				{
