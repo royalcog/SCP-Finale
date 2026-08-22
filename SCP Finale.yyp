@@ -673,6 +673,7 @@
     {"id":{"name":"spr_ralsei_walk_up","path":"sprites/spr_ralsei_walk_up/spr_ralsei_walk_up.yy",},},
     {"id":{"name":"spr_ralsei","path":"sprites/spr_ralsei/spr_ralsei.yy",},},
     {"id":{"name":"spr_ralseicastle","path":"sprites/spr_ralseicastle/spr_ralseicastle.yy",},},
+    {"id":{"name":"spr_roaringknight_sword","path":"sprites/spr_roaringknight_sword/spr_roaringknight_sword.yy",},},
     {"id":{"name":"spr_roark_ball_to_knight","path":"sprites/spr_roark_ball_to_knight/spr_roark_ball_to_knight.yy",},},
     {"id":{"name":"spr_roark_ball","path":"sprites/spr_roark_ball/spr_roark_ball.yy",},},
     {"id":{"name":"spr_roark_droop_up","path":"sprites/spr_roark_droop_up/spr_roark_droop_up.yy",},},
