@@ -2,8 +2,6 @@ phase = "grab";
 timer = 0;
 depth = -200; // match the box's own layering for the tear visual
 
-flip_duration = 40; // frames for the screen to fluidly flip over (and back)
-
 hand_left = noone;
 hand_right = noone;
 hand_fade_speed = 0.04;
@@ -38,25 +36,19 @@ prev_darkness_right = 0;
 saved_light_states = [];
 
 // Attack 8's guns+solo-rock combo is swapped out here for a tail + scissors
-// + rock combo, all three running at once
+// combo (no rock, screen stays upright the whole time)
 combo_started = false;
 tail_inst = noone;
 scissors_inst = noone;
-rock_inst = noone;
 
 total_dark_frames = 900; // ~15s, same pacing as Attack 8's dark window
 dark_timer = 0;
-
-// screen turns upside down partway through the dark section (once the
-// tail/scissors/rock combo is already running under a normal camera) —
-// see the flip_triggered / mewmew_flipped handling in the "combo" case in Step
-flip_triggered = false;
-mewmew_flipped = false;
 
 if (instance_exists(obj_friend)) { obj_friend.visible = false; }
 
 hand_left  = instance_create_depth(0, 0, -380, obj_rotate_hand, { side: "left"  });
 hand_right = instance_create_depth(0, 0, -380, obj_rotate_hand, { side: "right" });
 
+// start invisible so the "grab" phase actually has something to fade from
 if (instance_exists(hand_left))  hand_left.image_alpha  = 0;
 if (instance_exists(hand_right)) hand_right.image_alpha = 0;

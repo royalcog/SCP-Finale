@@ -11,6 +11,8 @@ switch (phase)
             scr_camera_shake(shake_intensity, shake_duration);
             shake_timer = shake_duration;
 
+            // hands visibly rattle in place while the box shakes, instead
+            // of just riding along with the camera shake indirectly
             if (instance_exists(hand_left))  hand_left.shake_jitter_amount  = shake_intensity;
             if (instance_exists(hand_right)) hand_right.shake_jitter_amount = shake_intensity;
 
@@ -22,9 +24,14 @@ switch (phase)
         shake_timer--;
         if (shake_timer <= 0)
         {
+            // stop the jitter — the tear phase below takes over hand
+            // position directly, and the two would otherwise fight
             if (instance_exists(hand_left))  hand_left.shake_jitter_amount  = 0;
             if (instance_exists(hand_right)) hand_right.shake_jitter_amount = 0;
 
+            // capture the box's current look right as we start tearing it,
+            // then hide the real instance (sequencer still owns its actual
+            // lifetime) and draw our own splitting halves in its place
             if (instance_exists(obj_battlebox))
             {
                 tear_sprite       = obj_battlebox.sprite_index;
@@ -59,9 +66,6 @@ switch (phase)
         {
             if (instance_exists(hand_left))  instance_destroy(hand_left);
             if (instance_exists(hand_right)) instance_destroy(hand_right);
-            // screen flip now happens later, mid-combo — see below — instead
-            // of immediately here, so the tail/scissors/rock spawn under a
-            // normal (unrotated) camera first
             phase = "dark_in";
         }
     break;
@@ -81,6 +85,8 @@ switch (phase)
             dark_active = true;
         }
 
+        // kill every active personal light so nothing stays visible
+        // through a punched-out circle while we fade
         saved_light_states = [];
         var _n = instance_number(obj_light_source);
         for (var i = 0; i < _n; i++)
@@ -115,6 +121,10 @@ switch (phase)
         {
             combo_started = true;
 
+            // tail: the same Attack 4 pendulum, just scaled up so its swing
+            // reaches clear across the screen instead of just the box —
+            // scale is derived from the actual view width so it always
+            // covers the full screen regardless of resolution
             var _view_w = camera_get_view_width(view_camera[0]);
             var _tail_raw_h = sprite_get_height(spr_friend_tail);
             var _big_scale = _view_w / _tail_raw_h;
@@ -126,37 +136,14 @@ switch (phase)
             });
 
             scissors_inst = instance_create_depth(0, 0, -380, obj_friend_attack_scissors_solo, { duration: total_dark_frames - dark_timer });
-
-            rock_inst = instance_create_depth(0, 0, -380, obj_friend_attack_rock_solo, { duration: total_dark_frames - dark_timer });
         }
 
         dark_timer++;
-
-        // screen flips upside-down partway through the dark section (halfway
-        // by default) — deliberately after the combo attacks are already up
-        // and running under a normal camera
-        if (!flip_triggered && dark_timer >= total_dark_frames / 2)
-        {
-            flip_triggered = true;
-            scr_screen_flip_to(180, flip_duration);
-        }
-
-        if (flip_triggered && !mewmew_flipped && !scr_screen_flip_busy())
-        {
-            mewmew_flipped = true;
-            if (instance_exists(obj_mewmew))
-            {
-                obj_mewmew.sprite_index = spr_mewmew_shocked_backwards_corrupted;
-                obj_mewmew.image_index  = 0;
-                obj_mewmew.image_speed  = 0; // static pose, not animating
-            }
-        }
 
         if (dark_timer >= total_dark_frames)
         {
             if (instance_exists(tail_inst))     instance_destroy(tail_inst);
             if (instance_exists(scissors_inst)) instance_destroy(scissors_inst);
-            if (instance_exists(rock_inst))     instance_destroy(rock_inst);
             with (obj_friend_hand_punch) instance_destroy();
             with (obj_strip_flash)       instance_destroy();
 
@@ -180,21 +167,6 @@ switch (phase)
             obj_lighting.darkness_target_right = prev_darkness_right;
         }
 
-        phase = "unflipping";
-        scr_screen_flip_to(0, flip_duration);
-    break;
-
-    case "unflipping":
-        if (!scr_screen_flip_busy())
-        {
-            if (instance_exists(obj_mewmew))
-            {
-                obj_mewmew.sprite_index = spr_mewmew_walkup_corrupted;
-                obj_mewmew.image_index  = 0;
-                obj_mewmew.image_speed  = 0;
-            }
-
-            instance_destroy();
-        }
+        instance_destroy();
     break;
 }
