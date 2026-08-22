@@ -60,6 +60,8 @@ switch (state)
 		{
 		    var _f = instance_create_depth(0, 0, 0, obj_fist_slam_cutscene);
 		    _f.target_inst = _step.target;
+		    if (variable_struct_exists(_step, "fist_sprite")) _f.fist_sprite = _step.fist_sprite;
+		    if (variable_struct_exists(_step, "spawn_side"))  _f.spawn_side  = _step.spawn_side;
 		    state = "waiting_fist_slam";
 		}
 		else if (_step.type == "fist_split")
@@ -67,6 +69,14 @@ switch (state)
 		    var _move = variable_struct_exists(_step, "move_right") ? _step.move_right : 30;
 		    scr_fist_slam_split(_step.target, _move);
 		    state = "advance";
+		}
+		// runs an arbitrary standalone cutscene object with no battlebox involved
+		// (unlike "attack", which always opens a box first) — used for things
+		// like the finale sword-hit cutscene, which needs Friend visible/on-screen
+		else if (_step.type == "custom_cutscene")
+		{
+		    custom_inst = _step.start_func();
+		    state = "waiting_custom_cutscene";
 		}
     break;
 
@@ -147,6 +157,13 @@ switch (state)
 	
 	case "waiting_fist_slam":
 	    if (!instance_exists(obj_fist_slam_cutscene) || obj_fist_slam_cutscene.punch_complete)
+	    {
+	        state = "advance";
+	    }
+	break;
+
+	case "waiting_custom_cutscene":
+	    if (!instance_exists(custom_inst))
 	    {
 	        state = "advance";
 	    }

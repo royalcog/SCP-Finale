@@ -928,7 +928,7 @@ function scr_game_text(_text_id)
 			var spamton = obj_spamton;
 			var _seq = instance_create_depth(0, 0, 0, obj_fight_sequencer);
 		    _seq.sequence = [
-			
+
 			// ATTACK 1
 			    {
 			        type: "ui_sequence",
@@ -1792,7 +1792,7 @@ function scr_game_text(_text_id)
 				{ type: "talk", batch: [ { speaker: friend, text: "Confessions aren't necessary here, Spamton. My actions are self-justified.", keep_animating: true } ] },
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
 				{ type: "attack", kind: "custom", start_func: scr_start_friend_attack8 },
-				
+
 				// END OF BATTLE
 				{
 			        type: "ui_sequence",
@@ -1848,23 +1848,15 @@ function scr_game_text(_text_id)
 				{ type: "talk", batch: [ { speaker: friend, text: "None of you understand the full statutes of this plan.", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "Then again, there are still more chapters of life to go before it comes into fruition.", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "So, I think it is due time for a final attack of sorts.", keep_animating: true } ] },
-				{ type: "talk", batch: [ { speaker: friend, text: "Let us commence", keep_animating: true } ] },
+				{ type: "custom_cutscene", start_func: scr_start_friend_final_cutscene },
 		    ];		
 		break;
-/*
-Friend: None of you understand the full statutes of this plan.
-Friend: Then again, there are still more chapters of life to go before it comes into fruition.
-Friend: So, I think it is due time for a final attack of sorts.
-Friend: Let us commence
-(A sword comes from the left side of the screen and hits Friend to the right like Friend did to them earlier)
-(Battle Ends)
-
-*/
 
 		case "self_31":
 			scr_ui_reverse(sng_empty);
 			audio_stop_all();
 			scr_text("* Thanks, Knight.", "gerson");
+				scr_obj_sprite_on_page(obj_gerson, spr_gerson_hammer_idle_lantern_left, false);
 			scr_text("* Maybe you're not as terrible as we thought.", "gerson");
 			scr_text("* I do not need your compliments, Gerson.", "knight");
 				scr_snd_on_page(snd_knight_phone_call, 1);
@@ -1885,6 +1877,7 @@ Friend: Let us commence
 			scr_text("* ...", "gerson");
 			scr_text("* Try to come earlier for the next meeting.", "gerson");
 			scr_text("* [Let's jet, guys]!", "spamton");
+				scr_obj_sprite_on_page(obj_spamton, spr_spamton_left, false);
 		break;
 		
 		case "self_32":
@@ -1896,6 +1889,7 @@ Friend: Let us commence
 		
 		case "self_33":
 			scr_text("* So... now what?", "mewmew");
+				scr_portrait_on_page(spr_mewmewspeaker_concerned_corrupted);
 				scr_set_var_on_page(obj_textbox, "hide_box_sprite", true);
 			scr_text("* I need to figure out what's going on in Castle Town.", "gerson");
 			scr_text("* All of you need to come with me right now.", "gerson");
@@ -1905,15 +1899,6 @@ Friend: Let us commence
 				scr_text_cutoff_skip(10);
 		break;
 	}
-/*
-MM: So… now what?
-Gerson: I need to figure out what's going on in Castle Town.
-Gerson: All of you need to come with me right now.
-Gerson: I have a feeling… I need all the help I can get.
-Spamton: …
-Spamton: W3LL SHI
-
-*/
 		/*array_push(obj_cutscenehandler_midfightattacks.after_textbox_queue, {
 			type: "tenna_battle_intro"
 			});*/

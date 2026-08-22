@@ -2,7 +2,7 @@ display_set_gui_size(camera_get_view_width(view_camera[0]), camera_get_view_heig
 
 // 1. Initialize Globals FIRST before using them anywhere
 
-// Testing Globals
+/* Testing Globals
 if (!variable_global_exists("dialogue_self"))
 {
     variable_global_set("dialogue_self", 16);
@@ -14,11 +14,6 @@ if (!variable_global_exists("song"))
     audio_play_sound(global.song, 1, true);
 }
 
-if (!variable_global_exists("DEBUG_BARRAGE"))
-{
-    global.DEBUG_BARRAGE = false;
-}
-
 if (!variable_global_exists("dbg_friend_offx"))
 {
     global.dbg_friend_offx = -114;
@@ -27,11 +22,16 @@ if (!variable_global_exists("dbg_friend_offy"))
 {
     global.dbg_friend_offy = -72;
 }
-
+*/
 
 
 
 // General Globals
+if (!variable_global_exists("DEBUG_BARRAGE"))
+{
+    global.DEBUG_BARRAGE = false;
+}
+
 if (!variable_global_exists("fight_attack_active"))
 {
     global.fight_attack_active = false;

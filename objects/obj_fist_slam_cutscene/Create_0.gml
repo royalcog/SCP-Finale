@@ -2,6 +2,8 @@ depth = -99999;
 target_inst = noone;
 
 fist_sprite = spr_friend_hand_rock;
+spawn_side = "right"; // "right" = old Knight-punch behavior; "left" mirrors it for the Friend hit
+scale = 1;            // uniform scale multiplier on top of the facing-direction flip
 
 phase = "darken";
 

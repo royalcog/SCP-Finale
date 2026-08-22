@@ -11,12 +11,21 @@ switch (phase)
             var _vx = camera_get_view_x(_cam);
             var _vw = camera_get_view_width(_cam);
 
-            fist_room_x = _vx + _vw + spawn_margin; // right edge of the screen
+            if (spawn_side == "left")
+            {
+                fist_room_x = _vx - spawn_margin; // left edge of the screen
+                image_xscale = scale; // sprite faces right by default — that already matches travel direction (right) when coming from the left
+            }
+            else
+            {
+                fist_room_x = _vx + _vw + spawn_margin; // right edge of the screen
+                image_xscale = -scale; // sprite faces right by default — flip to face the punch direction (left)
+            }
+            image_yscale = scale;
+
             fist_room_y = target_inst.y + fist_y_offset;
             fist_start_x = fist_room_x;
             fist_slow_x = target_inst.x + ((fist_start_x - target_inst.x) / 2);
-
-            image_xscale = -1; // sprite faces right by default — flip to face the punch direction (left)
 
             if (instance_exists(target_inst))
             {
@@ -26,12 +35,17 @@ switch (phase)
     break;
 
     case "rush":
-	    var _speed = (fist_room_x > fist_slow_x) ? fast_speed : slow_speed;
-	    fist_room_x -= _speed;
+	    var _approaching = (spawn_side == "left") ? (fist_room_x < fist_slow_x) : (fist_room_x > fist_slow_x);
+	    var _speed = _approaching ? fast_speed : slow_speed;
+	    fist_room_x += (spawn_side == "left") ? _speed : -_speed;
 
-	    if (fist_room_x <= target_inst.x + hit_offset)
+	    var _reached = (spawn_side == "left")
+	        ? (fist_room_x >= target_inst.x - hit_offset)
+	        : (fist_room_x <= target_inst.x + hit_offset);
+
+	    if (_reached)
 	    {
-	        fist_room_x = target_inst.x + hit_offset;
+	        fist_room_x = target_inst.x + ((spawn_side == "left") ? -hit_offset : hit_offset);
 	        phase = "impact";
 	        audio_stop_all();
 	        audio_play_sound(snd_impact, 1, false);
@@ -96,6 +110,7 @@ switch (phase)
             _clone.fist_room_y     = fist_room_y;
             _clone.fist_base_y     = fist_room_y;
             _clone.image_xscale    = -image_xscale; // inverted, mirrors the original
+            _clone.image_yscale    = image_yscale;
             _clone.bob_enabled     = bob_enabled;
             _clone.bob_amount      = bob_amount;
             _clone.bob_speed       = bob_speed;
@@ -117,7 +132,7 @@ switch (phase)
     break;
 }
 
-// tracks the knight leaving the screen, regardless of impact/hold phase, to time the explosion
+// tracks the target leaving the screen, regardless of impact/hold phase, to time the explosion
 if ((phase == "impact" || phase == "hold") && instance_exists(target_inst) && !explosion_played)
 {
     var _cam = view_camera[0];
