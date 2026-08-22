@@ -47,14 +47,16 @@ rock_inst = noone;
 total_dark_frames = 900; // ~15s, same pacing as Attack 8's dark window
 dark_timer = 0;
 
+// screen turns upside down partway through the dark section (once the
+// tail/scissors/rock combo is already running under a normal camera) —
+// see the flip_triggered / mewmew_flipped handling in the "combo" case in Step
+flip_triggered = false;
+mewmew_flipped = false;
+
 if (instance_exists(obj_friend)) { obj_friend.visible = false; }
 
-// screen turns upside down partway through this attack (once the box has
-// finished tearing, right as it goes dark) — see the "flipping" phase in
-// Step, not here
 hand_left  = instance_create_depth(0, 0, -380, obj_rotate_hand, { side: "left"  });
 hand_right = instance_create_depth(0, 0, -380, obj_rotate_hand, { side: "right" });
 
-// start invisible so the "grab" phase actually has something to fade from
 if (instance_exists(hand_left))  hand_left.image_alpha  = 0;
 if (instance_exists(hand_right)) hand_right.image_alpha = 0;

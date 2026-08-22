@@ -991,7 +991,7 @@ function scr_game_text(_text_id)
 				{ type: "talk", batch: [ { speaker: friend, text: "These crystals were meant to enlighten you, not turn you away from carving a new direction.", keep_animating: true } ] },
 				{ type: "talk", batch: [ { speaker: friend, text: "If this is how you wish to repay me, however, so be it.", keep_animating: true } ] },
 				{ type: "sprite", target: obj_friend, new_sprite: spr_friend_lookdown_animated },
-		        { type: "attack", kind: "custom", start_func: scr_start_friend_attack4 },
+		        { type: "attack", kind: "custom", start_func: scr_start_friend_attack9 },
 							
 				// ATTACK 2
 				{
@@ -1864,16 +1864,56 @@ Friend: Let us commence
 		case "self_31":
 			scr_ui_reverse(sng_empty);
 			audio_stop_all();
-			scr_text("* WE'RE NOT LETTING YOU GET AWAY!!!", "mewmewghost", , , true);
-				scr_portrait_on_page(spr_pinkghost_angry);
-				scr_obj_sprite_on_page(obj_mewmew, spr_ghost_yelling_right, true);
-				scr_portrait_tail_off();
-				scr_obj_sprite_on_page(obj_friend, spr_friendmew_norm_walkleft, false);
-			scr_text("* So be it! I'll be further down the hall when you need me.", "friend");
-				scr_portrait_on_page(spr_friendmew_smiley);
-				scr_char_move_after_textbox(obj_friend, spr_friendmew_norm_walkright, true, 7, 0, .15, 60);
+			scr_text("* Thanks, Knight.", "gerson");
+			scr_text("* Maybe you're not as terrible as we thought.", "gerson");
+			scr_text("* I do not need your compliments, Gerson.", "knight");
+				scr_snd_on_page(snd_knight_phone_call, 1);
+				scr_text_slow(0.175);
+				scr_text_shake(0, 9999);
+			scr_text("* All of you...", "knight");
+				scr_snd_on_page(snd_knight_phone_call, 1);
+				scr_text_slow(0.175);
+				scr_text_shake(0, 9999);
+			scr_text("* Leave...", "knight");
+				scr_snd_on_page(snd_knight_phone_call, 1);
+				scr_text_slow(0.175);
+				scr_text_shake(0, 9999);
+			scr_text("* Now...", "knight");
+				scr_snd_on_page(snd_knight_phone_call, 1);
+				scr_text_slow(0.175);
+				scr_text_shake(0, 9999);
+			scr_text("* ...", "gerson");
+			scr_text("* Try to come earlier for the next meeting.", "gerson");
+			scr_text("* [Let's jet, guys]!", "spamton");
+		break;
+		
+		case "self_32":
+			scr_fade_warp_with_music(rm_two, 400, sng_empty);
+			global.song = sng_flashback;
+			scr_set_dim_left(0);
+			scr_set_dim_right(0);
+		break;
+		
+		case "self_33":
+			scr_text("* So... now what?", "mewmew");
+				scr_set_var_on_page(obj_textbox, "hide_box_sprite", true);
+			scr_text("* I need to figure out what's going on in Castle Town.", "gerson");
+			scr_text("* All of you need to come with me right now.", "gerson");
+			scr_text("* I have a feeling I'm gonna need all the help I can get.", "gerson");
+			scr_text("* ...", "spamton");
+			scr_text("* WELL SHI", "spamton");
+				scr_text_cutoff_skip(10);
 		break;
 	}
+/*
+MM: So… now what?
+Gerson: I need to figure out what's going on in Castle Town.
+Gerson: All of you need to come with me right now.
+Gerson: I have a feeling… I need all the help I can get.
+Spamton: …
+Spamton: W3LL SHI
+
+*/
 		/*array_push(obj_cutscenehandler_midfightattacks.after_textbox_queue, {
 			type: "tenna_battle_intro"
 			});*/
